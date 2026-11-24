@@ -1,0 +1,57 @@
+{
+  "include": [
+    "next-env.d.ts",
+    "app/**/*.ts",
+    "app/**/*.tsx",
+    "next.config.mjs",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "compilerOptions": {
+    "target": "ES2022",
+    "jsx": "preserve",
+    "module": "ESNext",
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
+    /* Next.js requires these */
+    "moduleResolution": "Bundler",
+    "allowImportingTsExtensions": false,
+    "verbatimModuleSyntax": false,
+    "noEmit": true,
+    "incremental": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    /* Linting */
+    "skipLibCheck": true,
+    "strict": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noFallthroughCasesInSwitch": true,
+    /* Path aliases */
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "allowJs": true,
+    "esModuleInterop": true
+  },
+  "exclude": [
+    "node_modules",
+    "src/routes",
+    "src/router.tsx",
+    "src/routeTree.gen.ts",
+    "src/server.ts",
+    "src/start.ts",
+    "temp_scratch"
+  ]
+}
