@@ -131,65 +131,63 @@ export function HeroWrapper({ initialHero }: { initialHero?: number }) {
         {currentHero === 6 && <HeroSection6 />}
       </div>
 
-      {/* Very compact floating dropdown selection at bottom left (Hidden in production) */}
-      {process.env.NODE_ENV !== 'production' && (
-        <div ref={dropdownRef} className="fixed bottom-4 left-4 sm:bottom-5 sm:left-5 z-40">
-          <div className="relative">
-            {/* Dropdown Menu (Pops upward) */}
-            <AnimatePresence>
-              {dropdownOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: 8, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 6, scale: 0.95 }}
-                  transition={{ duration: 0.15 }}
-                  className="absolute bottom-[calc(100%+8px)] left-0 w-48 rounded-2xl bg-[#141820]/95 backdrop-blur-xl border border-white/15 p-1.5 shadow-2xl shadow-black/80 overflow-hidden text-white"
-                >
-                  <div className="px-2.5 py-1 text-[10px] uppercase font-mono tracking-wider text-white/40 border-b border-white/10 mb-1">
-                    Hero Variant
-                  </div>
-                  <div className="space-y-0.5">
-                    {HERO_VARIANTS.map((variant) => {
-                      const isActive = currentHero === variant.id;
-                      const Icon = variant.icon;
-                      return (
-                        <button
-                          key={variant.id}
-                          onClick={() => switchHero(variant.id)}
-                          className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl text-left text-xs transition-colors cursor-morph ${isActive
-                              ? 'bg-[#FF8101] text-white font-semibold shadow-md shadow-[#FF8101]/30'
-                              : 'text-white/80 hover:bg-white/10 hover:text-white'
-                            }`}
-                        >
-                          <div className="flex items-center gap-2 min-w-0">
-                            <Icon size={13} className={isActive ? 'text-white' : 'text-[#FF8101] shrink-0'} />
-                            <span className="truncate">{variant.shortLabel}</span>
-                          </div>
-                          {isActive && <Check size={12} strokeWidth={3} className="shrink-0" />}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+      {/* Very compact floating dropdown selection at bottom left */}
+      <div ref={dropdownRef} className="fixed bottom-4 left-4 sm:bottom-5 sm:left-5 z-50">
+        <div className="relative">
+          {/* Dropdown Menu (Pops upward) */}
+          <AnimatePresence>
+            {dropdownOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: 8, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 6, scale: 0.95 }}
+                transition={{ duration: 0.15 }}
+                className="absolute bottom-[calc(100%+8px)] left-0 w-48 rounded-2xl bg-[#141820]/95 backdrop-blur-xl border border-white/15 p-1.5 shadow-2xl shadow-black/80 overflow-hidden text-white"
+              >
+                <div className="px-2.5 py-1 text-[10px] uppercase font-mono tracking-wider text-white/40 border-b border-white/10 mb-1">
+                  Hero Variant
+                </div>
+                <div className="space-y-0.5">
+                  {HERO_VARIANTS.map((variant) => {
+                    const isActive = currentHero === variant.id;
+                    const Icon = variant.icon;
+                    return (
+                      <button
+                        key={variant.id}
+                        onClick={() => switchHero(variant.id)}
+                        className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl text-left text-xs transition-colors cursor-morph ${isActive
+                            ? 'bg-[#FF8101] text-white font-semibold shadow-md shadow-[#FF8101]/30'
+                            : 'text-white/80 hover:bg-white/10 hover:text-white'
+                          }`}
+                      >
+                        <div className="flex items-center gap-2 min-w-0">
+                          <Icon size={13} className={isActive ? 'text-white' : 'text-[#FF8101] shrink-0'} />
+                          <span className="truncate">{variant.shortLabel}</span>
+                        </div>
+                        {isActive && <Check size={12} strokeWidth={3} className="shrink-0" />}
+                      </button>
+                    );
+                  })}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
 
-            {/* Compact Pill Button */}
-            <button
-              onClick={() => setDropdownOpen(!dropdownOpen)}
-              className="cursor-morph flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#141820]/90 hover:bg-[#141820] backdrop-blur-xl border border-white/20 hover:border-[#FF8101]/50 text-white text-xs font-medium shadow-xl shadow-black/50 transition-all duration-200"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-[#FF8101] animate-pulse shrink-0" />
-              <ActiveIcon size={12} className="text-[#FF8101]" />
-              <span className="font-semibold">{activeVariant.shortLabel}</span>
-              <ChevronDown
-                size={12}
-                className={`text-white/60 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`}
-              />
-            </button>
-          </div>
+          {/* Compact Pill Button */}
+          <button
+            onClick={() => setDropdownOpen(!dropdownOpen)}
+            className="cursor-morph flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#141820]/90 hover:bg-[#141820] backdrop-blur-xl border border-white/20 hover:border-[#FF8101]/50 text-white text-xs font-medium shadow-xl shadow-black/50 transition-all duration-200"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-[#FF8101] animate-pulse shrink-0" />
+            <ActiveIcon size={12} className="text-[#FF8101]" />
+            <span className="font-semibold">{activeVariant.shortLabel}</span>
+            <ChevronDown
+              size={12}
+              className={`text-white/60 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`}
+            />
+          </button>
         </div>
-      )}
+      </div>
     </div>
   );
 }
