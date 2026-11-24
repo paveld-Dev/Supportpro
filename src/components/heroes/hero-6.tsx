@@ -225,8 +225,10 @@ export function HeroSection6() {
             className="absolute bottom-28 sm:bottom-32 lg:bottom-36 xl:bottom-40 left-5 md:left-6 lg:left-8 max-w-xs sm:max-w-sm lg:max-w-md text-left pointer-events-none"
           >
             <p className="text-xs sm:text-sm lg:text-[15px] font-normal text-white/75 leading-relaxed mb-4 sm:mb-5">
-              24/7 managed infrastructure, cloud operations and white-label support, delivered from
-              Chicago and South India. Named engineers, written SLAs, and ISO 27001 controls.
+              24/7 managed infrastructure, cloud operations,<br />
+              and white-label support, delivered from Chicago<br />
+              and South India. Named engineers, written SLAs,<br />
+              and ISO 27001 controls.
             </p>
 
             <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 pointer-events-auto">

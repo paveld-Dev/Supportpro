@@ -81,8 +81,9 @@ export function Hero() {
               transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
               className="mt-5 sm:mt-6 text-[15px] sm:text-base lg:text-[17px] font-normal text-white/80 leading-relaxed max-w-xl"
             >
-              24/7 managed infrastructure, cloud operations and white-label support,
-              delivered from Chicago and South India. Named engineers, written SLAs,
+              24/7 managed infrastructure, cloud operations,<br />
+              and white-label support, delivered from Chicago<br />
+              and South India. Named engineers, written SLAs,<br />
               and ISO 27001 controls.
             </motion.p>
             <motion.div

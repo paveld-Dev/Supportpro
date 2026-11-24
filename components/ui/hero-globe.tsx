@@ -15,27 +15,27 @@ export interface HeroGlobeProps {
 export const SUPPORTPRO_BASES = {
   chicago: {
     id: 'base-chicago',
-    name: 'Chicago Global HQ',
+    name: 'Base: Chicago HQ',
     city: 'Chicago, IL',
     country: 'USA',
-    lat: 41.8781,
-    lng: -87.6298,
+    lat: 41.88,
+    lng: -87.63,
     color: '#FF8101',
     glowColor: 'rgba(255, 129, 1, 0.95)',
   },
   southIndia: {
     id: 'base-south-india',
-    name: 'South India Delivery Centre',
+    name: 'Support: South India delivery',
     city: 'South India Hub',
     country: 'India',
-    lat: 18.5204,
-    lng: 78.8567,
+    lat: 12.97,
+    lng: 77.59,
     color: '#FF8101',
     glowColor: 'rgba(255, 129, 1, 0.95)',
   },
 };
 
-// Prominently highlighted beacons on the globe: Chicago HQ and India's tech & delivery hubs
+// Prominently highlighted beacons on the globe: Chicago HQ and South India delivery hub
 export interface GlobeHighlightDot {
   id: string;
   name: string;
@@ -48,23 +48,23 @@ export interface GlobeHighlightDot {
 }
 
 export const GLOBE_HIGHLIGHT_DOTS: GlobeHighlightDot[] = [
-  // 1. Chicago Global Headquarters
+  // 1. Chicago Global Headquarters (Base marker only, no arcs touch it)
   {
     id: 'dot-chicago',
-    name: 'Chicago Global HQ',
-    lat: 41.8781,
-    lng: -87.6298,
+    name: 'Base: Chicago HQ',
+    lat: 41.88,
+    lng: -87.63,
     size: 0.04,
     radius: 4.5,
     glowRadius: 12,
     isPrimary: true,
   },
-  // 2. India Delivery Centre
+  // 2. South India Delivery Centre (Highlighted support source, all arcs begin here)
   {
     id: 'dot-india',
-    name: 'India Delivery Centre',
-    lat: 18.5204,
-    lng: 78.8567,
+    name: 'Support: South India delivery',
+    lat: 12.97,
+    lng: 77.59,
     size: 0.04,
     radius: 4.5,
     glowRadius: 12,
@@ -85,214 +85,201 @@ export interface GlobeNetworkRoute {
   color: string;
 }
 
-// Network routes connecting all global nodes with complete 360-degree coverage
+// Network routes originating strictly from South India (12.97, 77.59) to global client locations (15 total, long-distance global span)
 export const GLOBE_NETWORK_ROUTES: GlobeNetworkRoute[] = [
-  // 1. Chicago HQ -> London UK Node
+  // 1. South India -> London UK Client Node
   {
-    id: 'route-chicago-london',
-    fromBase: 'chicago',
-    fromLat: 41.8781,
-    fromLng: -87.6298,
+    id: 'route-india-london',
+    fromBase: 'southIndia',
+    fromLat: 12.97,
+    fromLng: 77.59,
     toPinId: 'pin-london',
     toLat: 51.5074,
     toLng: -0.1278,
-    speed: 0.65,
+    speed: 0.55,
     phase: 0.0,
     color: '#FF8101',
   },
-  // 2. Chicago HQ -> West Coast US Node
+  // 2. South India -> Frankfurt Central Europe Node
   {
-    id: 'route-chicago-west-coast',
-    fromBase: 'chicago',
-    fromLat: 41.8781,
-    fromLng: -87.6298,
+    id: 'route-india-frankfurt',
+    fromBase: 'southIndia',
+    fromLat: 12.97,
+    fromLng: 77.59,
+    toPinId: 'pin-frankfurt',
+    toLat: 50.1109,
+    toLng: 8.6821,
+    speed: 0.58,
+    phase: 0.08,
+    color: '#FF8101',
+  },
+  // 3. South India -> West Coast US Client Node (Long Distance)
+  {
+    id: 'route-india-west-coast',
+    fromBase: 'southIndia',
+    fromLat: 12.97,
+    fromLng: 77.59,
     toPinId: 'pin-west-coast',
     toLat: 45.0,
     toLng: -125.0,
-    speed: 0.85,
-    phase: 0.22,
-    color: '#FF8101',
-  },
-  // 3. Chicago HQ -> São Paulo LATAM Node
-  {
-    id: 'route-chicago-saopaulo',
-    fromBase: 'chicago',
-    fromLat: 41.8781,
-    fromLng: -87.6298,
-    toPinId: 'pin-saopaulo',
-    toLat: -23.5505,
-    toLng: -46.6333,
-    speed: 0.6,
-    phase: 0.45,
-    color: '#FF8101',
-  },
-  // 4. Chicago HQ -> Lagos West Africa Node
-  {
-    id: 'route-chicago-africa',
-    fromBase: 'chicago',
-    fromLat: 41.8781,
-    fromLng: -87.6298,
-    toPinId: 'pin-africa',
-    toLat: 6.5244,
-    toLng: 15.0,
-    speed: 0.55,
-    phase: 0.68,
-    color: '#FF8101',
-  },
-  // 5. Core Global Backbone: Chicago HQ <-> South India Delivery Centre
-  {
-    id: 'route-chicago-south-india',
-    fromBase: 'chicago',
-    fromLat: 41.8781,
-    fromLng: -87.6298,
-    toPinId: 'pin-south-india',
-    toLat: 18.5204,
-    toLng: 78.8567,
-    speed: 0.48,
+    speed: 0.60,
     phase: 0.15,
     color: '#FF8101',
   },
-  // 6. South India -> Tokyo East Asia Node
+  // 4. South India -> Seattle Pacific Northwest Node (Long Distance)
+  {
+    id: 'route-india-seattle',
+    fromBase: 'southIndia',
+    fromLat: 12.97,
+    fromLng: 77.59,
+    toPinId: 'pin-seattle',
+    toLat: 47.6062,
+    toLng: -122.3321,
+    speed: 0.64,
+    phase: 0.22,
+    color: '#FF8101',
+  },
+  // 5. South India -> New York US East Node (Long Distance)
+  {
+    id: 'route-india-new-york',
+    fromBase: 'southIndia',
+    fromLat: 12.97,
+    fromLng: 77.59,
+    toPinId: 'pin-new-york',
+    toLat: 40.7128,
+    toLng: -74.006,
+    speed: 0.56,
+    phase: 0.28,
+    color: '#FF8101',
+  },
+  // 6. South India -> Toronto East Coast Node (Long Distance)
+  {
+    id: 'route-india-toronto',
+    fromBase: 'southIndia',
+    fromLat: 12.97,
+    fromLng: 77.59,
+    toPinId: 'pin-toronto',
+    toLat: 43.6532,
+    toLng: -79.3832,
+    speed: 0.62,
+    phase: 0.35,
+    color: '#FF8101',
+  },
+  // 7. South India -> São Paulo LATAM Client Node (Long Distance)
+  {
+    id: 'route-india-saopaulo',
+    fromBase: 'southIndia',
+    fromLat: 12.97,
+    fromLng: 77.59,
+    toPinId: 'pin-saopaulo',
+    toLat: -23.5505,
+    toLng: -46.6333,
+    speed: 0.52,
+    phase: 0.42,
+    color: '#FF8101',
+  },
+  // 8. South India -> Buenos Aires South America Node (Ultra Long Distance)
+  {
+    id: 'route-india-buenos-aires',
+    fromBase: 'southIndia',
+    fromLat: 12.97,
+    fromLng: 77.59,
+    toPinId: 'pin-buenos-aires',
+    toLat: -34.6037,
+    toLng: -58.3816,
+    speed: 0.50,
+    phase: 0.48,
+    color: '#FF8101',
+  },
+  // 9. South India -> Lagos West Africa Client Node
+  {
+    id: 'route-india-africa',
+    fromBase: 'southIndia',
+    fromLat: 12.97,
+    fromLng: 77.59,
+    toPinId: 'pin-africa',
+    toLat: 6.5244,
+    toLng: 15.0,
+    speed: 0.62,
+    phase: 0.55,
+    color: '#FF8101',
+  },
+  // 10. South India -> Cape Town South Africa Client Node
+  {
+    id: 'route-india-south-africa',
+    fromBase: 'southIndia',
+    fromLat: 12.97,
+    fromLng: 77.59,
+    toPinId: 'pin-south-africa',
+    toLat: -33.9249,
+    toLng: 18.4241,
+    speed: 0.58,
+    phase: 0.62,
+    color: '#FF8101',
+  },
+  // 11. South India -> Dubai Middle East Node
+  {
+    id: 'route-india-dubai',
+    fromBase: 'southIndia',
+    fromLat: 12.97,
+    fromLng: 77.59,
+    toPinId: 'pin-dubai',
+    toLat: 25.2048,
+    toLng: 55.2708,
+    speed: 0.70,
+    phase: 0.68,
+    color: '#FF8101',
+  },
+  // 12. South India -> Singapore SE Asia Node
+  {
+    id: 'route-india-singapore',
+    fromBase: 'southIndia',
+    fromLat: 12.97,
+    fromLng: 77.59,
+    toPinId: 'pin-singapore',
+    toLat: 1.3521,
+    toLng: 103.8198,
+    speed: 0.68,
+    phase: 0.74,
+    color: '#FF8101',
+  },
+  // 13. South India -> Tokyo East Asia Client Node
   {
     id: 'route-india-east-asia',
     fromBase: 'southIndia',
-    fromLat: 18.5204,
-    fromLng: 78.8567,
+    fromLat: 12.97,
+    fromLng: 77.59,
     toPinId: 'pin-east-asia',
     toLat: 35.6762,
     toLng: 139.6503,
-    speed: 0.72,
-    phase: 0.1,
+    speed: 0.65,
+    phase: 0.80,
     color: '#FF8101',
   },
-  // 7. South India -> Sydney Australia Node
+  // 14. South India -> Sydney Australia Client Node
   {
     id: 'route-india-sydney',
     fromBase: 'southIndia',
-    fromLat: 18.5204,
-    fromLng: 78.8567,
+    fromLat: 12.97,
+    fromLng: 77.59,
     toPinId: 'pin-sydney',
     toLat: -33.8688,
     toLng: 151.2093,
     speed: 0.58,
-    phase: 0.35,
+    phase: 0.88,
     color: '#FF8101',
   },
-  // 8. South India -> Cape Town South Africa Node
+  // 15. South India -> Auckland New Zealand Node (Long Distance)
   {
-    id: 'route-india-south-africa',
+    id: 'route-india-auckland',
     fromBase: 'southIndia',
-    fromLat: 18.5204,
-    fromLng: 78.8567,
-    toPinId: 'pin-south-africa',
-    toLat: -33.9249,
-    toLng: 18.4241,
-    speed: 0.62,
-    phase: 0.6,
-    color: '#FF8101',
-  },
-  // 9. South India -> London UK Node
-  {
-    id: 'route-india-london',
-    fromBase: 'southIndia',
-    fromLat: 18.5204,
-    fromLng: 78.8567,
-    toPinId: 'pin-london',
-    toLat: 51.5074,
-    toLng: -0.1278,
-    speed: 0.52,
-    phase: 0.8,
-    color: '#FF8101',
-  },
-  // 10. South India -> Lagos West Africa Node
-  {
-    id: 'route-india-africa',
-    fromBase: 'southIndia',
-    fromLat: 18.5204,
-    fromLng: 78.8567,
-    toPinId: 'pin-africa',
-    toLat: 6.5244,
-    toLng: 15.0,
-    speed: 0.68,
-    phase: 0.42,
-    color: '#FF8101',
-  },
-  // 11. Trans-Pacific Backbone: West Coast US -> Tokyo East Asia Node
-  {
-    id: 'route-west-coast-tokyo',
-    fromBase: 'chicago',
-    fromLat: 45.0,
-    fromLng: -125.0,
-    toPinId: 'pin-east-asia',
-    toLat: 35.6762,
-    toLng: 139.6503,
-    speed: 0.64,
-    phase: 0.28,
-    color: '#FF8101',
-  },
-  // 12. Trans-Pacific Backbone: West Coast US -> Sydney Australia Node
-  {
-    id: 'route-west-coast-sydney',
-    fromBase: 'chicago',
-    fromLat: 45.0,
-    fromLng: -125.0,
-    toPinId: 'pin-sydney',
-    toLat: -33.8688,
-    toLng: 151.2093,
-    speed: 0.56,
-    phase: 0.52,
-    color: '#FF8101',
-  },
-  // 13. Trans-Pacific Backbone: Chicago HQ -> Tokyo East Asia Node
-  {
-    id: 'route-chicago-tokyo',
-    fromBase: 'chicago',
-    fromLat: 41.8781,
-    fromLng: -87.6298,
-    toPinId: 'pin-east-asia',
-    toLat: 35.6762,
-    toLng: 139.6503,
-    speed: 0.6,
-    phase: 0.72,
-    color: '#FF8101',
-  },
-  // 14. Trans-Pacific Backbone: Honolulu Central Pacific -> Tokyo
-  {
-    id: 'route-hawaii-tokyo',
-    fromBase: 'chicago',
-    fromLat: 21.3069,
-    fromLng: -157.8583,
-    toPinId: 'pin-east-asia',
-    toLat: 35.6762,
-    toLng: 139.6503,
-    speed: 0.7,
-    phase: 0.18,
-    color: '#FF8101',
-  },
-  // 15. Trans-Pacific Backbone: West Coast US -> Honolulu Central Pacific
-  {
-    id: 'route-west-coast-hawaii',
-    fromBase: 'chicago',
-    fromLat: 45.0,
-    fromLng: -125.0,
-    toPinId: 'pin-hawaii',
-    toLat: 21.3069,
-    toLng: -157.8583,
-    speed: 0.75,
-    phase: 0.85,
-    color: '#FF8101',
-  },
-  // 16. Asia-Pacific Backbone: Tokyo East Asia -> Sydney Australia Node
-  {
-    id: 'route-tokyo-sydney',
-    fromBase: 'southIndia',
-    fromLat: 35.6762,
-    fromLng: 139.6503,
-    toPinId: 'pin-sydney',
-    toLat: -33.8688,
-    toLng: 151.2093,
-    speed: 0.66,
-    phase: 0.38,
+    fromLat: 12.97,
+    fromLng: 77.59,
+    toPinId: 'pin-auckland',
+    toLat: -36.8485,
+    toLng: 174.7633,
+    speed: 0.54,
+    phase: 0.94,
     color: '#FF8101',
   },
 ];
@@ -602,9 +589,10 @@ export function HeroGlobe({
         const v2 = latLngToVector3(route.toLat, route.toLng);
         const dot = Math.max(-1, Math.min(1, v1[0] * v2[0] + v1[1] * v2[1] + v1[2] * v2[2]));
         const omega = Math.acos(dot);
-        const peakHeight = Math.max(0.03, Math.min(0.075, omega * 0.05));
+        // Increased arc altitude distance & reach across the globe
+        const peakHeight = Math.max(0.04, Math.min(0.12, omega * 0.08));
 
-        const SAMPLES = 28;
+        const SAMPLES = 36;
         const pts: { x: number; y: number; z: number }[] = [];
         for (let i = 0; i <= SAMPLES; i++) {
           const t = i / SAMPLES;
@@ -621,15 +609,15 @@ export function HeroGlobe({
           const avgZ = (pA.z + pB.z) / 2;
 
           if (avgZ > -0.04) {
-            const lineAlpha = Math.max(0.03, Math.min(0.12, (avgZ + 0.04) / 0.5));
+            const lineAlpha = Math.max(0.04, Math.min(0.16, (avgZ + 0.04) / 0.5));
             if (!isDrawing) {
               ctx.beginPath();
               ctx.moveTo(pA.x, pA.y);
               isDrawing = true;
             }
             ctx.lineTo(pB.x, pB.y);
-            ctx.strokeStyle = `rgba(255, 129, 1, ${lineAlpha * 0.7})`;
-            ctx.lineWidth = 0.45;
+            ctx.strokeStyle = `rgba(255, 129, 1, ${lineAlpha * 0.8})`;
+            ctx.lineWidth = 0.65;
             ctx.stroke();
           } else if (isDrawing) {
             ctx.stroke();
@@ -669,7 +657,7 @@ export function HeroGlobe({
         }
 
         if (strokeAlpha > 0.02 && tMax > tMin + 0.01) {
-          const TRAVEL_STEPS = 22;
+          const TRAVEL_STEPS = 28;
           const travelPts: { x: number; y: number; z: number; frac: number }[] = [];
           for (let step = 0; step <= TRAVEL_STEPS; step++) {
             const frac = step / TRAVEL_STEPS;
@@ -694,9 +682,9 @@ export function HeroGlobe({
               ctx.moveTo(p1.x, p1.y);
               ctx.lineTo(p2.x, p2.y);
               ctx.strokeStyle = `rgba(255, 129, 1, ${alpha})`;
-              ctx.lineWidth = 0.75 + 0.35 * p2.frac;
+              ctx.lineWidth = 0.85 + 0.45 * p2.frac;
               ctx.shadowColor = '#FF8101';
-              ctx.shadowBlur = 4 * p2.frac;
+              ctx.shadowBlur = 5 * p2.frac;
               ctx.stroke();
             }
           }
@@ -706,10 +694,10 @@ export function HeroGlobe({
           if (leadPt.z > 0.05 && cycle < 0.65) {
             const leadAlpha = Math.max(0, Math.min(1, (leadPt.z - 0.05) / 0.4)) * strokeAlpha;
             ctx.beginPath();
-            ctx.arc(leadPt.x, leadPt.y, 1.2, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255, 255, 255, ${leadAlpha * 0.9})`;
+            ctx.arc(leadPt.x, leadPt.y, 1.8, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 255, 255, ${leadAlpha * 0.95})`;
             ctx.shadowColor = '#FF8101';
-            ctx.shadowBlur = 5;
+            ctx.shadowBlur = 6;
             ctx.fill();
           }
 

@@ -43,15 +43,15 @@ export const GLOBE_AVATAR_PINS: GlobeAvatarPin[] = [
     borderColor: '#3B82F6', // Royal Electric Blue
     glowColor: 'rgba(59, 130, 246, 0.85)',
   },
-  // 2. Chicago Global Headquarters (Center-left, Amber/Orange border - matches reference image)
+  // 2. Chicago Global Headquarters (Base marker only, no arcs touch it)
   {
     id: 'pin-chicago',
-    name: 'Sarah Miller',
+    name: 'Base: Chicago HQ',
     role: 'Director of Global Operations',
     city: 'Chicago, IL',
     country: 'USA (HQ)',
-    lat: 41.8781,
-    lng: -87.6298,
+    lat: 41.88,
+    lng: -87.63,
     avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=160&auto=format&fit=crop&q=80',
     fallbackAvatar: '/avatars/tywit.jpg',
     borderColor: '#F59E0B', // Golden Amber / Brand Orange
@@ -114,15 +114,15 @@ export const GLOBE_AVATAR_PINS: GlobeAvatarPin[] = [
     borderColor: '#F43F5E', // Crimson Rose
     glowColor: 'rgba(244, 63, 94, 0.8)',
   },
-  // 7. South India Offshore Delivery Centre (Rotates into view)
+  // 7. South India Offshore Delivery Centre (Highlighted support source, all arcs begin here)
   {
     id: 'pin-south-india',
-    name: 'Priya Sharma',
+    name: 'Support: South India delivery',
     role: 'Lead CloudOps Specialist',
     city: 'South India Hub',
     country: 'India',
-    lat: 18.5204,
-    lng: 78.8567,
+    lat: 12.97,
+    lng: 77.59,
     avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=160&auto=format&fit=crop&q=80',
     fallbackAvatar: '/avatars/tywit.jpg',
     borderColor: '#FF8101', // SupportPRO Brand Orange
@@ -161,12 +161,21 @@ export const GLOBE_AVATAR_PINS: GlobeAvatarPin[] = [
 export const SUPPORTPRO_LOCATIONS: LocationMarker[] = [
   {
     id: 'chicago-hq',
-    name: 'Global Headquarters',
+    name: 'Base: Chicago HQ',
     city: 'Chicago, IL',
     country: 'USA',
-    lat: 41.8781,
-    lng: -87.6298,
+    lat: 41.88,
+    lng: -87.63,
     isHQ: true,
+    size: 0.08,
+  },
+  {
+    id: 'south-india-hub',
+    name: 'Support: South India delivery',
+    city: 'South India Hub',
+    country: 'India',
+    lat: 12.97,
+    lng: 77.59,
     size: 0.08,
   },
 ];
