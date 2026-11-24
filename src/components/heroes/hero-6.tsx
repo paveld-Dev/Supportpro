@@ -121,7 +121,7 @@ export function HeroSection6() {
   return (
     <section
       ref={outerSectionRef}
-      className="relative w-full h-[300vh] max-md:h-[260vh] bg-[#0A0D12]"
+      className="relative w-full h-[300vh] max-md:h-[260vh] bg-[#0A0D12] font-geist font-['Geist',sans-serif]"
       aria-label="SupportPRO Global Infrastructure Hero Section"
     >
       {/* Pinned Stage: full-viewport stage (height: 100svh, position: sticky, top: 0) */}
@@ -173,7 +173,7 @@ export function HeroSection6() {
               <YearsOfExcellenceBadge className="mb-3 sm:mb-4" />
             </div>
 
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[75px] xl:text-[75px] font-normal leading-[1.02] tracking-tight drop-shadow-[0_2px_24px_rgba(0,0,0,0.6)] text-white">
+            <h1 className="font-geist font-['Geist',sans-serif] text-4xl sm:text-5xl md:text-6xl lg:text-[75px] xl:text-[75px] font-semibold leading-[1.02] tracking-tight drop-shadow-[0_2px_24px_rgba(0,0,0,0.6)] text-white">
               Infrastructure<br />support that
             </h1>
           </motion.div>
@@ -187,7 +187,7 @@ export function HeroSection6() {
             }}
             className="absolute bottom-28 sm:bottom-32 lg:bottom-36 xl:bottom-40 right-5 md:right-6 lg:right-8 max-w-xl text-right pointer-events-none"
           >
-            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[75px] xl:text-[75px] font-normal leading-[1.02] tracking-tight drop-shadow-[0_2px_24px_rgba(0,0,0,0.6)] text-white text-right">
+            <h2 className="font-geist font-['Geist',sans-serif] text-4xl sm:text-5xl md:text-6xl lg:text-[75px] xl:text-[75px] font-semibold leading-[1.02] tracking-tight drop-shadow-[0_2px_24px_rgba(0,0,0,0.6)] text-white text-right">
               <HoverOrangeSpan>stays on,</HoverOrangeSpan><br />every hour.
             </h2>
           </motion.div>
@@ -253,7 +253,7 @@ export function HeroSection6() {
           className="absolute inset-0 flex flex-col items-center justify-center z-30 px-6 sm:px-10 text-center pointer-events-none"
         >
           <div className="max-w-4xl mx-auto flex flex-col items-center justify-center">
-            <blockquote className="font-display font-normal text-white text-3xl sm:text-4xl md:text-5xl lg:text-[54px] leading-[1.22] tracking-tight drop-shadow-[0_4px_32px_rgba(0,0,0,0.9)] text-center">
+            <blockquote className="font-geist font-['Geist',sans-serif] font-normal text-white text-3xl sm:text-4xl md:text-5xl lg:text-[54px] leading-[1.22] tracking-tight drop-shadow-[0_4px_32px_rgba(0,0,0,0.9)] text-center">
               &ldquo;Past the outage, your systems<br />
               stay on and your team stays<br />
               calm.&rdquo;
