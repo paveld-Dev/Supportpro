@@ -76,6 +76,40 @@ export function CertificationMarquee({
   return (
     <div className={`w-full overflow-hidden select-none ${className}`}>
       <style>{`
+        :root {
+          --hero-text-margin: 20px;
+          --hero-fade-width: 32px;
+        }
+        @media (min-width: 640px) {
+          :root {
+            --hero-text-margin: 24px;
+            --hero-fade-width: 36px;
+          }
+        }
+        @media (min-width: 768px) {
+          :root {
+            --hero-text-margin: 24px;
+            --hero-fade-width: 40px;
+          }
+        }
+        @media (min-width: 1024px) {
+          :root {
+            --hero-text-margin: 32px;
+            --hero-fade-width: 48px;
+          }
+        }
+        @media (min-width: 1280px) {
+          :root {
+            --hero-text-margin: max(32px, calc((100vw - 1280px) / 2 + 32px));
+            --hero-fade-width: 56px;
+          }
+        }
+        @media (min-width: 1360px) {
+          :root {
+            --hero-text-margin: max(32px, calc((100vw - 1360px) / 2 + 32px));
+            --hero-fade-width: 64px;
+          }
+        }
         @keyframes scrollRightToLeft {
           0% {
             transform: translate3d(0, 0, 0);
@@ -92,6 +126,26 @@ export function CertificationMarquee({
         }
         .cert-marquee-track:hover {
           animation-play-state: paused;
+        }
+        .cert-marquee-viewport {
+          mask-image: linear-gradient(
+            to right,
+            transparent 0px,
+            transparent max(0px, calc(var(--hero-text-margin) - var(--hero-fade-width) * 0.4)),
+            black calc(var(--hero-text-margin) + var(--hero-fade-width) * 0.6),
+            black calc(100% - var(--hero-text-margin) - var(--hero-fade-width) * 0.6),
+            transparent min(100%, calc(100% - var(--hero-text-margin) + var(--hero-fade-width) * 0.4)),
+            transparent 100%
+          );
+          -webkit-mask-image: linear-gradient(
+            to right,
+            transparent 0px,
+            transparent max(0px, calc(var(--hero-text-margin) - var(--hero-fade-width) * 0.4)),
+            black calc(var(--hero-text-margin) + var(--hero-fade-width) * 0.6),
+            black calc(100% - var(--hero-text-margin) - var(--hero-fade-width) * 0.6),
+            transparent min(100%, calc(100% - var(--hero-text-margin) + var(--hero-fade-width) * 0.4)),
+            transparent 100%
+          );
         }
         @media (prefers-reduced-motion: reduce) {
           .cert-marquee-track {
@@ -111,16 +165,8 @@ export function CertificationMarquee({
         </div>
       )}
 
-      {/* Marquee viewport with smooth edge gradient fade masks */}
-      <div
-        className="relative w-full overflow-hidden py-1"
-        style={{
-          maskImage:
-            'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
-          WebkitMaskImage:
-            'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
-        }}
-      >
+      {/* Marquee viewport with fade masks aligned to hero text margins */}
+      <div className="cert-marquee-viewport relative w-full overflow-hidden py-1">
         <div className={`cert-marquee-track items-center ${isSm ? 'gap-2 sm:gap-2.5' : 'gap-3 sm:gap-4'}`}>
           {marqueeItems.map((item, idx) => (
             <div
