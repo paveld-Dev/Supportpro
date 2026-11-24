@@ -930,13 +930,12 @@ export function HeroGlobe({
         ))}
       </div>
 
-      {/* Luminous atmosphere edge halo */}
+      {/* Luminous atmosphere edge halo (borderless, soft ambient depth only) */}
       <div
         className="absolute inset-[6%] rounded-full pointer-events-none"
         style={{
           boxShadow:
-            'inset 0 0 12px rgba(255, 255, 255, 0.12), 0 0 12px rgba(255, 255, 255, 0.08), 0 0 20px rgba(255, 255, 255, 0.04)',
-          border: '1px solid rgba(255, 255, 255, 0.2)',
+            'inset 0 0 10px rgba(255, 255, 255, 0.08), 0 0 14px rgba(255, 255, 255, 0.05)',
         }}
         aria-hidden="true"
       />
