@@ -789,7 +789,7 @@ export function HeroGlobe({
         mapBrightness: 2.2,
         mapBaseBrightness: 0.18,
         baseColor: [0.8, 0.85, 1.0],
-        glowColor: [0.85, 0.9, 1.0],
+        glowColor: [0.65, 0.72, 0.82],
         markerColor: [1.0, 0.5058, 0.0039],
         markers: [
           // Chicago & India prominent highlighted orange markers
@@ -935,8 +935,8 @@ export function HeroGlobe({
         className="absolute inset-[6%] rounded-full pointer-events-none"
         style={{
           boxShadow:
-            'inset 0 0 24px rgba(255, 255, 255, 0.5), 0 0 32px rgba(255, 255, 255, 0.4), 0 0 60px rgba(255, 255, 255, 0.18)',
-          border: '1.5px solid rgba(255, 255, 255, 0.65)',
+            'inset 0 0 16px rgba(255, 255, 255, 0.25), 0 0 16px rgba(255, 255, 255, 0.18), 0 0 28px rgba(255, 255, 255, 0.08)',
+          border: '1px solid rgba(255, 255, 255, 0.4)',
         }}
         aria-hidden="true"
       />
