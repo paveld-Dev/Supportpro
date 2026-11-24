@@ -58,55 +58,54 @@ export function HeroSection6() {
     return () => observer.disconnect();
   }, []);
 
-  // Scroll tracking across the extended 560vh section (420vh on mobile) for expansive quote reading runway
+  // Scroll tracking calibrated to 2 scrolls (300vh total height, 200vh scroll runway)
   const { scrollYProgress } = useScroll({
     target: outerSectionRef,
     offset: ['start start', 'end end'],
   });
 
-  // 1. Globe Scale: holds till 14%, scales smoothly from 1x to ~3.2x by 32%
-  const baseGlobeScale = useTransform(scrollYProgress, [0, 0.14, 0.32, 1], [1, 1, 3.2, 3.4]);
+  // 1. Globe Scale: holds till 12%, scales smoothly from 1x to ~3.2x by 28%
+  const baseGlobeScale = useTransform(scrollYProgress, [0, 0.12, 0.28, 1], [1, 1, 3.2, 3.4]);
 
-  // 2. Globe Opacity: sharp till 28%, fades out by 36%
-  const baseGlobeOpacity = useTransform(scrollYProgress, [0, 0.28, 0.36, 1], [1, 1, 0, 0]);
+  // 2. Globe Opacity: sharp till 24%, fades out completely by 34%
+  const baseGlobeOpacity = useTransform(scrollYProgress, [0, 0.24, 0.34, 1], [1, 1, 0, 0]);
 
-
-  // 4. Content (Headline, Subhead, CTAs): sharp till 14%, fades out & blurs from 0 to 8px by 26%
-  const baseContentOpacity = useTransform(scrollYProgress, [0, 0.14, 0.26, 1], [1, 1, 0, 0]);
-  const baseContentBlur = useTransform(scrollYProgress, [0, 0.14, 0.26, 1], [0, 0, 8, 8]);
+  // 3. Content (Headline, Subhead, CTAs): sharp till 10%, fades out & blurs from 0 to 8px by 22%
+  const baseContentOpacity = useTransform(scrollYProgress, [0, 0.10, 0.22, 1], [1, 1, 0, 0]);
+  const baseContentBlur = useTransform(scrollYProgress, [0, 0.10, 0.22, 1], [0, 0, 8, 8]);
   // Use 'none' when blur is near-zero to prevent GPU filter-graph overhead during normal display
   const contentFilter = useTransform(baseContentBlur, (v) => v > 0.2 ? `blur(${v.toFixed(1)}px)` : 'none');
 
-  // 5. Certification Marquee: fades out between 14% and 26%
-  const baseMarqueeOpacity = useTransform(scrollYProgress, [0, 0.14, 0.26, 1], [1, 1, 0, 0]);
+  // 4. Certification Marquee: fades out smoothly between 10% and 22%
+  const baseMarqueeOpacity = useTransform(scrollYProgress, [0, 0.10, 0.22, 1], [1, 1, 0, 0]);
 
-  // 6. Stage Background Color: fades smoothly to deep dark (#0A0A0A) between 28% and 38%
+  // 5. Stage Background Color: fades smoothly to deep dark (#0A0A0A) between 24% and 34%
   const stageBackground = useTransform(
     scrollYProgress,
-    [0, 0.28, 0.38, 1],
+    [0, 0.24, 0.34, 1],
     ['#0A0D12', '#0A0D12', '#0A0A0A', '#0A0A0A']
   );
 
-  // 7. Centered Transition Quote Block:
-  // - 40% to 48%: Fades in & sharpens from 10px blur down to 0px
-  // - 48% to 92%: Expansive ~1800px hold window at full 100% opacity and 0px blur for relaxed quote reading
-  // - 92% to 99%: Smoothly fades out and lifts slightly as the next section scrolls in
+  // 6. Centered Transition Quote Block calibrated to 2 scrolls:
+  // - 34% to 42%: Fades in & sharpens from blur down to 0px
+  // - 42% to 86%: Clear, readable hold window at full 100% opacity and 0px blur
+  // - 86% to 98%: Smoothly fades out and lifts slightly as the next section scrolls in
   const baseTransitionTextOpacity = useTransform(
     scrollYProgress,
-    [0, 0.40, 0.48, 0.92, 0.99, 1],
+    [0, 0.34, 0.42, 0.86, 0.98, 1],
     [0, 0, 1, 1, 0, 0]
   );
   const baseTransitionTextBlur = useTransform(
     scrollYProgress,
-    [0, 0.40, 0.48, 0.92, 0.99, 1],
+    [0, 0.34, 0.42, 0.86, 0.98, 1],
     [10, 10, 0, 0, 6, 6]
   );
-  // Use 'none' when blur is near-zero so 48%-92% hold window renders crisp text with zero filter passes
+  // Use 'none' when blur is near-zero so 42%-86% hold window renders crisp text with zero filter passes
   const transitionTextFilter = useTransform(baseTransitionTextBlur, (v) => v > 0.2 ? `blur(${v.toFixed(1)}px)` : 'none');
   const transitionTextY = useTransform(
     scrollYProgress,
-    [0, 0.40, 0.48, 0.92, 0.99, 1],
-    [24, 24, 0, 0, -18, -18]
+    [0, 0.34, 0.42, 0.86, 0.98, 1],
+    [20, 20, 0, 0, -16, -16]
   );
 
   // Fallbacks for prefers-reduced-motion (always preserve scroll-based opacity fade so elements never overlap)
@@ -122,7 +121,7 @@ export function HeroSection6() {
   return (
     <section
       ref={outerSectionRef}
-      className="relative w-full h-[560vh] max-md:h-[420vh] bg-[#0A0D12]"
+      className="relative w-full h-[300vh] max-md:h-[260vh] bg-[#0A0D12]"
       aria-label="SupportPRO Global Infrastructure Hero Section"
     >
       {/* Pinned Stage: full-viewport stage (height: 100svh, position: sticky, top: 0) */}
