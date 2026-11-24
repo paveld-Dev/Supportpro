@@ -160,7 +160,7 @@ export function HeroSection6() {
         {/* STAGE CONTENT BOUNDED TO MATCH OTHER SECTIONS (Padding & max-width)       */}
         {/* ========================================================================= */}
         <div className="relative z-20 w-full h-full max-w-[1280px] xl:max-w-[1360px] mx-auto px-5 md:px-6 lg:px-8 pointer-events-none">
-          {/* TOP-LEFT: Years Badge & Headline Part 1 (75px font size) */}
+          {/* TOP-LEFT: Years Badge & Headline Part 1 (73px font size) */}
           <motion.div
             style={{
               opacity: contentOpacity,
@@ -173,12 +173,12 @@ export function HeroSection6() {
               <YearsOfExcellenceBadge className="mb-3 sm:mb-4" />
             </div>
 
-            <h1 className="font-geist font-['Geist',sans-serif] text-4xl sm:text-5xl md:text-6xl lg:text-[75px] xl:text-[75px] font-semibold leading-[1.02] tracking-tight drop-shadow-[0_2px_24px_rgba(0,0,0,0.6)] text-white">
+            <h1 className="font-geist font-['Geist',sans-serif] text-[34px] sm:text-[46px] md:text-[58px] lg:text-[73px] xl:text-[73px] font-semibold leading-[1.02] tracking-tight drop-shadow-[0_2px_24px_rgba(0,0,0,0.6)] text-white">
               Infrastructure<br />support that
             </h1>
           </motion.div>
 
-          {/* BOTTOM-RIGHT: Headline Part 2 (Brought up, 75px font size, right-aligned) */}
+          {/* BOTTOM-RIGHT: Headline Part 2 (Brought up, 73px font size, right-aligned) */}
           <motion.div
             style={{
               opacity: contentOpacity,
@@ -187,7 +187,7 @@ export function HeroSection6() {
             }}
             className="absolute bottom-28 sm:bottom-32 lg:bottom-36 xl:bottom-40 right-5 md:right-6 lg:right-8 max-w-xl text-right pointer-events-none"
           >
-            <h2 className="font-geist font-['Geist',sans-serif] text-4xl sm:text-5xl md:text-6xl lg:text-[75px] xl:text-[75px] font-semibold leading-[1.02] tracking-tight drop-shadow-[0_2px_24px_rgba(0,0,0,0.6)] text-white text-right">
+            <h2 className="font-geist font-['Geist',sans-serif] text-[34px] sm:text-[46px] md:text-[58px] lg:text-[73px] xl:text-[73px] font-semibold leading-[1.02] tracking-tight drop-shadow-[0_2px_24px_rgba(0,0,0,0.6)] text-white text-right">
               <HoverOrangeSpan>stays on,</HoverOrangeSpan><br />every hour.
             </h2>
           </motion.div>
