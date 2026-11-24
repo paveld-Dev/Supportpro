@@ -47,11 +47,8 @@ export function Hero() {
       ref={sectionRef}
       className="relative isolate min-h-[100svh] w-full flex flex-col justify-between pt-24 sm:pt-28 lg:pt-32 pb-6 sm:pb-8 overflow-x-clip bg-[#0A0D12] dark:bg-[#0B0B0B] text-white"
     >
-      {/* Background ambient lighting matching theme */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-        <div className="absolute top-1/4 -left-20 w-[550px] h-[550px] rounded-full bg-[#FF8101]/[0.08] blur-[140px]" />
-        <div className="absolute bottom-1/3 -right-20 w-[450px] h-[450px] rounded-full bg-[#FF8101]/[0.05] blur-[130px]" />
-      </div>
+      {/* Background ambient lighting */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true" />
 
       {/* Deep-space stars with subtle parallax depth on scroll */}
       <motion.div style={{ y: starfieldY }} className="absolute inset-0 pointer-events-none">

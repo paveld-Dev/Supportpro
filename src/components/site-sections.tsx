@@ -81,37 +81,37 @@ const credentials = [
   {
     name: "AWS Certified",
     color: "#FF9900",
-    icon: <img src={getImageSrc(awsCertLogo)} alt="AWS Certified" className="w-[40px] h-auto object-contain shrink-0 rounded-[100px]" />,
+    icon: <img src={getImageSrc(awsCertLogo)} alt="AWS Certified" loading="lazy" decoding="async" className="w-[40px] h-auto object-contain shrink-0 rounded-[100px]" />,
   },
   {
     name: "Red Hat Certified",
     color: "#EE0000",
-    icon: <img src={getImageSrc(redHatCertLogo)} alt="Red Hat Certified" className="w-[40px] h-auto object-contain shrink-0 rounded-[100px]" />,
+    icon: <img src={getImageSrc(redHatCertLogo)} alt="Red Hat Certified" loading="lazy" decoding="async" className="w-[40px] h-auto object-contain shrink-0 rounded-[100px]" />,
   },
   {
     name: "cPanel Partner",
     color: "#F26522",
-    icon: <img src={getImageSrc(cPanelPartnerLogo)} alt="cPanel Partner" className="w-[40px] h-auto object-contain shrink-0 rounded-[100px]" />,
+    icon: <img src={getImageSrc(cPanelPartnerLogo)} alt="cPanel Partner" loading="lazy" decoding="async" className="w-[40px] h-auto object-contain shrink-0 rounded-[100px]" />,
   },
   {
     name: "Microsoft Certified",
     color: "#737373",
-    icon: <img src={getImageSrc(msftCertLogo)} alt="Microsoft Certified" className="w-[40px] h-auto object-contain shrink-0 rounded-[100px]" />,
+    icon: <img src={getImageSrc(msftCertLogo)} alt="Microsoft Certified" loading="lazy" decoding="async" className="w-[40px] h-auto object-contain shrink-0 rounded-[100px]" />,
   },
   {
     name: "ISO 9001:2015",
     color: "#1D4ED8",
-    icon: <img src={getImageSrc(iso9001Logo)} alt="ISO 9001:2015" className="w-[40px] h-auto object-contain shrink-0 rounded-[100px]" />,
+    icon: <img src={getImageSrc(iso9001Logo)} alt="ISO 9001:2015" loading="lazy" decoding="async" className="w-[40px] h-auto object-contain shrink-0 rounded-[100px]" />,
   },
   {
     name: "ISO 27001",
     color: "#1D4ED8",
-    icon: <img src={getImageSrc(iso27001Logo)} alt="ISO 27001" className="w-[40px] h-auto object-contain shrink-0 rounded-[100px]" />,
+    icon: <img src={getImageSrc(iso27001Logo)} alt="ISO 27001" loading="lazy" decoding="async" className="w-[40px] h-auto object-contain shrink-0 rounded-[100px]" />,
   },
   {
     name: "AICPA SOC",
     color: "#1E293B",
-    icon: <img src={getImageSrc(aicpaSocLogo)} alt="AICPA SOC" className="w-[40px] h-auto object-contain shrink-0 rounded-[100px]" />,
+    icon: <img src={getImageSrc(aicpaSocLogo)} alt="AICPA SOC" loading="lazy" decoding="async" className="w-[40px] h-auto object-contain shrink-0 rounded-[100px]" />,
   },
 ];
 
@@ -222,6 +222,7 @@ export function Pillars() {
                   alt="Engineers collaborating at monitoring stations in a modern operations centre"
                   className="absolute inset-0 w-full h-full object-cover"
                   loading="lazy"
+                  decoding="async"
                 />
                 <div className="absolute inset-0 bg-gradient-to-tr from-black/20 via-transparent to-transparent" />
               </div>
@@ -317,6 +318,7 @@ const MarqueeRow = ({
                 alt=""
                 className="max-h-full max-w-full object-contain"
                 loading="lazy"
+                decoding="async"
               />
             </div>
 

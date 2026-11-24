@@ -565,12 +565,10 @@ export function HeroGlobe({
             ctx.stroke();
           }
 
-          // Origin core dot in vibrant brand #FF8101 orange
+          // Origin core dot in vibrant brand #FF8101 orange (fast raster without shadowBlur penalty)
           ctx.beginPath();
           ctx.arc(pt.x, pt.y, dot.radius, 0, Math.PI * 2);
           ctx.fillStyle = `rgba(255, 129, 1, ${depthAlpha})`;
-          ctx.shadowColor = '#FF8101';
-          ctx.shadowBlur = dot.glowRadius;
           ctx.fill();
 
           // High-contrast luminous center highlight
@@ -739,23 +737,44 @@ export function HeroGlobe({
     };
     updateArcsCanvasSize(width);
 
-    // Tab visibility handling
+    let globe: ReturnType<typeof createGlobe> | null = null;
+    let animId: number | null = null;
+    let lastTime = performance.now();
+    let loop: (time: number) => void;
+
+    const startLoopIfNeeded = () => {
+      if (!animId && isIntersecting.current && isTabVisible.current && globe) {
+        lastTime = performance.now();
+        animId = requestAnimationFrame(loop);
+      }
+    };
+
+    // Tab visibility handling: pause completely when tab is hidden
     const handleVisibilityChange = () => {
       isTabVisible.current = !document.hidden;
+      if (isTabVisible.current) {
+        startLoopIfNeeded();
+      } else if (animId) {
+        cancelAnimationFrame(animId);
+        animId = null;
+      }
     };
     document.addEventListener('visibilitychange', handleVisibilityChange);
 
-    // Viewport intersection observer to pause when off-screen
+    // Viewport intersection observer to pause completely when off-screen
     const observer = new IntersectionObserver(
       ([entry]) => {
         isIntersecting.current = entry.isIntersecting;
+        if (isIntersecting.current) {
+          startLoopIfNeeded();
+        } else if (animId) {
+          cancelAnimationFrame(animId);
+          animId = null;
+        }
       },
       { threshold: 0.05 }
     );
     observer.observe(container);
-
-    let globe: ReturnType<typeof createGlobe> | null = null;
-    let animId: number | null = null;
 
     try {
       globe = createGlobe(canvas, {
@@ -790,38 +809,37 @@ export function HeroGlobe({
         ],
       });
 
-      let lastTime = performance.now();
+      loop = (time: number) => {
+        if (!globe || !isIntersecting.current || !isTabVisible.current) {
+          animId = null;
+          return;
+        }
 
-      const loop = (time: number) => {
-        if (globe && isIntersecting.current && isTabVisible.current) {
-          const dt = Math.min((time - lastTime) / 1000, 0.1);
-          lastTime = time;
+        const dt = Math.min((time - lastTime) / 1000, 0.1);
+        lastTime = time;
 
-          if (!prefersReducedMotion) {
-            // Slower, ultra-smooth delta-time normalized rotation
-            phiRef.current += autoRotateSpeed * (dt / 0.01667);
-          }
+        if (!prefersReducedMotion) {
+          // Slower, ultra-smooth delta-time normalized rotation
+          phiRef.current += autoRotateSpeed * (dt / 0.01667);
+        }
 
-          globe.update({
-            phi: phiRef.current,
-            theta: thetaRef.current,
-          });
+        globe.update({
+          phi: phiRef.current,
+          theta: thetaRef.current,
+        });
 
-          // Sync avatar marker coordinates on screen
-          updateMarkerPositions(phiRef.current, thetaRef.current, width);
+        // Sync avatar marker coordinates on screen
+        updateMarkerPositions(phiRef.current, thetaRef.current, width);
 
-          // Render animated circular lines and base origin beacons
-          if (arcsCtx) {
-            renderNetworkArcs(
-              arcsCtx,
-              width,
-              phiRef.current,
-              thetaRef.current,
-              time
-            );
-          }
-        } else {
-          lastTime = time;
+        // Render animated circular lines and base origin beacons
+        if (arcsCtx) {
+          renderNetworkArcs(
+            arcsCtx,
+            width,
+            phiRef.current,
+            thetaRef.current,
+            time
+          );
         }
         animId = requestAnimationFrame(loop);
       };
@@ -876,6 +894,7 @@ export function HeroGlobe({
     webGLSupported,
     prefersReducedMotion,
     autoRotateSpeed,
+    showAvatars,
     updateMarkerPositions,
     renderNetworkArcs,
   ]);

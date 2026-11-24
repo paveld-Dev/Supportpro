@@ -70,18 +70,12 @@ export function HeroSection6() {
   // 2. Globe Opacity: sharp till 28%, fades out by 36%
   const baseGlobeOpacity = useTransform(scrollYProgress, [0, 0.28, 0.36, 1], [1, 1, 0, 0]);
 
-  // 3. Outer Glow: illuminates during horizon zoom (14% - 30%), fades by 38%
-  const baseGlowOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.14, 0.30, 0.38, 1],
-    [0.3, 0.3, 1.0, 0, 0]
-  );
-  const baseGlowScale = useTransform(scrollYProgress, [0, 0.14, 0.30, 1], [1, 1, 1.8, 1.8]);
 
   // 4. Content (Headline, Subhead, CTAs): sharp till 14%, fades out & blurs from 0 to 8px by 26%
   const baseContentOpacity = useTransform(scrollYProgress, [0, 0.14, 0.26, 1], [1, 1, 0, 0]);
   const baseContentBlur = useTransform(scrollYProgress, [0, 0.14, 0.26, 1], [0, 0, 8, 8]);
-  const contentFilter = useMotionTemplate`blur(${baseContentBlur}px)`;
+  // Use 'none' when blur is near-zero to prevent GPU filter-graph overhead during normal display
+  const contentFilter = useTransform(baseContentBlur, (v) => v > 0.2 ? `blur(${v.toFixed(1)}px)` : 'none');
 
   // 5. Certification Marquee: fades out between 14% and 26%
   const baseMarqueeOpacity = useTransform(scrollYProgress, [0, 0.14, 0.26, 1], [1, 1, 0, 0]);
@@ -107,22 +101,21 @@ export function HeroSection6() {
     [0, 0.40, 0.48, 0.92, 0.99, 1],
     [10, 10, 0, 0, 6, 6]
   );
-  const transitionTextFilter = useMotionTemplate`blur(${baseTransitionTextBlur}px)`;
+  // Use 'none' when blur is near-zero so 48%-92% hold window renders crisp text with zero filter passes
+  const transitionTextFilter = useTransform(baseTransitionTextBlur, (v) => v > 0.2 ? `blur(${v.toFixed(1)}px)` : 'none');
   const transitionTextY = useTransform(
     scrollYProgress,
     [0, 0.40, 0.48, 0.92, 0.99, 1],
     [24, 24, 0, 0, -18, -18]
   );
 
-  // Fallbacks for prefers-reduced-motion
+  // Fallbacks for prefers-reduced-motion (always preserve scroll-based opacity fade so elements never overlap)
   const globeScale = prefersReduced ? 1 : baseGlobeScale;
-  const globeOpacity = prefersReduced ? 1 : baseGlobeOpacity;
-  const glowOpacity = prefersReduced ? 0.35 : baseGlowOpacity;
-  const glowScale = prefersReduced ? 1 : baseGlowScale;
-  const contentOpacity = prefersReduced ? 1 : baseContentOpacity;
+  const globeOpacity = baseGlobeOpacity;
+  const contentOpacity = baseContentOpacity;
   const contentFinalFilter = prefersReduced ? 'none' : contentFilter;
-  const marqueeOpacity = prefersReduced ? 1 : baseMarqueeOpacity;
-  const transitionTextOpacity = prefersReduced ? 1 : baseTransitionTextOpacity;
+  const marqueeOpacity = baseMarqueeOpacity;
+  const transitionTextOpacity = baseTransitionTextOpacity;
   const transitionTextFinalFilter = prefersReduced ? 'none' : transitionTextFilter;
   const transitionFinalY = prefersReduced ? 0 : transitionTextY;
 
@@ -138,33 +131,18 @@ export function HeroSection6() {
         style={{ backgroundColor: stageBackground }}
         className="sticky top-0 h-[100svh] w-full flex flex-col justify-between overflow-clip isolate text-white select-none"
       >
-        {/* Background ambient lighting matching theme */}
-        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-          <div className="absolute top-1/4 -left-20 w-[550px] h-[550px] rounded-full bg-[#FF8101]/[0.08] blur-[140px]" />
-          <div className="absolute bottom-1/3 -right-20 w-[450px] h-[450px] rounded-full bg-[#FF8101]/[0.05] blur-[130px]" />
-        </div>
-
         {/* Deep space starfield background */}
         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
           <Starfield />
         </div>
 
         {/* ========================================================================= */}
-        {/* CENTERED GLOBE & GLOW LAYER (Centered Horizontally & Vertically)          */}
+        {/* CENTERED GLOBE LAYER (Centered Horizontally & Vertically)                 */}
         {/* ========================================================================= */}
         <div
           className="absolute inset-0 flex items-center justify-center pointer-events-none z-10"
           aria-hidden="true"
         >
-          {/* Dynamic outer glow that brightens from 40% to 75% */}
-          <motion.div
-            style={{
-              opacity: glowOpacity,
-              scale: glowScale,
-            }}
-            className="absolute rounded-full bg-[#FF8101]/30 blur-[130px] w-[460px] h-[460px] sm:w-[560px] sm:h-[560px] md:w-[640px] md:h-[640px] lg:w-[760px] lg:h-[760px] pointer-events-none"
-          />
-
           {/* Centered Globe: Resting size strictly unchanged; scaled smoothly via transform */}
           <motion.div
             style={{
@@ -190,7 +168,7 @@ export function HeroSection6() {
               filter: contentFinalFilter,
               willChange: 'transform, opacity, filter',
             }}
-            className="absolute top-20 sm:top-24 lg:top-28 left-5 md:left-6 lg:left-8 max-w-xl text-left pointer-events-none"
+            className="absolute top-24 sm:top-28 md:top-32 lg:top-36 left-5 md:left-6 lg:left-8 max-w-xl text-left pointer-events-none"
           >
             <div className="pointer-events-auto inline-block">
               <YearsOfExcellenceBadge className="mb-3 sm:mb-4" />
@@ -258,7 +236,7 @@ export function HeroSection6() {
           className="absolute bottom-5 sm:bottom-7 left-0 right-0 z-30 flex flex-col items-center pointer-events-none"
         >
           <div className="w-full opacity-100">
-            <CertificationMarquee showHeading={false} size="sm" />
+            <CertificationMarquee showHeading={false} size="md" />
           </div>
         </motion.div>
 

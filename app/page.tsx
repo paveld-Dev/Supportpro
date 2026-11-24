@@ -270,6 +270,7 @@ function ServiceRow({
   index: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  const rectRef = useRef<DOMRect | null>(null);
   const inView = useInView(ref, { once: true, amount: 0.4 });
   const [hovered, setHovered] = useState(false);
   const mouseX = useRef(0);
@@ -283,10 +284,16 @@ function ServiceRow({
       initial={{ opacity: 0, y: 40 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.9, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      onMouseEnter={(e) => {
+        setHovered(true);
+        rectRef.current = e.currentTarget.getBoundingClientRect();
+      }}
+      onMouseLeave={() => {
+        setHovered(false);
+        rectRef.current = null;
+      }}
       onMouseMove={(e) => {
-        const rect = e.currentTarget.getBoundingClientRect();
+        const rect = rectRef.current || e.currentTarget.getBoundingClientRect();
         mouseX.current = e.clientX - rect.left;
         mouseY.current = e.clientY - rect.top;
         if (rafId.current === null) {
@@ -685,16 +692,20 @@ const securityPillars = [
 
 function Privacy() {
   const ref = useRef<HTMLDivElement>(null);
+  const cardRectRef = useRef<DOMRect | null>(null);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
   const springX = useSpring(mouseX, { stiffness: 70, damping: 20 });
   const springY = useSpring(mouseY, { stiffness: 70, damping: 20 });
 
+  function handleMouseEnter(e: React.MouseEvent<HTMLDivElement>) {
+    cardRectRef.current = e.currentTarget.getBoundingClientRect();
+  }
+
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
-    const { currentTarget, clientX, clientY } = e;
-    const { left, top } = currentTarget.getBoundingClientRect();
-    mouseX.set(clientX - left);
-    mouseY.set(clientY - top);
+    const rect = cardRectRef.current || e.currentTarget.getBoundingClientRect();
+    mouseX.set(e.clientX - rect.left);
+    mouseY.set(e.clientY - rect.top);
   }
 
   const spotlightBackground = useMotionTemplate`radial-gradient(1000px circle at ${springX}px ${springY}px, oklch(0.5 0.15 95 / 0.4), transparent 60%)`;
@@ -704,6 +715,7 @@ function Privacy() {
       <div className="mx-auto max-w-[1152px] px-5 md:px-6 lg:px-8">
         <InView>
           <div
+            onMouseEnter={handleMouseEnter}
             onMouseMove={handleMouseMove}
             className="group/card relative overflow-hidden rounded-[24px] sm:rounded-[32px] bg-gradient-to-br from-[#0a0a0a] via-[#141410] to-[#1a1a18] p-5 sm:p-8 lg:p-16"
           >

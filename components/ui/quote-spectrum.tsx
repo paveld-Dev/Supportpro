@@ -77,14 +77,7 @@ export function QuoteSpectrum({
         </radialGradient>
       </defs>
 
-      {/* Ambient background aura behind the pinch point */}
-      <circle
-        cx="3620"
-        cy="1160"
-        r="950"
-        fill="url(#quoteRibbonAura)"
-        style={{ mixBlendMode: 'screen', pointerEvents: 'none' }}
-      />
+      {/* Ambient background aura removed */}
 
       {/* 43 Vector Ribbon Paths */}
       <g id="ribbon-paths" fill="url(#quoteRibbonGradient)">

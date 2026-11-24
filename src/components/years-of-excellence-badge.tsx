@@ -31,6 +31,7 @@ export function YearsOfExcellenceBadge({ className = '' }: YearsOfExcellenceBadg
         width={104}
         height={104}
         loading="eager"
+        decoding="async"
       />
 
       {/* Text placed horizontally aligned to the award in font-display */}

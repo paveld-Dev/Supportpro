@@ -115,6 +115,7 @@ export function Starfield({ className = '', count = DETERMINISTIC_STARS.length }
   return (
     <div
       className={`absolute inset-0 pointer-events-none overflow-hidden select-none z-0 ${className}`}
+      style={{ contentVisibility: 'auto' }}
       aria-hidden="true"
     >
       <style>{`
@@ -161,7 +162,6 @@ export function Starfield({ className = '', count = DETERMINISTIC_STARS.length }
                 opacity: star.minOpacity,
                 animation: `starTwinkle ${star.duration} ease-in-out infinite`,
                 animationDelay: star.delay,
-                willChange: 'opacity, transform',
               } as React.CSSProperties
             }
           />
