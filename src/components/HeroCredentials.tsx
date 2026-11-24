@@ -72,10 +72,10 @@ export function HeroCredentials({ className = '' }: { className?: string }) {
           {marqueeItems.map((item, idx) => (
             <div
               key={`${item.name}-${idx}`}
-              className={`inline-flex shrink-0 items-center gap-2.5 px-4 py-2 rounded-full transition-all duration-200 select-none ${
+              className={`inline-flex shrink-0 items-center gap-2.5 px-4 py-2 rounded-full transition-all duration-200 select-none border-0 border-transparent ${
                 item.highlighted
-                  ? 'bg-[#181818]/90 border border-[#F28C28] shadow-[0_0_15px_rgba(242,140,40,0.22)]'
-                  : 'bg-white/[0.05] border border-white/15 hover:border-white/30 hover:bg-white/[0.08]'
+                  ? 'bg-[#181818] shadow-md shadow-black/50 hover:bg-[#222225]'
+                  : 'bg-[#141518]/95 shadow-md shadow-black/40 hover:bg-[#1a1c22]'
               }`}
             >
               <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-white flex items-center justify-center p-0.5 shrink-0 overflow-hidden">
