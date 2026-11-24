@@ -13,7 +13,6 @@ import { YearsOfExcellenceBadge } from '@/components/years-of-excellence-badge';
 import { HoverOrangeSpan } from '@/components/hover-orange-span';
 import { Starfield } from '@/components/ui/starfield';
 import { CertificationMarquee } from '@/components/ui/certification-marquee';
-import { QuoteSpectrum } from '@/components/ui/quote-spectrum';
 
 const HeroGlobe = dynamic(() => import('@/components/ui/hero-globe'), {
   ssr: false,
@@ -115,10 +114,6 @@ export function HeroSection6() {
     [24, 24, 0, 0, -18, -18]
   );
 
-  // 8. Spectrum parallax subtle float across the expansive quote reading window
-  const baseSpectrumScale = useTransform(scrollYProgress, [0.40, 0.95], [0.95, 1.08]);
-  const baseSpectrumY = useTransform(scrollYProgress, [0.40, 0.95], [25, -25]);
-
   // Fallbacks for prefers-reduced-motion
   const globeScale = prefersReduced ? 1 : baseGlobeScale;
   const globeOpacity = prefersReduced ? 1 : baseGlobeOpacity;
@@ -130,8 +125,6 @@ export function HeroSection6() {
   const transitionTextOpacity = prefersReduced ? 1 : baseTransitionTextOpacity;
   const transitionTextFinalFilter = prefersReduced ? 'none' : transitionTextFilter;
   const transitionFinalY = prefersReduced ? 0 : transitionTextY;
-  const spectrumScale = prefersReduced ? 1 : baseSpectrumScale;
-  const spectrumY = prefersReduced ? 0 : baseSpectrumY;
 
   return (
     <section
@@ -268,60 +261,9 @@ export function HeroSection6() {
         </motion.div>
 
         {/* ========================================================================= */}
-        {/* CENTERED TRANSITION QUOTE BLOCK & ANIMATED WAVE RIBBON BACKGROUND         */}
+        {/* CENTERED TRANSITION QUOTE BLOCK                                           */}
         {/* "Past the outage, your systems stay on and your team stays calm."         */}
         {/* ========================================================================= */}
-        <motion.div
-          style={{
-            opacity: transitionTextOpacity,
-            willChange: 'opacity',
-          }}
-          className="absolute inset-0 z-25 flex items-center justify-center pointer-events-none overflow-hidden"
-          aria-hidden="true"
-        >
-          <style>{`
-            @keyframes quoteWaveFloat {
-              0% {
-                transform: scale(1) translate3d(0, 0, 0);
-              }
-              50% {
-                transform: scale(1.025) translate3d(-0.6%, -0.8%, 0);
-              }
-              100% {
-                transform: scale(1.012) translate3d(0.6%, 0.4%, 0);
-              }
-            }
-            .quote-animated-wave {
-              animation: quoteWaveFloat 20s ease-in-out infinite alternate;
-              will-change: transform;
-              transform-origin: 50% 50%;
-            }
-            @media (prefers-reduced-motion: reduce) {
-              .quote-animated-wave {
-                animation: none;
-              }
-            }
-          `}</style>
-
-          {/* Luminous Vector Wave Ribbon from 68053649_1352.svg matching reference design */}
-          <motion.div
-            style={{
-              scale: spectrumScale,
-              y: spectrumY,
-            }}
-            className="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none overflow-hidden"
-          >
-            {/* Glowing vector ribbon wave flowing through lower half with continuous fluid ambient drift */}
-            <div className="quote-animated-wave absolute inset-0 w-full h-full flex items-center justify-center translate-y-[12%] sm:translate-y-[15%] lg:translate-y-[16%]">
-              <QuoteSpectrum
-                preserveAspectRatio="xMidYMid slice"
-                className="w-full h-full object-cover select-none pointer-events-none drop-shadow-[0_0_18px_rgba(255,129,1,0.25)]"
-              />
-            </div>
-          </motion.div>
-        </motion.div>
-
-        {/* Centered Quote Content with Instrument Serif & Target Beacon */}
         <motion.div
           style={{
             opacity: transitionTextOpacity,
@@ -337,13 +279,6 @@ export function HeroSection6() {
               stay on and your team stays<br />
               calm.&rdquo;
             </blockquote>
-
-            {/* Target Beacon: Outer orange ring with inner center dot */}
-            <div className="mt-6 sm:mt-8 flex items-center justify-center pointer-events-none" aria-hidden="true">
-              <div className="w-[18px] h-[18px] rounded-full border border-[#FF8101]/90 flex items-center justify-center shadow-[0_0_10px_rgba(255,129,1,0.6)]">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#FF8101] shadow-[0_0_4px_#FF8101]" />
-              </div>
-            </div>
           </div>
         </motion.div>
 

@@ -159,4 +159,9 @@ export function CertificationMarquee({
             </div>
           ))}
         </div>
-     
+      </div>
+    </div>
+  );
+}
+
+export default CertificationMarquee;
