@@ -58,53 +58,53 @@ export function HeroSection6() {
     return () => observer.disconnect();
   }, []);
 
-  // Scroll tracking calibrated to 2 scrolls (300vh total height, 200vh scroll runway)
+  // Scroll tracking calibrated to extended globe runway + 4 scrolls for quote (700vh total height, 600vh scroll runway)
   const { scrollYProgress } = useScroll({
     target: outerSectionRef,
     offset: ['start start', 'end end'],
   });
 
-  // 1. Globe Scale: holds till 12%, scales smoothly from 1x to ~3.2x by 28%
-  const baseGlobeScale = useTransform(scrollYProgress, [0, 0.12, 0.28, 1], [1, 1, 3.2, 3.4]);
+  // 1. Globe Scale: holds steady at 1x till 15% (giving plenty of scroll time to observe globe resting), then scales smoothly to ~3.2x by 35%
+  const baseGlobeScale = useTransform(scrollYProgress, [0, 0.15, 0.35, 1], [1, 1, 3.2, 3.4]);
 
-  // 2. Globe Opacity: sharp till 24%, fades out completely by 34%
-  const baseGlobeOpacity = useTransform(scrollYProgress, [0, 0.24, 0.34, 1], [1, 1, 0, 0]);
+  // 2. Globe Opacity: sharp till 28%, fades out completely by 38%
+  const baseGlobeOpacity = useTransform(scrollYProgress, [0, 0.28, 0.38, 1], [1, 1, 0, 0]);
 
-  // 3. Content (Headline, Subhead, CTAs): sharp till 10%, fades out & blurs from 0 to 8px by 22%
-  const baseContentOpacity = useTransform(scrollYProgress, [0, 0.10, 0.22, 1], [1, 1, 0, 0]);
-  const baseContentBlur = useTransform(scrollYProgress, [0, 0.10, 0.22, 1], [0, 0, 8, 8]);
+  // 3. Content (Headline, Subhead, CTAs): sharp till 14%, fades out & blurs from 0 to 8px by 26%
+  const baseContentOpacity = useTransform(scrollYProgress, [0, 0.14, 0.26, 1], [1, 1, 0, 0]);
+  const baseContentBlur = useTransform(scrollYProgress, [0, 0.14, 0.26, 1], [0, 0, 8, 8]);
   // Use 'none' when blur is near-zero to prevent GPU filter-graph overhead during normal display
   const contentFilter = useTransform(baseContentBlur, (v) => v > 0.2 ? `blur(${v.toFixed(1)}px)` : 'none');
 
-  // 4. Certification Marquee: fades out smoothly between 10% and 22%
-  const baseMarqueeOpacity = useTransform(scrollYProgress, [0, 0.10, 0.22, 1], [1, 1, 0, 0]);
+  // 4. Certification Marquee: fades out smoothly between 14% and 26%
+  const baseMarqueeOpacity = useTransform(scrollYProgress, [0, 0.14, 0.26, 1], [1, 1, 0, 0]);
 
-  // 5. Stage Background Color: fades smoothly to deep dark (#0A0A0A) between 24% and 34%
+  // 5. Stage Background Color: fades smoothly to deep dark (#0A0A0A) between 28% and 38%
   const stageBackground = useTransform(
     scrollYProgress,
-    [0, 0.24, 0.34, 1],
+    [0, 0.28, 0.38, 1],
     ['#0A0D12', '#0A0D12', '#0A0A0A', '#0A0A0A']
   );
 
-  // 6. Centered Transition Quote Block calibrated to 2 scrolls:
-  // - 34% to 42%: Fades in & sharpens from blur down to 0px
-  // - 42% to 86%: Clear, readable hold window at full 100% opacity and 0px blur
-  // - 86% to 98%: Smoothly fades out and lifts slightly as the next section scrolls in
+  // 6. Centered Transition Quote Block calibrated to 4 scrolls:
+  // - 38% to 46%: Fades in & sharpens from blur down to 0px
+  // - 46% to 90%: Clear, readable hold window across 4 scrolls at full 100% opacity and 0px blur
+  // - 90% to 98%: Smoothly fades out and lifts slightly as the next section scrolls in
   const baseTransitionTextOpacity = useTransform(
     scrollYProgress,
-    [0, 0.34, 0.42, 0.86, 0.98, 1],
+    [0, 0.38, 0.46, 0.90, 0.98, 1],
     [0, 0, 1, 1, 0, 0]
   );
   const baseTransitionTextBlur = useTransform(
     scrollYProgress,
-    [0, 0.34, 0.42, 0.86, 0.98, 1],
+    [0, 0.38, 0.46, 0.90, 0.98, 1],
     [10, 10, 0, 0, 6, 6]
   );
-  // Use 'none' when blur is near-zero so 42%-86% hold window renders crisp text with zero filter passes
+  // Use 'none' when blur is near-zero so 46%-90% hold window renders crisp text with zero filter passes
   const transitionTextFilter = useTransform(baseTransitionTextBlur, (v) => v > 0.2 ? `blur(${v.toFixed(1)}px)` : 'none');
   const transitionTextY = useTransform(
     scrollYProgress,
-    [0, 0.34, 0.42, 0.86, 0.98, 1],
+    [0, 0.38, 0.46, 0.90, 0.98, 1],
     [20, 20, 0, 0, -16, -16]
   );
 
@@ -121,7 +121,7 @@ export function HeroSection6() {
   return (
     <section
       ref={outerSectionRef}
-      className="relative w-full h-[300vh] max-md:h-[260vh] bg-[#0A0D12]"
+      className="relative w-full h-[700vh] max-md:h-[550vh] bg-[#0A0D12]"
       aria-label="SupportPRO Global Infrastructure Hero Section"
     >
       {/* Pinned Stage: full-viewport stage (height: 100svh, position: sticky, top: 0) */}
