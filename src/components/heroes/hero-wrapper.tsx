@@ -67,6 +67,14 @@ export function HeroWrapper({ initialHero }: { initialHero?: number }) {
     if (fromUrl && [1, 2, 3, 4, 5, 6].includes(Number(fromUrl))) {
       return Number(fromUrl);
     }
+    if (typeof window !== 'undefined') {
+      try {
+        const saved = localStorage.getItem('supportpro_selected_hero');
+        if (saved && [1, 2, 3, 4, 5, 6].includes(Number(saved))) {
+          return Number(saved);
+        }
+      } catch (e) {}
+    }
     return 1;
   });
 

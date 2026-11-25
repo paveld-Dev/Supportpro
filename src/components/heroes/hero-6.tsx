@@ -13,6 +13,7 @@ import { YearsOfExcellenceBadge } from '@/components/years-of-excellence-badge';
 import { HoverOrangeSpan } from '@/components/hover-orange-span';
 import { Starfield } from '@/components/ui/starfield';
 import { CertificationMarquee } from '@/components/ui/certification-marquee';
+import { HeroLoadingScreen } from '@/components/ui/hero-loading-screen';
 
 const HeroGlobe = dynamic(() => import('@/components/ui/hero-globe'), {
   ssr: false,
@@ -124,6 +125,9 @@ export function HeroSection6() {
       className="relative w-full h-[600vh] max-md:h-[480vh] bg-[#0A0D12]"
       aria-label="SupportPRO Global Infrastructure Hero Section"
     >
+      {/* Hero 6 Transition Preloader with 3D Globe */}
+      <HeroLoadingScreen />
+
       {/* Pinned Stage: full-viewport stage (height: 100svh, position: sticky, top: 0) */}
       <motion.div
         ref={stageRef}
@@ -150,7 +154,7 @@ export function HeroSection6() {
               transformOrigin: 'center center',
               willChange: 'transform, opacity',
             }}
-            className="pointer-events-auto flex items-center justify-center shrink-0"
+            className="pointer-events-auto flex items-center justify-center shrink-0 max-md:-translate-y-8 sm:max-md:-translate-y-5 md:translate-y-0"
           >
             <HeroGlobe showAvatars={false} />
           </motion.div>
@@ -167,58 +171,58 @@ export function HeroSection6() {
               filter: contentFinalFilter,
               willChange: 'transform, opacity, filter',
             }}
-            className="absolute top-24 sm:top-28 md:top-32 lg:top-36 left-5 md:left-6 lg:left-8 max-w-xl text-left pointer-events-none"
+            className="absolute top-20 sm:top-24 md:top-32 lg:top-36 left-5 md:left-6 lg:left-8 max-w-xl text-left pointer-events-none"
           >
             <div className="pointer-events-auto inline-block">
-              <YearsOfExcellenceBadge className="mb-3 sm:mb-4" />
+              <YearsOfExcellenceBadge className="mb-2.5 sm:mb-4" />
             </div>
 
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[75px] xl:text-[75px] font-normal leading-[1.02] tracking-tight drop-shadow-[0_2px_24px_rgba(0,0,0,0.6)] text-white">
+            <h1 className="font-display text-[34px] sm:text-5xl md:text-6xl lg:text-[75px] xl:text-[75px] font-normal leading-[1.02] tracking-tight drop-shadow-[0_2px_24px_rgba(0,0,0,0.6)] text-white">
               Infrastructure<br />support that
             </h1>
           </motion.div>
 
-          {/* BOTTOM-RIGHT: Headline Part 2 (Brought up, 75px font size, right-aligned) */}
+          {/* HEADLINE PART 2: Placed above paragraph on mobile, bottom-right on desktop */}
           <motion.div
             style={{
               opacity: contentOpacity,
               filter: contentFinalFilter,
               willChange: 'transform, opacity, filter',
             }}
-            className="absolute bottom-28 sm:bottom-32 lg:bottom-36 xl:bottom-40 right-5 md:right-6 lg:right-8 max-w-xl text-right pointer-events-none"
+            className="absolute max-md:bottom-[248px] sm:max-md:bottom-[255px] md:bottom-28 lg:bottom-36 xl:bottom-40 right-5 md:right-6 lg:right-8 max-w-xl text-right pointer-events-none"
           >
-            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[75px] xl:text-[75px] font-normal leading-[1.02] tracking-tight drop-shadow-[0_2px_24px_rgba(0,0,0,0.6)] text-white text-right">
+            <h2 className="font-display text-[34px] sm:text-5xl md:text-6xl lg:text-[75px] xl:text-[75px] font-normal leading-[1.02] tracking-tight drop-shadow-[0_2px_24px_rgba(0,0,0,0.6)] text-white text-right">
               <HoverOrangeSpan>stays on,</HoverOrangeSpan><br />every hour.
             </h2>
           </motion.div>
 
-          {/* BOTTOM-LEFT: Subhead and CTAs (Brought up to match bottom-right) */}
+          {/* SUBHEAD AND CTAs: Below Headline Part 2 spanning full width on mobile, bottom-left on desktop */}
           <motion.div
             style={{
               opacity: contentOpacity,
               filter: contentFinalFilter,
               willChange: 'transform, opacity, filter',
             }}
-            className="absolute bottom-28 sm:bottom-32 lg:bottom-36 xl:bottom-40 left-5 md:left-6 lg:left-8 max-w-xs sm:max-w-sm lg:max-w-md text-left pointer-events-none"
+            className="absolute max-md:bottom-[92px] sm:max-md:bottom-[96px] md:bottom-28 lg:bottom-36 xl:bottom-40 left-5 right-5 md:right-auto md:left-6 lg:left-8 max-w-none md:max-w-md text-left pointer-events-none"
           >
-            <p className="text-xs sm:text-sm lg:text-[15px] font-normal text-white/75 leading-relaxed mb-4 sm:mb-5">
+            <p className="text-xs sm:text-sm lg:text-[15px] font-normal text-white/75 leading-relaxed mb-3.5 sm:mb-5">
               24/7 managed infrastructure, cloud operations,<br />
               and white-label support, delivered from Chicago<br />
               and South India. Named engineers, written SLAs,<br />
               and ISO 27001 controls.
             </p>
 
-            <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 pointer-events-auto">
+            <div className="flex flex-row items-center gap-2.5 sm:gap-3 pointer-events-auto">
               <a
                 href="#contact-form"
-                className="cursor-morph rounded-lg sm:rounded-xl bg-white text-black px-4 sm:px-5 py-2.5 sm:py-3 text-xs sm:text-sm font-semibold hover:bg-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white transition-all duration-200 shadow-lg shadow-black/40 flex items-center gap-1.5"
+                className="cursor-morph rounded-lg sm:rounded-xl bg-white text-black px-3.5 sm:px-5 py-2.5 sm:py-3 text-xs sm:text-sm font-semibold hover:bg-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white transition-all duration-200 shadow-lg shadow-black/40 flex items-center gap-1.5 shrink-0"
               >
                 Book a Consultation
                 <span className="text-[13px] leading-none">↗</span>
               </a>
               <a
                 href="#services"
-                className="cursor-morph rounded-lg sm:rounded-xl border border-white/20 bg-white/10 hover:bg-white/15 backdrop-blur-md text-white px-4 sm:px-5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white transition-all duration-200 flex items-center gap-1.5"
+                className="cursor-morph rounded-lg sm:rounded-xl border border-white/20 bg-white/10 hover:bg-white/15 backdrop-blur-md text-white px-3.5 sm:px-5 py-2.5 sm:py-3 text-xs sm:text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white transition-all duration-200 flex items-center gap-1.5 shrink-0"
               >
                 Explore Services
                 <span className="leading-none">→</span>
@@ -232,7 +236,7 @@ export function HeroSection6() {
         {/* ========================================================================= */}
         <motion.div
           style={{ opacity: marqueeOpacity }}
-          className="absolute bottom-5 sm:bottom-7 left-0 right-0 z-30 flex flex-col items-center pointer-events-none"
+          className="absolute bottom-2.5 sm:bottom-5 md:bottom-7 left-0 right-0 z-30 flex flex-col items-center pointer-events-none"
         >
           <div className="w-full opacity-100">
             <CertificationMarquee showHeading={false} size="md" />

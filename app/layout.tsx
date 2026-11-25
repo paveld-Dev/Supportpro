@@ -62,7 +62,7 @@ export default function RootLayout({
         {/* Inline theme & session loader script — runs before hydration to prevent flash */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t===null){document.documentElement.setAttribute('data-theme','dark');}if(sessionStorage.getItem('supportpro_session_loaded')){document.documentElement.classList.add('sp-loaded');}}catch(e){}})();`,
+            __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t===null){document.documentElement.setAttribute('data-theme','dark');}var p=new URLSearchParams(window.location.search);var h=p.get('hero')||localStorage.getItem('supportpro_selected_hero');if(h==='6'){document.documentElement.setAttribute('data-hero','6');}if(sessionStorage.getItem('supportpro_session_loaded')&&h!=='6'){document.documentElement.classList.add('sp-loaded');}}catch(e){}})();`,
           }}
         />
         <style
