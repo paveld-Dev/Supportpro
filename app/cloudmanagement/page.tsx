@@ -46,25 +46,12 @@ const getImageSrc = (img: any): string => {
 function Reveal({
   children,
   className = '',
-  delay = 0,
 }: {
   children: ReactNode;
   className?: string;
   delay?: number;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-60px' });
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 24 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
+  return <div className={className}>{children}</div>;
 }
 
 export default function CloudManagementPage() {
@@ -251,121 +238,118 @@ export default function CloudManagementPage() {
       </section>
 
       {/* ─── Available Plans Section ───────────────────────────────────────────── */}
-      <section id="plans" className="py-16 sm:py-20 lg:py-28 bg-[var(--surface-1)] border-b border-[var(--border-subtle)]">
+      <section id="plans" className="py-16 sm:py-20 lg:py-24 bg-[var(--surface-1)] border-b border-[var(--border-subtle)]">
         <div className="mx-auto max-w-[1152px] px-5 md:px-6 lg:px-8">
           <Reveal>
-            <div className="flex items-center justify-between gap-4 mb-6">
-              <h2 className="font-display text-2xl sm:text-3xl md:text-4xl leading-tight text-[var(--text-primary)] tracking-tight">
-                Available Plans
-                <span className="text-[var(--primary)]">.</span>
-              </h2>
-              <span className="text-xs font-mono text-muted-foreground dark:text-white/40">
-                Transparent Pricing
-              </span>
-            </div>
+            <InsideSectionEyebrow label="Available Plans" />
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl leading-tight text-[var(--text-primary)] tracking-tight mb-8">
+              Flexible plans for your cloud needs
+            </h2>
           </Reveal>
 
           <Reveal delay={0.1}>
             <div className="rounded-[var(--radius-card)] border border-[var(--border-subtle)] bg-[var(--surface-2)] p-6 sm:p-8">
-              {/* Row Item */}
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6 pb-8 border-b border-[var(--border-subtle)]">
-                {/* Left: Checkbox + Plan Name + Subtitle */}
-                <div className="flex items-start gap-3.5">
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+                {/* Left: Icon + Plan Name + Subtitle */}
+                <div className="lg:col-span-6 flex items-center gap-4">
                   <button
                     type="button"
                     suppressHydrationWarning
                     onClick={() => setPlanSelected(!planSelected)}
-                    className={`mt-0.5 w-5 h-5 rounded flex items-center justify-center border transition-colors ${
+                    aria-label="Select Cloud Management plan"
+                    className={`w-11 h-11 rounded-xl flex items-center justify-center border transition-colors shrink-0 ${
                       planSelected
-                        ? 'bg-[var(--primary)] border-[var(--primary)] text-white'
-                        : 'border-ink/20 dark:border-white/20 bg-white dark:bg-black/20'
+                        ? 'bg-[var(--primary)]/10 border-[var(--primary)]/40 text-[var(--primary)]'
+                        : 'border-[var(--border-subtle)] bg-[var(--surface-1)] text-[var(--text-muted)]'
                     }`}
                   >
-                    {planSelected && <Check size={14} strokeWidth={3} />}
+                    <Cloud size={20} strokeWidth={1.75} />
                   </button>
 
                   <div>
                     <h3 className="text-base sm:text-lg font-semibold text-[var(--text-primary)]">
                       Cloud Management
                     </h3>
-                    <p className="text-xs sm:text-sm text-muted-foreground dark:text-white/60 mt-0.5">
-                      Cloud Management with $90/month
+                    <p className="text-xs sm:text-sm text-[var(--text-secondary)] mt-0.5">
+                      Cloud management with $90/month
                     </p>
                   </div>
                 </div>
 
-                {/* Right: Quantity Stepper + Pack* + Price */}
-                <div className="flex items-center justify-between md:justify-end gap-6 sm:gap-10 pl-8 md:pl-0">
-                  <div className="flex items-center gap-2.5">
-                    {/* Modern Custom Quantity Stepper */}
-                    <div className="inline-flex items-center rounded-full border border-ink/15 dark:border-white/20 bg-white dark:bg-black/30 p-1">
-                      <button
-                        type="button"
-                        suppressHydrationWarning
-                        onClick={() => setPackCount((prev) => Math.max(1, prev - 1))}
-                        disabled={packCount <= 1}
-                        aria-label="Decrease quantity"
-                        className="w-7 h-7 rounded-full flex items-center justify-center text-ink/70 dark:text-white/70 hover:bg-ink/5 dark:hover:bg-white/10 disabled:opacity-30 disabled:hover:bg-transparent transition-colors"
-                      >
-                        <Minus size={13} strokeWidth={2.5} />
-                      </button>
-                      <span className="w-8 text-center text-sm font-semibold text-[var(--text-primary)] select-none">
-                        {packCount}
+                {/* Right: Vertical divider + Stepper + Price + Actions */}
+                <div className="lg:col-span-6 lg:border-l lg:border-[var(--border-subtle)] lg:pl-8 flex flex-col gap-4">
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="flex items-center gap-2.5">
+                      <div className="inline-flex items-center rounded-full border border-[var(--border-subtle)] bg-[var(--surface-1)] p-1">
+                        <button
+                          type="button"
+                          suppressHydrationWarning
+                          onClick={() => setPackCount((prev) => Math.max(1, prev - 1))}
+                          disabled={packCount <= 1}
+                          aria-label="Decrease quantity"
+                          className="w-7 h-7 rounded-full flex items-center justify-center text-[var(--text-secondary)] hover:bg-[var(--surface-2)] disabled:opacity-30 transition-colors"
+                        >
+                          <Minus size={13} strokeWidth={2.5} />
+                        </button>
+                        <span className="w-8 text-center text-sm font-semibold text-[var(--text-primary)] select-none">
+                          {packCount}
+                        </span>
+                        <button
+                          type="button"
+                          suppressHydrationWarning
+                          onClick={() => setPackCount((prev) => Math.min(99, prev + 1))}
+                          aria-label="Increase quantity"
+                          className="w-7 h-7 rounded-full flex items-center justify-center text-[var(--text-secondary)] hover:bg-[var(--surface-2)] transition-colors"
+                        >
+                          <Plus size={13} strokeWidth={2.5} />
+                        </button>
+                      </div>
+
+                      <span className="text-xs sm:text-sm text-[var(--text-secondary)] font-medium">
+                        Pack<span className="text-[var(--primary)] font-bold ml-0.5">*</span>
                       </span>
-                      <button
-                        type="button"
-                        suppressHydrationWarning
-                        onClick={() => setPackCount((prev) => Math.min(99, prev + 1))}
-                        aria-label="Increase quantity"
-                        className="w-7 h-7 rounded-full flex items-center justify-center text-ink/70 dark:text-white/70 hover:bg-ink/5 dark:hover:bg-white/10 transition-colors"
-                      >
-                        <Plus size={13} strokeWidth={2.5} />
-                      </button>
                     </div>
 
-                    <span className="text-xs sm:text-sm text-ink/80 dark:text-white/80 font-medium">
-                      Pack<span className="text-red-500 font-bold ml-0.5">*</span>
-                    </span>
+                    <div className="text-right">
+                      <span className="text-xl sm:text-2xl font-bold text-[var(--text-primary)]">
+                        ${(90 * packCount).toFixed(2)}
+                      </span>
+                    </div>
                   </div>
 
-                  <div className="text-right min-w-[70px]">
-                    <span className="text-base sm:text-lg font-bold text-[var(--text-primary)]">
-                      ${(90 * packCount).toFixed(2)}
-                    </span>
+                  <div className="flex flex-wrap items-center justify-end gap-3">
+                    <SecondaryButton href="#services" className="px-5 py-2 text-xs sm:text-sm">
+                      Continue Shopping
+                    </SecondaryButton>
+                    <PrimaryButton href="#contact" className="px-6 py-2 text-xs sm:text-sm">
+                      Add To Cart
+                    </PrimaryButton>
                   </div>
                 </div>
-              </div>
-
-              {/* Bottom Action Buttons */}
-              <div className="mt-6 flex flex-wrap items-center justify-end gap-3 sm:gap-4">
-                <SecondaryButton href="#services" className="bg-white dark:bg-transparent px-6 py-2.5 text-xs sm:text-sm">
-                  Continue Shopping
-                </SecondaryButton>
-                <PrimaryButton href="#contact" className="px-7 py-2.5 text-xs sm:text-sm">
-                  Add To Cart
-                </PrimaryButton>
               </div>
             </div>
           </Reveal>
 
           {/* Custom Plan Inquiry - Highlighted RFQ */}
           <Reveal delay={0.2}>
-            <div className="mt-8 rounded-[var(--radius-card-lg)] border-2 border-[var(--primary)]/40 bg-gradient-to-br from-[var(--primary)]/10 via-[var(--primary)]/[0.03] to-transparent dark:from-[var(--primary)]/15 dark:via-[var(--surface-2)] dark:to-[var(--surface-1)] p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden shadow-lg shadow-[var(--primary)]/5">
-              <div className="space-y-1.5 z-10 max-w-xl">
-                <h3 className="text-lg sm:text-xl font-bold text-[var(--text-primary)]">
-                  Looking For A Custom Plan?
-                </h3>
-                <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed">
-                  Tailored SLAs, dedicated systems engineering, and custom instance pricing suited to your multi-cloud architecture.
-                </p>
+            <div className="mt-6 rounded-[var(--radius-card)] border border-[var(--primary)]/35 bg-[var(--primary)]/[0.06] p-5 sm:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+              <div className="flex items-start gap-4 max-w-xl">
+                <div className="w-11 h-11 rounded-xl border border-[var(--primary)]/30 bg-[var(--primary)]/10 text-[var(--primary)] flex items-center justify-center shrink-0">
+                  <Cpu size={19} strokeWidth={1.75} />
+                </div>
+                <div className="space-y-1">
+                  <h3 className="text-base sm:text-lg font-semibold text-[var(--text-primary)]">
+                    Looking For A Custom Plan?
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed">
+                    Tailored SLAs, dedicated systems engineering, and custom instance pricing suited to your multi-cloud architecture.
+                  </p>
+                </div>
               </div>
-              <PrimaryButton
-                href="#contact"
-                className="z-10 shrink-0 px-7 py-3.5 shadow-md shadow-[var(--primary)]/20 transition-all hover:gap-3"
-              >
+              <SecondaryButton href="#contact" className="shrink-0 border-[var(--primary)]/45 px-5 py-2.5 text-xs sm:text-sm">
                 <span>Request For Quote</span>
-                <ArrowRight size={15} />
-              </PrimaryButton>
+                <ArrowRight size={14} />
+              </SecondaryButton>
             </div>
           </Reveal>
         </div>

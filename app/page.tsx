@@ -1208,13 +1208,16 @@ function CTA() {
 
 function ThemeToggle() {
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
   return (
     <button
       suppressHydrationWarning
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
       className="fixed bottom-6 right-6 z-[99] flex h-12 w-12 items-center justify-center opacity-0 rounded-full bg-white text-ink shadow-[0_2px_10px_rgba(0,0,0,0.1)] transition-transform hover:scale-110 dark:bg-[#FF8101] dark:text-white"
     >
-      {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+      {mounted ? (theme === "dark" ? <Sun size={20} /> : <Moon size={20} />) : null}
     </button>
   );
 }
