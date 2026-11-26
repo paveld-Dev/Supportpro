@@ -4,6 +4,7 @@
   /* Colors — Light Mode */
   --bg-base: #fdfaf5;
   --surface-1: #f5f0e8;
+  --bg-surface: var(--surface-1);
   --surface-2: #ffffff;
   --border-subtle: rgba(0, 0, 0, 0.10);
   --border-strong: rgba(0, 0, 0, 0.18);
@@ -48,6 +49,7 @@
   /* Colors — Dark Mode (Default) */
   --bg-base: #0a0a0a;
   --surface-1: #111111;
+  --bg-surface: var(--surface-1);
   --surface-2: #161616;
   --border-subtle: rgba(255, 255, 255, 0.10);
   --border-strong: rgba(255, 255, 255, 0.16);

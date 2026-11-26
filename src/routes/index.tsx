@@ -405,7 +405,7 @@ function Nav() {
                       <div className="flex items-center gap-4">
                         <a href="https://www.supportpro.com/emergency-new.php" target="_blank" rel="noreferrer"
                           className="text-[12px] text-ink/50 dark:text-white/40 hover:text-[#FF8101] transition-colors flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                          <span className="w-1.5 h-1.5 rounded-full bg-[var(--success)] animate-pulse" />
                           Emergency support
                         </a>
                         <a href="https://www.supportpro.com/freecheckup.php" target="_blank" rel="noreferrer"

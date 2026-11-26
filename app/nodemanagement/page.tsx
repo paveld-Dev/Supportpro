@@ -334,7 +334,7 @@ export default function NodeManagementPage() {
                 </a>
                 <a
                   href="#contact"
-                  className="cursor-morph inline-flex items-center justify-center rounded-full bg-[#008000] text-white px-7 py-2.5 text-xs sm:text-sm font-semibold hover:bg-[#007000] transition-colors"
+                  className="cursor-morph inline-flex items-center justify-center rounded-full bg-[var(--primary)] text-white px-7 py-2.5 text-xs sm:text-sm font-semibold hover:bg-[var(--primary-hover)] transition-colors"
                 >
                   Add To Cart
                 </a>

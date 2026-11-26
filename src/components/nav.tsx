@@ -83,9 +83,9 @@ export const navItems = [
       {
         heading: 'Dedicated Support',
         items: [
-          { label: 'Dedicated Tech Support', desc: 'Your brand, our engineers', icon: UserCheck, href: 'https://www.supportpro.com/dedicated-tech.php' },
-          { label: 'Semi-Dedicated Support', desc: 'Flexible shared staffing', icon: UserPlus, href: 'https://www.supportpro.com/semi-dedicated-support.php' },
-          { label: 'Dedicated Team', desc: 'Full team under your banner', icon: Users, href: 'https://www.supportpro.com/dedicated-team.php' },
+          { label: 'Dedicated Tech Support', desc: 'Your brand, our engineers', icon: UserCheck, href: '/dedicated-tech-support' },
+          { label: 'Semi-Dedicated Support', desc: 'Flexible shared staffing', icon: UserPlus, href: '/semi-dedicated-support' },
+          { label: 'Dedicated Team', desc: 'Full team under your banner', icon: Users, href: '/dedicated-team-support' },
         ],
       },
       {
@@ -219,9 +219,8 @@ export function Nav() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 6, scale: 0.96 }}
                     transition={{ type: 'spring', damping: 26, stiffness: 360 }}
-                    className={`absolute left-1/2 -translate-x-1/2 top-[calc(100%+12px)] ${
-                      item.sections.length > 1 ? 'min-w-[500px]' : 'min-w-[290px]'
-                    } rounded-[26px] bg-white/[0.98] dark:bg-[#14161e]/[0.97] backdrop-blur-2xl border border-black/[0.08] dark:border-white/[0.14] shadow-[0_24px_60px_rgba(0,0,0,0.14),inset_0_1px_1px_rgba(255,255,255,0.9)] dark:shadow-[0_28px_64px_rgba(0,0,0,0.65),inset_0_1px_1px_rgba(255,255,255,0.18)] overflow-hidden z-50`}
+                    className={`absolute left-1/2 -translate-x-1/2 top-[calc(100%+12px)] ${item.sections.length > 1 ? 'min-w-[500px]' : 'min-w-[290px]'
+                      } rounded-[26px] bg-white/[0.98] dark:bg-[#14161e]/[0.97] backdrop-blur-2xl border border-black/[0.08] dark:border-white/[0.14] shadow-[0_24px_60px_rgba(0,0,0,0.14),inset_0_1px_1px_rgba(255,255,255,0.9)] dark:shadow-[0_28px_64px_rgba(0,0,0,0.65),inset_0_1px_1px_rgba(255,255,255,0.18)] overflow-hidden z-50`}
                     style={{ color: 'initial' }}
                   >
                     {/* Columns */}
@@ -229,11 +228,10 @@ export function Nav() {
                       {item.sections.map((section, si) => (
                         <div
                           key={section.heading}
-                          className={`p-3 ${
-                            si < item.sections.length - 1 && item.sections.length > 1
+                          className={`p-3 ${si < item.sections.length - 1 && item.sections.length > 1
                               ? 'border-r border-black/[0.06] dark:border-white/[0.08]'
                               : ''
-                          }`}
+                            }`}
                         >
                           <p className="px-3 mb-2 text-[10px] font-mono uppercase tracking-wider text-ink/45 dark:text-white/40">
                             {section.heading}

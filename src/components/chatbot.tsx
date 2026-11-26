@@ -137,7 +137,7 @@ export function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [inputVal, setInputVal] = useState('');
   const [isTyping, setIsTyping] = useState(false);
-  const [showGreetingTooltip, setShowGreetingTooltip] = useState(true);
+  const [showGreetingTooltip, setShowGreetingTooltip] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
 
   const [messages, setMessages] = useState<ChatMessage[]>([
@@ -222,7 +222,7 @@ export function Chatbot() {
     <>
       {/* Floating Action Trigger Button & Greeting Card */}
       <div className="fixed bottom-5 right-5 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end pointer-events-auto">
-        
+
         {/* Proactive Greeting Pill (Shows on entry in dev, hidden in production builds) */}
         <AnimatePresence>
           {showGreetingTooltip && !isOpen && process.env.NODE_ENV !== 'production' && (
@@ -231,7 +231,7 @@ export function Chatbot() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: 6, scale: 0.9 }}
               transition={{ duration: 0.25 }}
-              className="mb-3 max-w-[270px] sm:max-w-[310px] bg-[#141822]/95 backdrop-blur-xl border border-white/20 p-3.5 rounded-2xl shadow-2xl shadow-black/80 text-white flex items-start gap-2.5 relative select-none"
+              className="hidden md:flex mb-3 max-w-[270px] sm:max-w-[310px] bg-[#141822]/95 backdrop-blur-xl border border-white/20 p-3.5 rounded-2xl shadow-2xl shadow-black/80 text-white items-start gap-2.5 relative select-none"
             >
               <div className="w-7 h-7 rounded-full bg-[#FF8101]/20 border border-[#FF8101]/40 flex items-center justify-center shrink-0 mt-0.5">
                 <Sparkles size={14} className="text-[#FF8101]" />
@@ -359,7 +359,7 @@ export function Chatbot() {
 
             {/* Message Body Container */}
             <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3.5 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
-              
+
               {/* Trust Sub-Header Card */}
               <div className="p-2.5 rounded-2xl bg-white/[0.04] border border-white/10 text-[11px] text-white/70 flex items-center gap-2">
                 <ShieldCheck size={16} className="text-[#FF8101] shrink-0" />
@@ -375,11 +375,10 @@ export function Chatbot() {
                   className={`flex flex-col ${msg.sender === 'user' ? 'items-end' : 'items-start'}`}
                 >
                   <div
-                    className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 text-xs sm:text-[13px] leading-relaxed shadow-sm ${
-                      msg.sender === 'user'
-                        ? 'bg-gradient-to-r from-[#FF8101] to-[#E67300] text-white font-medium rounded-tr-sm'
-                        : 'bg-white/[0.08] border border-white/10 text-white/95 rounded-tl-sm'
-                    }`}
+                    className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 text-xs sm:text-[13px] leading-relaxed shadow-sm ${msg.sender === 'user'
+                      ? 'bg-gradient-to-r from-[#FF8101] to-[#E67300] text-white font-medium rounded-tr-sm'
+                      : 'bg-white/[0.08] border border-white/10 text-white/95 rounded-tl-sm'
+                      }`}
                   >
                     {msg.text}
 

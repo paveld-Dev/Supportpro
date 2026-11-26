@@ -42,115 +42,113 @@
 
 /* ─── Light Mode (default) ──────────────────────────────────────────────────── */
 :root {
-  --radius: 1rem;
+  --radius: var(--radius-card);
 
   /* Background hierarchy */
-  --sp-bg:           #FDFAF5;
-  --sp-surface:      #F5F0E8;
-  --sp-surface-el:   #FFFFFF;
+  --sp-bg: var(--bg-base);
+  --sp-surface: var(--surface-1);
+  --sp-surface-el: var(--surface-2);
   --sp-surface-soft: #EDE8E0;
-  --sp-footer:       #1A1A18;
-  --sp-input-bg:     #F4EFE8;
+  --sp-footer: #1A1A18;
+  --sp-input-bg: #F4EFE8;
 
   /* Typography */
-  --sp-text-primary:   #1A1A18;
-  --sp-text-secondary: #5A5A54;
-  --sp-text-muted:     #9A9A94;
+  --sp-text-primary: var(--text-primary);
+  --sp-text-secondary: var(--text-secondary);
+  --sp-text-muted: var(--text-muted);
 
   /* Borders */
-  --sp-border:        rgba(0,0,0,0.10);
-  --sp-border-strong: rgba(0,0,0,0.18);
+  --sp-border: var(--border-subtle);
+  --sp-border-strong: var(--border-strong);
 
   /* Brand accent — same in both themes */
-  --sp-accent: #FF8101;
+  --sp-accent: var(--primary);
 
   /* MagicBadge blend mode */
   --blend-mode: multiply;
 
   /* ── Tailwind aliases ── */
-  --background: #FDFAF5;
-  --foreground: #1A1A18;
-  --cream: #FDFAF5;
-  --ink:   #1A1A18;
-  --accent-yellow: #FF8101;
+  --background: var(--bg-base);
+  --foreground: var(--text-primary);
+  --cream: var(--bg-base);
+  --ink: var(--text-primary);
+  --accent-yellow: var(--primary);
 
-  --card:               #FFFFFF;
-  --card-foreground:    #1A1A18;
-  --popover:            #FFFFFF;
-  --popover-foreground: #1A1A18;
+  --card: var(--surface-2);
+  --card-foreground: var(--text-primary);
+  --popover: var(--surface-2);
+  --popover-foreground: var(--text-primary);
 
-  --primary:            #FF8101;
   --primary-foreground: #FFFFFF;
 
-  --secondary:            #F0EBE3;
-  --secondary-foreground: #1A1A18;
+  --secondary: #F0EBE3;
+  --secondary-foreground: var(--text-primary);
 
-  --muted:            #F0EBE3;
-  --muted-foreground: #5A5A54;
+  --muted: #F0EBE3;
+  --muted-foreground: var(--text-secondary);
 
-  --accent:            #F0EBE3;
-  --accent-foreground: #1A1A18;
+  --accent: #F0EBE3;
+  --accent-foreground: var(--text-primary);
 
-  --destructive:            oklch(0.577 0.245 27.325);
+  --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
 
-  --border: rgba(0,0,0,0.10);
-  --input:  rgba(0,0,0,0.10);
-  --ring:   #FF8101;
+  --border: var(--border-subtle);
+  --input: var(--border-subtle);
+  --ring: var(--primary);
 }
 
 /* ─── Dark Mode ─────────────────────────────────────────────────────────────── */
 [data-theme="dark"] {
-  --sp-spotlight-color: rgba(255,129,1,0.07);
+  --sp-spotlight-color: rgba(245, 124, 0, 0.07);
   /* Background hierarchy */
-  --sp-bg:           #0B0B0B;
-  --sp-surface:      #101010;
-  --sp-surface-el:   #151515;
+  --sp-bg: var(--bg-base);
+  --sp-surface: var(--surface-1);
+  --sp-surface-el: var(--surface-2);
   --sp-surface-soft: #1A1A1A;
-  --sp-footer:       #080808;
-  --sp-input-bg:     #0D0D0D;
+  --sp-footer: #080808;
+  --sp-input-bg: #0D0D0D;
 
   /* Typography */
-  --sp-text-primary:   #F5F5F2;
-  --sp-text-secondary: #A7A7A3;
-  --sp-text-muted:     #777773;
+  --sp-text-primary: var(--text-primary);
+  --sp-text-secondary: var(--text-secondary);
+  --sp-text-muted: var(--text-muted);
 
   /* Borders */
-  --sp-border:        rgba(255,255,255,0.10);
-  --sp-border-strong: rgba(255,255,255,0.16);
+  --sp-border: var(--border-subtle);
+  --sp-border-strong: var(--border-strong);
 
   /* MagicBadge blend mode */
   --blend-mode: screen;
 
   /* ── Tailwind aliases ── */
-  --background: #0B0B0B;
-  --foreground: #F5F5F2;
-  --cream: #0B0B0B;
-  --ink:   #F5F5F2;
+  --background: var(--bg-base);
+  --foreground: var(--text-primary);
+  --cream: var(--bg-base);
+  --ink: var(--text-primary);
 
-  --card:               #151515;
-  --card-foreground:    #F5F5F2;
-  --popover:            #151515;
-  --popover-foreground: #F5F5F2;
+  --card: var(--surface-2);
+  --card-foreground: var(--text-primary);
+  --popover: var(--surface-2);
+  --popover-foreground: var(--text-primary);
 
-  --primary:            #FF8101;
   --primary-foreground: #FFFFFF;
 
-  --secondary:            #1A1A1A;
-  --secondary-foreground: #F5F5F2;
+  --secondary: #1A1A1A;
+  --secondary-foreground: var(--text-primary);
 
-  --muted:            #151515;
-  --muted-foreground: #A7A7A3;
+  --muted: var(--surface-2);
+  --muted-foreground: var(--text-secondary);
 
-  --accent:            #1A1A1A;
-  --accent-foreground: #F5F5F2;
+  --accent: #1A1A1A;
+  --accent-foreground: var(--text-primary);
 
-  --destructive:            oklch(0.577 0.245 27.325);
+  --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
 
-  --border: rgba(255,255,255,0.10);
-  --input:  rgba(255,255,255,0.10);
-  --ring:   #FF8101;
+  --border: var(--border-subtle);
+  --input: var(--border-subtle);
+  --ring: var(--primary);
 }
 
 @layer base {
@@ -198,6 +196,7 @@
 }
 
 @media (pointer: fine) and (prefers-reduced-motion: no-preference) {
+
   html,
   body,
   a,
@@ -212,6 +211,7 @@
 
 /* ─── Reduced-motion overrides ────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -223,12 +223,23 @@
 
 /* ─── Marquee animations ──────────────────────────────────────────────────── */
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
+
 @keyframes marquee-reverse {
-  from { transform: translateX(-50%); }
-  to   { transform: translateX(0); }
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
 }
 
 .animate-marquee {
@@ -238,6 +249,7 @@
   -webkit-backface-visibility: hidden;
   transform: translateZ(0);
 }
+
 .animate-marquee-reverse {
   animation: marquee-reverse 30s linear infinite;
   will-change: transform;
@@ -258,14 +270,35 @@
 
 /* ─── Blob animations ─────────────────────────────────────────────────────── */
 @keyframes blob-drift-a {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33%       { transform: translate(40px, -40px) scale(1.15); }
-  66%       { transform: translate(-20px, 20px) scale(0.9); }
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(40px, -40px) scale(1.15);
+  }
+
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
 }
+
 @keyframes blob-drift-b {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33%       { transform: translate(-50px, 50px) scale(1.2); }
-  66%       { transform: translate(30px, -30px) scale(0.85); }
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(-50px, 50px) scale(1.2);
+  }
+
+  66% {
+    transform: translate(30px, -30px) scale(0.85);
+  }
 }
 
 .blob-a {
@@ -282,7 +315,10 @@
 
 /* ─── Theme-transition helper ─────────────────────────────────────────────── */
 /* Applied to all sections so bg/color changes animate smoothly */
-section, nav, footer, main {
+section,
+nav,
+footer,
+main {
   transition: background-color 0.35s ease, border-color 0.35s ease, color 0.25s ease;
 }
 
@@ -301,6 +337,7 @@ section, nav, footer, main {
   transition: all 0.2s ease;
   text-decoration: none;
 }
+
 .btn-primary:hover {
   filter: brightness(1.1);
   transform: translateY(-1px);
@@ -322,9 +359,9 @@ section, nav, footer, main {
   transition: all 0.2s ease;
   text-decoration: none;
 }
+
 .btn-outline:hover {
   background-color: rgba(255, 255, 255, 0.14);
   border-color: rgba(255, 255, 255, 0.4);
   transform: translateY(-1px);
 }
-

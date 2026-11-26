@@ -30,6 +30,7 @@ import {
 } from 'lucide-react';
 import { Nav } from '@/components/nav';
 import { SiteFooter } from '@/components/footer';
+import { PrimaryButton, SecondaryButton } from '@/components/ui/sp-button';
 import ParticleBadge, { GlobalBadgeSpotlight } from '@/components/MagicBadge';
 import cloudMgmtIllustration from '@/assets/illustration/cloudmanagementicon.png';
 import imgCloudServices from '@/assets/illustration/cloudmanagementicon1.png';
@@ -105,7 +106,7 @@ export default function CloudManagementPage() {
               <Reveal>
                 <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[72px] leading-[1.04] text-ink dark:text-white tracking-tight">
                   Cloud Management
-                  <span className="text-[#FF8101]">.</span>
+                  <span className="text-[var(--primary)]">.</span>
                 </h1>
               </Reveal>
 
@@ -119,19 +120,13 @@ export default function CloudManagementPage() {
 
               <Reveal delay={0.2}>
                 <div className="pt-2 flex flex-wrap items-center gap-4">
-                  <a
-                    href="#plans"
-                    className="cursor-morph inline-flex items-center gap-2 rounded-full bg-[#FF8101] text-white px-6 sm:px-7 py-3 text-sm font-medium hover:bg-[#FF8101]/90 transition-colors"
-                  >
+                  <PrimaryButton href="#plans" className="font-medium">
                     <span>Available Plans</span>
                     <ArrowRight size={15} />
-                  </a>
-                  <a
-                    href="#contact"
-                    className="cursor-morph inline-flex items-center gap-2 rounded-full border border-ink/15 dark:border-white/15 bg-white/50 dark:bg-white/5 px-6 sm:px-7 py-3 text-sm font-medium text-ink dark:text-white hover:border-[#FF8101] hover:text-[#FF8101] dark:hover:border-[#FF8101] dark:hover:text-[#FF8101] transition-colors"
-                  >
+                  </PrimaryButton>
+                  <SecondaryButton href="#contact" className="bg-white/50 dark:bg-white/5">
                     <span>Contact Us</span>
-                  </a>
+                  </SecondaryButton>
                 </div>
               </Reveal>
             </div>
@@ -170,7 +165,7 @@ export default function CloudManagementPage() {
               <Reveal>
                 <h2 className="font-display text-3xl sm:text-4xl md:text-5xl leading-[1.08] text-ink dark:text-white tracking-tight">
                   Cloud Management Services
-                  <span className="text-[#FF8101]">.</span>
+                  <span className="text-[var(--primary)]">.</span>
                 </h2>
               </Reveal>
 
@@ -203,7 +198,7 @@ export default function CloudManagementPage() {
           <Reveal>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl leading-[1.08] text-ink dark:text-white max-w-[820px] tracking-tight">
               SupportPRO provides a complete cloud management solution with
-              <span className="text-[#FF8101]">:</span>
+              <span className="text-[var(--primary)]">:</span>
             </h2>
           </Reveal>
 
@@ -216,10 +211,10 @@ export default function CloudManagementPage() {
                   clickEffect={true}
                   particleCount={5}
                   enableTilt={false}
-                  className="h-full rounded-2xl border border-ink/10 dark:border-white/10 bg-white dark:bg-[#151515] p-6 sm:p-7 flex flex-col justify-between hover:border-[#FF8101]/40 transition-colors"
+                  className="h-full rounded-[var(--radius-card)] border border-ink/10 dark:border-white/10 bg-white dark:bg-[var(--surface-2)] p-6 sm:p-7 flex flex-col justify-between hover:border-[var(--primary)]/40 transition-colors"
                 >
                   <div className="flex items-start gap-4">
-                    <span className="text-[13px] font-mono font-bold text-[#FF8101] bg-[#FF8101]/10 px-2.5 py-1 rounded-full shrink-0">
+                    <span className="text-[13px] font-mono font-bold text-[var(--primary)] bg-[var(--primary)]/10 px-2.5 py-1 rounded-full shrink-0">
                       {item.num}
                     </span>
                     <h3 className="text-[15px] sm:text-[16px] font-semibold text-ink dark:text-white leading-snug">
@@ -232,17 +227,14 @@ export default function CloudManagementPage() {
 
             {/* Supporting Statement Banner */}
             <Reveal delay={0.4} className="md:col-span-2 lg:col-span-2">
-              <div className="h-full rounded-2xl border border-[#FF8101]/30 bg-[#FF8101]/5 p-6 sm:p-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+              <div className="h-full rounded-[var(--radius-card)] border border-[var(--primary)]/30 bg-[var(--primary)]/5 p-6 sm:p-7 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
                 <p className="text-[15px] sm:text-[17px] font-medium text-ink dark:text-white leading-relaxed">
                   We only charge you based on the number of instances you have with your cloud provider.
                 </p>
-                <a
-                  href="#plans"
-                  className="cursor-morph shrink-0 inline-flex items-center gap-2 rounded-full bg-[#FF8101] text-white px-5 py-2.5 text-[13px] font-semibold hover:bg-[#FF8101]/90 transition-colors"
-                >
+                <PrimaryButton href="#plans" className="shrink-0 px-5 py-2.5 text-[13px]">
                   <span>View Plans</span>
                   <ArrowRight size={14} />
-                </a>
+                </PrimaryButton>
               </div>
             </Reveal>
           </div>
@@ -256,7 +248,7 @@ export default function CloudManagementPage() {
             <div className="flex items-center justify-between gap-4 mb-6">
               <h2 className="font-display text-2xl sm:text-3xl md:text-4xl leading-tight text-ink dark:text-white tracking-tight">
                 Available Plans
-                <span className="text-[#FF8101]">.</span>
+                <span className="text-[var(--primary)]">.</span>
               </h2>
               <span className="text-xs font-mono text-muted-foreground dark:text-white/40">
                 Transparent Pricing
@@ -265,7 +257,7 @@ export default function CloudManagementPage() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <div className="rounded-2xl border border-ink/10 dark:border-white/10 bg-cream/30 dark:bg-[#141414] p-6 sm:p-8">
+            <div className="rounded-[var(--radius-card)] border border-ink/10 dark:border-white/10 bg-cream/30 dark:bg-[var(--surface-2)] p-6 sm:p-8">
               {/* Row Item */}
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6 pb-8 border-b border-ink/10 dark:border-white/10">
                 {/* Left: Checkbox + Plan Name + Subtitle */}
@@ -276,7 +268,7 @@ export default function CloudManagementPage() {
                     onClick={() => setPlanSelected(!planSelected)}
                     className={`mt-0.5 w-5 h-5 rounded flex items-center justify-center border transition-colors ${
                       planSelected
-                        ? 'bg-[#FF8101] border-[#FF8101] text-white'
+                        ? 'bg-[var(--primary)] border-[var(--primary)] text-white'
                         : 'border-ink/20 dark:border-white/20 bg-white dark:bg-black/20'
                     }`}
                   >
@@ -337,25 +329,19 @@ export default function CloudManagementPage() {
 
               {/* Bottom Action Buttons */}
               <div className="mt-6 flex flex-wrap items-center justify-end gap-3 sm:gap-4">
-                <a
-                  href="#services"
-                  className="cursor-morph inline-flex items-center justify-center rounded-full border border-ink/20 dark:border-white/20 bg-white dark:bg-transparent px-6 py-2.5 text-xs sm:text-sm font-medium text-ink dark:text-white hover:border-[#FF8101] hover:text-[#FF8101] dark:hover:border-[#FF8101] dark:hover:text-[#FF8101] transition-colors"
-                >
+                <SecondaryButton href="#services" className="bg-white dark:bg-transparent px-6 py-2.5 text-xs sm:text-sm">
                   Continue Shopping
-                </a>
-                <a
-                  href="#contact"
-                  className="cursor-morph inline-flex items-center justify-center rounded-full bg-[#008000] text-white px-7 py-2.5 text-xs sm:text-sm font-semibold hover:bg-[#007000] transition-colors"
-                >
+                </SecondaryButton>
+                <PrimaryButton href="#contact" className="px-7 py-2.5 text-xs sm:text-sm">
                   Add To Cart
-                </a>
+                </PrimaryButton>
               </div>
             </div>
           </Reveal>
 
           {/* Custom Plan Inquiry - Highlighted RFQ */}
           <Reveal delay={0.2}>
-            <div className="mt-8 rounded-3xl border-2 border-[#FF8101]/40 bg-gradient-to-br from-[#FF8101]/10 via-[#FF8101]/[0.03] to-transparent dark:from-[#FF8101]/15 dark:via-[#141414] dark:to-[#101010] p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden shadow-lg shadow-[#FF8101]/5">
+            <div className="mt-8 rounded-[var(--radius-card-lg)] border-2 border-[var(--primary)]/40 bg-gradient-to-br from-[var(--primary)]/10 via-[var(--primary)]/[0.03] to-transparent dark:from-[var(--primary)]/15 dark:via-[var(--surface-2)] dark:to-[var(--surface-1)] p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden shadow-lg shadow-[var(--primary)]/5">
               <div className="space-y-1.5 z-10 max-w-xl">
                 <h3 className="text-lg sm:text-xl font-bold text-ink dark:text-white">
                   Looking For A Custom Plan?
@@ -364,13 +350,13 @@ export default function CloudManagementPage() {
                   Tailored SLAs, dedicated systems engineering, and custom instance pricing suited to your multi-cloud architecture.
                 </p>
               </div>
-              <a
+              <PrimaryButton
                 href="#contact"
-                className="cursor-morph z-10 shrink-0 inline-flex items-center gap-2 rounded-full bg-[#FF8101] text-white px-7 py-3.5 text-sm font-semibold hover:bg-[#FF8101]/90 shadow-md shadow-[#FF8101]/20 transition-all hover:gap-3"
+                className="z-10 shrink-0 px-7 py-3.5 shadow-md shadow-[var(--primary)]/20 transition-all hover:gap-3"
               >
                 <span>Request For Quote</span>
                 <ArrowRight size={15} />
-              </a>
+              </PrimaryButton>
             </div>
           </Reveal>
         </div>
@@ -383,7 +369,7 @@ export default function CloudManagementPage() {
           <Reveal>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl leading-[1.08] text-ink dark:text-white tracking-tight">
               Industry Solutions
-              <span className="text-[#FF8101]">.</span>
+              <span className="text-[var(--primary)]">.</span>
             </h2>
           </Reveal>
 
@@ -395,18 +381,18 @@ export default function CloudManagementPage() {
                   clickEffect={true}
                   particleCount={4}
                   enableTilt={false}
-                  className="h-full rounded-2xl border border-ink/10 dark:border-white/10 bg-white dark:bg-[#151515] p-5 sm:p-6 flex items-center justify-between gap-4 hover:border-[#FF8101]/40 transition-all cursor-pointer group shadow-sm hover:shadow-md"
+                  className="h-full rounded-[var(--radius-card)] border border-ink/10 dark:border-white/10 bg-white dark:bg-[var(--surface-2)] p-5 sm:p-6 flex items-center justify-between gap-4 hover:border-[var(--primary)]/40 transition-all cursor-pointer group shadow-sm hover:shadow-md"
                 >
                   <div className="flex items-center gap-4 min-w-0 flex-1">
-                    <div className="w-11 h-11 rounded-xl bg-[#FF8101]/10 text-[#FF8101] flex items-center justify-center shrink-0 group-hover:bg-[#FF8101] group-hover:text-white transition-colors duration-200">
+                    <div className="w-11 h-11 rounded-xl bg-[var(--primary)]/10 text-[var(--primary)] flex items-center justify-center shrink-0 group-hover:bg-[var(--primary)] group-hover:text-white transition-colors duration-200">
                       <ind.icon size={19} />
                     </div>
-                    <span className="text-[15px] sm:text-[16px] font-semibold text-ink dark:text-white group-hover:text-[#FF8101] transition-colors leading-snug">
+                    <span className="text-[15px] sm:text-[16px] font-semibold text-ink dark:text-white group-hover:text-[var(--primary)] transition-colors leading-snug">
                       {ind.title}
                     </span>
                   </div>
                   <div className="shrink-0 pl-3">
-                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-full text-xs font-mono font-bold text-[#FF8101] bg-[#FF8101]/10 border border-[#FF8101]/25">
+                    <span className="inline-flex items-center justify-center w-8 h-8 rounded-full text-xs font-mono font-bold text-[var(--primary)] bg-[var(--primary)]/10 border border-[var(--primary)]/25">
                       {ind.count}
                     </span>
                   </div>
@@ -426,32 +412,32 @@ export default function CloudManagementPage() {
               <Reveal>
                 <h2 className="font-display text-3xl sm:text-4xl md:text-5xl leading-[1.08] text-ink dark:text-white tracking-tight mb-8">
                   Contact Us
-                  <span className="text-[#FF8101]">.</span>
+                  <span className="text-[var(--primary)]">.</span>
                 </h2>
 
                 <div className="space-y-6 sm:space-y-8">
                   {/* Sales and Support Block */}
-                  <div className="rounded-2xl border border-ink/10 dark:border-white/10 bg-cream/40 dark:bg-[#151515] p-6">
+                  <div className="rounded-[var(--radius-card)] border border-ink/10 dark:border-white/10 bg-cream/40 dark:bg-[var(--surface-2)] p-6">
                     <h3 className="text-[16px] font-bold text-ink dark:text-white mb-4 flex items-center gap-2">
-                      <Phone size={17} className="text-[#FF8101]" />
+                      <Phone size={17} className="text-[var(--primary)]" />
                       Sales and Support
                     </h3>
                     <div className="space-y-3 text-[14px]">
                       <div>
                         <span className="text-muted-foreground dark:text-white/50 block text-[12px]">Phone:</span>
-                        <a href="tel:18476076123" className="font-medium text-ink dark:text-white hover:text-[#FF8101] transition-colors">
+                        <a href="tel:18476076123" className="font-medium text-ink dark:text-white hover:text-[var(--primary)] transition-colors">
                           1-(847)-607-6123
                         </a>
                       </div>
                       <div>
                         <span className="text-muted-foreground dark:text-white/50 block text-[12px]">Sales:</span>
-                        <a href="mailto:sales@supportpro.com" className="font-medium text-ink dark:text-white hover:text-[#FF8101] transition-colors">
+                        <a href="mailto:sales@supportpro.com" className="font-medium text-ink dark:text-white hover:text-[var(--primary)] transition-colors">
                           sales@supportpro.com
                         </a>
                       </div>
                       <div>
                         <span className="text-muted-foreground dark:text-white/50 block text-[12px]">Support:</span>
-                        <a href="mailto:support@supportpro.com" className="font-medium text-ink dark:text-white hover:text-[#FF8101] transition-colors">
+                        <a href="mailto:support@supportpro.com" className="font-medium text-ink dark:text-white hover:text-[var(--primary)] transition-colors">
                           support@supportpro.com
                         </a>
                       </div>
@@ -465,9 +451,9 @@ export default function CloudManagementPage() {
                   </div>
 
                   {/* Postal Address Block */}
-                  <div className="rounded-2xl border border-ink/10 dark:border-white/10 bg-cream/40 dark:bg-[#151515] p-6">
+                  <div className="rounded-[var(--radius-card)] border border-ink/10 dark:border-white/10 bg-cream/40 dark:bg-[var(--surface-2)] p-6">
                     <h3 className="text-[16px] font-bold text-ink dark:text-white mb-3 flex items-center gap-2">
-                      <MapPin size={17} className="text-[#FF8101]" />
+                      <MapPin size={17} className="text-[var(--primary)]" />
                       Postal Address
                     </h3>
                     <p className="text-[14px] leading-relaxed text-ink/80 dark:text-white/80">
@@ -483,7 +469,7 @@ export default function CloudManagementPage() {
             {/* Right Column: Contact Consultation Form */}
             <div className="lg:col-span-7">
               <Reveal delay={0.1}>
-                <div className="rounded-3xl border border-ink/10 dark:border-white/10 bg-cream/40 dark:bg-[#151515] p-6 sm:p-8 md:p-10">
+                <div className="rounded-[var(--radius-card-lg)] border border-ink/10 dark:border-white/10 bg-cream/40 dark:bg-[var(--surface-2)] p-6 sm:p-8 md:p-10">
                   <div className="mb-6">
                     <h3 className="text-xl sm:text-2xl font-bold text-ink dark:text-white">
                       Request For Quote
@@ -507,7 +493,7 @@ export default function CloudManagementPage() {
                           required
                           suppressHydrationWarning
                           placeholder="Full name"
-                          className="w-full rounded-2xl border border-ink/10 dark:border-white/10 bg-white dark:bg-black/20 pl-11 pr-4 py-3 text-[13px] text-ink dark:text-white outline-none transition-all placeholder:text-ink/35 dark:placeholder:text-white/30 focus:border-[#FF8101]/50 focus:bg-white dark:focus:bg-black/40"
+                          className="w-full rounded-[var(--radius-card)] border border-ink/10 dark:border-white/10 bg-white dark:bg-black/20 pl-11 pr-4 py-3 text-[13px] text-ink dark:text-white outline-none transition-all placeholder:text-ink/35 dark:placeholder:text-white/30 focus:border-[var(--primary)]/50 focus:bg-white dark:focus:bg-black/40"
                         />
                       </div>
                       <div className="relative">
@@ -520,7 +506,7 @@ export default function CloudManagementPage() {
                           type="email"
                           suppressHydrationWarning
                           placeholder="Work email"
-                          className="w-full rounded-2xl border border-ink/10 dark:border-white/10 bg-white dark:bg-black/20 pl-11 pr-4 py-3 text-[13px] text-ink dark:text-white outline-none transition-all placeholder:text-ink/35 dark:placeholder:text-white/30 focus:border-[#FF8101]/50 focus:bg-white dark:focus:bg-black/40"
+                          className="w-full rounded-[var(--radius-card)] border border-ink/10 dark:border-white/10 bg-white dark:bg-black/20 pl-11 pr-4 py-3 text-[13px] text-ink dark:text-white outline-none transition-all placeholder:text-ink/35 dark:placeholder:text-white/30 focus:border-[var(--primary)]/50 focus:bg-white dark:focus:bg-black/40"
                         />
                       </div>
                     </div>
@@ -533,7 +519,7 @@ export default function CloudManagementPage() {
                       <input
                         placeholder="Company"
                         suppressHydrationWarning
-                        className="w-full rounded-2xl border border-ink/10 dark:border-white/10 bg-white dark:bg-black/20 pl-11 pr-4 py-3 text-[13px] text-ink dark:text-white outline-none transition-all placeholder:text-ink/35 dark:placeholder:text-white/30 focus:border-[#FF8101]/50 focus:bg-white dark:focus:bg-black/40"
+                        className="w-full rounded-[var(--radius-card)] border border-ink/10 dark:border-white/10 bg-white dark:bg-black/20 pl-11 pr-4 py-3 text-[13px] text-ink dark:text-white outline-none transition-all placeholder:text-ink/35 dark:placeholder:text-white/30 focus:border-[var(--primary)]/50 focus:bg-white dark:focus:bg-black/40"
                       />
                     </div>
 
@@ -550,7 +536,7 @@ export default function CloudManagementPage() {
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
                         placeholder="Message"
-                        className="w-full resize-none rounded-2xl border border-ink/10 dark:border-white/10 bg-white dark:bg-black/20 pl-11 pr-4 pt-3 pb-8 text-[13px] text-ink dark:text-white outline-none transition-all placeholder:text-ink/35 dark:placeholder:text-white/30 focus:border-[#FF8101]/50 focus:bg-white dark:focus:bg-black/40"
+                        className="w-full resize-none rounded-[var(--radius-card)] border border-ink/10 dark:border-white/10 bg-white dark:bg-black/20 pl-11 pr-4 pt-3 pb-8 text-[13px] text-ink dark:text-white outline-none transition-all placeholder:text-ink/35 dark:placeholder:text-white/30 focus:border-[var(--primary)]/50 focus:bg-white dark:focus:bg-black/40"
                       />
                       <span className="absolute right-4 bottom-3 text-[11px] text-ink/30 dark:text-white/30 font-mono select-none">
                         {message.length} / 500
@@ -558,18 +544,18 @@ export default function CloudManagementPage() {
                     </div>
 
                     <div className="flex items-center gap-2 text-[12px] text-muted-foreground dark:text-white/60">
-                      <ShieldCheck size={16} className="text-[#FF8101] shrink-0" />
+                      <ShieldCheck size={16} className="text-[var(--primary)] shrink-0" />
                       <span>Your information is secure and will never be shared.</span>
                     </div>
 
-                    <button
+                    <PrimaryButton
                       type="submit"
                       suppressHydrationWarning
-                      className="cursor-morph w-full rounded-full bg-[#FF8101] text-white py-3.5 px-6 text-[14px] font-semibold transition-all hover:bg-[#FF8101]/90 flex items-center justify-center gap-2"
+                      className="w-full py-3.5 px-6 text-[14px]"
                     >
                       {formSent ? 'Request Received' : 'Request For Quote'}
                       <ArrowRight size={18} />
-                    </button>
+                    </PrimaryButton>
                   </form>
                 </div>
               </Reveal>

@@ -275,11 +275,10 @@ export default function HireADevelopmentTeamPage() {
                     type="button"
                     suppressHydrationWarning
                     onClick={() => setSelectedPlan(1)}
-                    className={`mt-0.5 w-5 h-5 rounded flex items-center justify-center border transition-colors ${
-                      selectedPlan === 1
+                    className={`mt-0.5 w-5 h-5 rounded flex items-center justify-center border transition-colors ${selectedPlan === 1
                         ? 'bg-[#FF8101] border-[#FF8101] text-white'
                         : 'border-ink/20 dark:border-white/20 bg-white dark:bg-black/20'
-                    }`}
+                      }`}
                   >
                     {selectedPlan === 1 && <Check size={14} strokeWidth={3} />}
                   </button>
@@ -341,11 +340,10 @@ export default function HireADevelopmentTeamPage() {
                     type="button"
                     suppressHydrationWarning
                     onClick={() => setSelectedPlan(2)}
-                    className={`mt-0.5 w-5 h-5 rounded flex items-center justify-center border transition-colors ${
-                      selectedPlan === 2
+                    className={`mt-0.5 w-5 h-5 rounded flex items-center justify-center border transition-colors ${selectedPlan === 2
                         ? 'bg-[#FF8101] border-[#FF8101] text-white'
                         : 'border-ink/20 dark:border-white/20 bg-white dark:bg-black/20'
-                    }`}
+                      }`}
                   >
                     {selectedPlan === 2 && <Check size={14} strokeWidth={3} />}
                   </button>
@@ -376,11 +374,10 @@ export default function HireADevelopmentTeamPage() {
                     type="button"
                     suppressHydrationWarning
                     onClick={() => setSelectedPlan(3)}
-                    className={`mt-0.5 w-5 h-5 rounded flex items-center justify-center border transition-colors ${
-                      selectedPlan === 3
+                    className={`mt-0.5 w-5 h-5 rounded flex items-center justify-center border transition-colors ${selectedPlan === 3
                         ? 'bg-[#FF8101] border-[#FF8101] text-white'
                         : 'border-ink/20 dark:border-white/20 bg-white dark:bg-black/20'
-                    }`}
+                      }`}
                   >
                     {selectedPlan === 3 && <Check size={14} strokeWidth={3} />}
                   </button>
@@ -414,7 +411,7 @@ export default function HireADevelopmentTeamPage() {
                 </a>
                 <a
                   href="#contact"
-                  className="cursor-morph inline-flex items-center justify-center rounded-full bg-[#008000] text-white px-7 py-2.5 text-xs sm:text-sm font-semibold hover:bg-[#007000] transition-colors"
+                  className="cursor-morph inline-flex items-center justify-center rounded-full bg-[var(--primary)] text-white px-7 py-2.5 text-xs sm:text-sm font-semibold hover:bg-[var(--primary-hover)] transition-colors"
                 >
                   Add To Cart
                 </a>

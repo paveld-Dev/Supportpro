@@ -6,11 +6,14 @@ const ROOT = process.cwd();
 const TOKENIZED_FILES = [
   'app/cloudmanagement/page.tsx',
   'app/dedicated-server-support/page.tsx',
+  'app/dedicated-tech-support/page.tsx',
+  'app/semi-dedicated-support/page.tsx',
+  'app/dedicated-team-support/page.tsx',
   'src/components/ui/sp-button.tsx',
 ];
 
 const GREEN_BUTTON_REGEX = /(?:bg-\[#00[78]000\]|hover:bg-\[#00[78]000\]|bg-green-\d{2,3})/;
-const RAW_HEX_REGEX = /#[0-9a-fA-F]{3,8}\b/g;
+const RAW_HEX_REGEX = /(?:\[#|['"]#)[0-9a-fA-F]{3,8}\b|#[0-9a-fA-F]{6}(?:[0-9a-fA-F]{2})?\b/g;
 const BUTTON_INLINE_STYLE_REGEX = /<button[^>]*\bstyle=\{\{/;
 
 function walkTsxFiles(dir) {

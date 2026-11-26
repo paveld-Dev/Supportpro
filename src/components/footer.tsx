@@ -12,7 +12,7 @@ const getImageSrc = (img: any): string => {
 
 export function SiteFooter() {
   return (
-    <footer className="bg-ink dark:bg-[#080808] text-white/80 px-5 md:px-6 lg:px-8 py-10 sm:py-16 lg:py-24 border-t border-white/10 dark:border-white/5">
+    <footer className="bg-ink dark:bg-[#080808] text-white/80 px-5 md:px-6 lg:px-8 pt-10 sm:pt-16 lg:pt-24 pb-24 border-t border-white/10 dark:border-white/5">
       <div className="mx-auto max-w-[1152px] grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 text-xs">
         {/* Brand Column */}
         <div className="col-span-2 md:col-span-1">
@@ -30,7 +30,7 @@ export function SiteFooter() {
 
         {/* About Us */}
         <div>
-          <div className="font-medium text-white mb-3 sm:mb-4 text-[13px]">About Us</div>
+          <div className="font-medium text-[var(--primary)] mb-3 sm:mb-4 text-[13px]">About Us</div>
           <div className="space-y-2.5 text-white/70 dark:text-white/60">
             <div>
               <a href="https://www.supportpro.com/aboutus.php" target="_blank" rel="noreferrer" className="hover:text-[#FF8101] transition-colors">
@@ -67,12 +67,12 @@ export function SiteFooter() {
 
         {/* Popular Plans */}
         <div>
-          <div className="font-medium text-white mb-3 sm:mb-4 text-[13px]">Popular Plans</div>
+          <div className="font-medium text-[var(--primary)] mb-3 sm:mb-4 text-[13px]">Popular Plans</div>
           <div className="space-y-2.5 text-white/70 dark:text-white/60">
             <div>
-              <a href="https://www.supportpro.com/dedicated-team.php" target="_blank" rel="noreferrer" className="hover:text-[#FF8101] transition-colors">
+              <Link href="/dedicated-team-support" className="hover:text-[#FF8101] transition-colors">
                 Dedicated Team Support
-              </a>
+              </Link>
             </div>
             <div>
               <a href="https://www.supportpro.com/helpdesk-support.php" target="_blank" rel="noreferrer" className="hover:text-[#FF8101] transition-colors">
@@ -89,7 +89,7 @@ export function SiteFooter() {
 
         {/* Legal */}
         <div>
-          <div className="font-medium text-white mb-3 sm:mb-4 text-[13px]">Legal</div>
+          <div className="font-medium text-[var(--primary)] mb-3 sm:mb-4 text-[13px]">Legal</div>
           <div className="space-y-2.5 text-white/70 dark:text-white/60">
             <div>
               <a href="https://www.supportpro.com/privacy.php" target="_blank" rel="noreferrer" className="hover:text-[#FF8101] transition-colors">
@@ -109,6 +109,6 @@ export function SiteFooter() {
         <div>© 2026 SupportPRO.com. All Rights Reserved</div>
         <div className="text-white/30 text-[11px]">Quality processes. Measurable results.</div>
       </div>
-    </footer>
+    </footer >
   );
 }
