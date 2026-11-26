@@ -1,0 +1,61 @@
+/* SupportPRO Design System Tokens — Version 1.0 (Locked) */
+
+:root {
+  /* Colors — Light Mode */
+  --bg-base: #fdfaf5;
+  --surface-1: #f5f0e8;
+  --surface-2: #ffffff;
+  --border-subtle: rgba(0, 0, 0, 0.10);
+  --border-strong: rgba(0, 0, 0, 0.18);
+  --text-primary: #1a1a18;
+  --text-secondary: #5a5a54;
+  --text-muted: #9a9a94;
+  --primary: #f57c00;
+  --primary-hover: #e06d00;
+  --primary-foreground: #ffffff;
+  --success: #059669;
+
+  /* Typography */
+  --font-display-family: var(--font-display), "Instrument Serif", ui-serif, Georgia, serif;
+  --font-sans-family: var(--font-sans), "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  /* Spacing Scale (4px steps) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+  --section-padding-mobile: 64px;
+  --section-padding-desktop: 96px;
+
+  /* Radii */
+  --radius-pill: 9999px;
+  --radius-card: 16px;
+  --radius-card-lg: 24px;
+
+  /* Focus Ring */
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 2px;
+  --focus-ring-color: var(--primary);
+}
+
+[data-theme="dark"] {
+  /* Colors — Dark Mode (Default) */
+  --bg-base: #0a0a0a;
+  --surface-1: #111111;
+  --surface-2: #161616;
+  --border-subtle: rgba(255, 255, 255, 0.10);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --text-primary: #f5f5f2;
+  --text-secondary: #a7a7a3;
+  --text-muted: #777773;
+  --primary: #f57c00;
+  --primary-hover: #e06d00;
+  --primary-foreground: #ffffff;
+  --success: #10b981;
+}
