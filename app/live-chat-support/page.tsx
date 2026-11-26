@@ -23,7 +23,6 @@ import {
 } from 'lucide-react';
 import { Nav } from '@/components/nav';
 import { SiteFooter } from '@/components/footer';
-import { YearsOfExcellenceBadge } from '@/components/years-of-excellence-badge';
 import { PrimaryButton, SecondaryButton } from '@/components/ui/sp-button';
 import supportIllustration from '@/assets/247 expert support, always on..png';
 
@@ -97,7 +96,6 @@ export default function LiveChatSupportPage() {
         <div className="mx-auto max-w-[1152px] px-5 md:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             <div className="lg:col-span-7 min-w-0 space-y-5">
-              <YearsOfExcellenceBadge />
 
               <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[64px] leading-[1.04] text-[var(--text-primary)] tracking-tight">
                 Live chat support
