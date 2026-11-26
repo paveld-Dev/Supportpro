@@ -281,6 +281,7 @@ export function Nav() {
 
           <Link
             href="/case-studies"
+            onClick={() => window.dispatchEvent(new Event('case-studies:reset'))}
             className="hidden sm:flex items-center px-3.5 py-1.5 rounded-full transition font-medium"
           >
             Case Studies
@@ -432,7 +433,10 @@ export function Nav() {
 
               <Link
                 href="/case-studies"
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  window.dispatchEvent(new Event('case-studies:reset'));
+                }}
                 className="text-lg font-display text-ink dark:text-white tracking-tight"
               >
                 Case Studies

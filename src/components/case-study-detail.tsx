@@ -138,7 +138,7 @@ function OrbitalAccent({ className = '' }: { className?: string }) {
             </div>
 
             <h1
-              className="text-[32px] sm:text-[42px] lg:text-[52px] font-normal leading-[1.08] tracking-tight text-[var(--text-primary)] max-w-[820px]"
+              className="text-[32px] sm:text-[44px] lg:text-[54px] font-normal leading-[1.06] tracking-tight text-[var(--text-primary)] max-w-[600px]"
               style={{ fontFamily: 'var(--font-display-family)' }}
             >
               {study.title}
@@ -171,8 +171,8 @@ function OrbitalAccent({ className = '' }: { className?: string }) {
                         key={fact.label}
                         className="flex items-start gap-3.5 py-3.5 first:pt-0 last:pb-0"
                       >
-                        <div className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-[var(--border-subtle)] bg-[var(--surface-2)] text-[var(--primary)]">
-                          <Icon size={15} strokeWidth={1.75} />
+                        <div className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center text-[var(--primary)]">
+                          <Icon size={17} strokeWidth={1.65} />
                         </div>
                         <div className="min-w-0">
                           <dt className="text-[11px] font-semibold uppercase tracking-[0.09em] text-[var(--text-muted)]">
@@ -199,7 +199,7 @@ function OrbitalAccent({ className = '' }: { className?: string }) {
             {/* Left: Editorial Heading */}
             <div className="lg:col-span-5 min-w-0">
               <h2
-                className="text-[30px] sm:text-[36px] lg:text-[40px] font-normal leading-[1.12] text-[var(--text-primary)] max-w-[16ch]"
+                className="text-[30px] sm:text-[36px] lg:text-[42px] font-normal leading-[1.1] text-[var(--text-primary)] max-w-[15ch]"
                 style={{ fontFamily: 'var(--font-display-family)' }}
               >
                 {editorialHeading}
@@ -208,13 +208,14 @@ function OrbitalAccent({ className = '' }: { className?: string }) {
             </div>
 
             {/* Right: Challenge, Approach, Result (if verified), Stack & CTA */}
-            <div className="lg:col-span-7 min-w-0 space-y-8">
+            <div className="lg:col-span-7 min-w-0 space-y-8 lg:border-l lg:border-[var(--border-subtle)] lg:pl-10">
               <div className="space-y-2.5">
                 <h3
-                  className="text-[22px] sm:text-[24px] font-normal text-[var(--text-primary)]"
+                  className="flex items-center gap-2.5 text-[22px] sm:text-[24px] font-normal text-[var(--text-primary)]"
                   style={{ fontFamily: 'var(--font-display-family)' }}
                 >
-                  Challenge
+                  <span className="h-5 w-0.5 rounded-full bg-[var(--primary)]" aria-hidden="true" />
+                  <span>Challenge</span>
                 </h3>
                 <p className="text-[15px] sm:text-[16px] leading-[1.65] text-[var(--text-secondary)] max-w-[68ch]">
                   {study.challenge}
@@ -223,10 +224,11 @@ function OrbitalAccent({ className = '' }: { className?: string }) {
 
               <div className="space-y-2.5">
                 <h3
-                  className="text-[22px] sm:text-[24px] font-normal text-[var(--text-primary)]"
+                  className="flex items-center gap-2.5 text-[22px] sm:text-[24px] font-normal text-[var(--text-primary)]"
                   style={{ fontFamily: 'var(--font-display-family)' }}
                 >
-                  Approach
+                  <span className="h-5 w-0.5 rounded-full bg-[var(--primary)]" aria-hidden="true" />
+                  <span>Approach</span>
                 </h3>
                 <p className="text-[15px] sm:text-[16px] leading-[1.65] text-[var(--text-secondary)] max-w-[68ch]">
                   {study.approach}
@@ -249,10 +251,11 @@ function OrbitalAccent({ className = '' }: { className?: string }) {
 
               <div className="space-y-3">
                 <h3
-                  className="text-[22px] sm:text-[24px] font-normal text-[var(--text-primary)]"
+                  className="flex items-center gap-2.5 text-[22px] sm:text-[24px] font-normal text-[var(--text-primary)]"
                   style={{ fontFamily: 'var(--font-display-family)' }}
                 >
-                  Stack
+                  <span className="h-5 w-0.5 rounded-full bg-[var(--primary)]" aria-hidden="true" />
+                  <span>Stack</span>
                 </h3>
                 <ul className="flex flex-wrap gap-2">
                   {study.stack.map((tech) => {
@@ -400,8 +403,11 @@ function OrbitalAccent({ className = '' }: { className?: string }) {
                     Start a conversation
                   </h2>
                   <p className="text-[14px] sm:text-[15px] leading-[1.6] text-[var(--text-secondary)] max-w-[36ch]">
-                    Tell our engineering team about your infrastructure, timeline, and goals.
+                    Tell our engineering team about your infrastructure, timeline, and goals. We&apos;ll get back with a thoughtful next step.
                   </p>
+                  <div className="pt-2">
+                    <div className="h-0.5 w-10 rounded-full bg-[var(--primary)]" aria-hidden="true" />
+                  </div>
                 </div>
 
                 {/* Right: Form Fields & Submit Button */}
@@ -410,7 +416,7 @@ function OrbitalAccent({ className = '' }: { className?: string }) {
                     e.preventDefault();
                     setSubmitted(true);
                   }}
-                  className="lg:col-span-7 min-w-0 space-y-4"
+                  className="lg:col-span-7 min-w-0 space-y-4 lg:border-l lg:border-[var(--border-subtle)] lg:pl-10"
                 >
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="relative">
