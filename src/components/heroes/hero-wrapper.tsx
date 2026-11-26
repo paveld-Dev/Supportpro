@@ -67,22 +67,21 @@ export function HeroWrapper({ initialHero }: { initialHero?: number }) {
     if (fromUrl && [1, 2, 3, 4, 5, 6].includes(Number(fromUrl))) {
       return Number(fromUrl);
     }
-    if (typeof window !== 'undefined') {
-      try {
-        const saved = localStorage.getItem('supportpro_selected_hero');
-        if (saved && [1, 2, 3, 4, 5, 6].includes(Number(saved))) {
-          return Number(saved);
-        }
-      } catch (e) {}
-    }
     return 1;
   });
 
-  // Sync with searchParams if changed via nav
+  // Sync with searchParams and saved localStorage selection after hydration
   useEffect(() => {
     const fromUrl = searchParams.get('hero');
     if (fromUrl && [1, 2, 3, 4, 5, 6].includes(Number(fromUrl))) {
       setCurrentHero(Number(fromUrl));
+    } else if (!initialHero) {
+      try {
+        const saved = localStorage.getItem('supportpro_selected_hero');
+        if (saved && [1, 2, 3, 4, 5, 6].includes(Number(saved))) {
+          setCurrentHero(Number(saved));
+        }
+      } catch (e) { }
     }
 
     const handleCustomSwitch = (e: any) => {
@@ -95,7 +94,7 @@ export function HeroWrapper({ initialHero }: { initialHero?: number }) {
     return () => {
       window.removeEventListener('supportpro:switch-hero', handleCustomSwitch);
     };
-  }, [searchParams]);
+  }, [searchParams, initialHero]);
 
   // Close dropdown on click outside
   useEffect(() => {
@@ -150,9 +149,9 @@ export function HeroWrapper({ initialHero }: { initialHero?: number }) {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 6, scale: 0.95 }}
                 transition={{ duration: 0.15 }}
-                className="absolute bottom-[calc(100%+8px)] left-0 w-48 rounded-2xl bg-[#141820]/95 backdrop-blur-xl border border-white/15 p-1.5 shadow-2xl shadow-black/80 overflow-hidden text-white"
+                className="absolute bottom-[calc(100%+8px)] left-0 w-48 rounded-2xl bg-white/95 dark:bg-[#141820]/95 backdrop-blur-xl border border-black/10 dark:border-white/15 p-1.5 shadow-2xl shadow-black/15 dark:shadow-black/80 overflow-hidden text-ink dark:text-white"
               >
-                <div className="px-2.5 py-1 text-[10px] uppercase font-mono tracking-wider text-white/40 border-b border-white/10 mb-1">
+                <div className="px-2.5 py-1 text-[10px] uppercase font-mono tracking-wider text-ink/40 dark:text-white/40 border-b border-black/10 dark:border-white/10 mb-1">
                   Hero Variant
                 </div>
                 <div className="space-y-0.5">
@@ -164,8 +163,8 @@ export function HeroWrapper({ initialHero }: { initialHero?: number }) {
                         key={variant.id}
                         onClick={() => switchHero(variant.id)}
                         className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-xl text-left text-xs transition-colors cursor-morph ${isActive
-                            ? 'bg-[#FF8101] text-white font-semibold shadow-md shadow-[#FF8101]/30'
-                            : 'text-white/80 hover:bg-white/10 hover:text-white'
+                          ? 'bg-[#FF8101] text-white font-semibold shadow-md shadow-[#FF8101]/30'
+                          : 'text-ink/80 dark:text-white/80 hover:bg-black/5 dark:hover:bg-white/10 hover:text-ink dark:hover:text-white'
                           }`}
                       >
                         <div className="flex items-center gap-2 min-w-0">
@@ -184,14 +183,14 @@ export function HeroWrapper({ initialHero }: { initialHero?: number }) {
           {/* Compact Pill Button */}
           <button
             onClick={() => setDropdownOpen(!dropdownOpen)}
-            className="cursor-morph flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#141820]/90 hover:bg-[#141820] backdrop-blur-xl border border-white/20 hover:border-[#FF8101]/50 text-white text-xs font-medium shadow-xl shadow-black/50 transition-all duration-200"
+            className="cursor-morph flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/90 dark:bg-[#141820]/90 hover:bg-white dark:hover:bg-[#141820] backdrop-blur-xl border border-black/10 dark:border-white/20 hover:border-[#FF8101]/50 text-ink dark:text-white text-xs font-medium shadow-xl shadow-black/10 dark:shadow-black/50 transition-all duration-200"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-[#FF8101] animate-pulse shrink-0" />
             <ActiveIcon size={12} className="text-[#FF8101]" />
             <span className="font-semibold">{activeVariant.shortLabel}</span>
             <ChevronDown
               size={12}
-              className={`text-white/60 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`}
+              className={`text-ink/60 dark:text-white/60 transition-transform duration-200 ${dropdownOpen ? 'rotate-180' : ''}`}
             />
           </button>
         </div>

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "motion/react";
 
 const TARGET_SELECTOR =
-  "button, input, textarea, select, a.rounded-full, a[class*='button'], .service-pill";
+  "nav button.rounded-full, nav a.rounded-full, header button, header a";
 
 type TargetBounds = {
   width: number;

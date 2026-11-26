@@ -4,7 +4,6 @@ import './globals.css';
 import { Providers } from './providers';
 import { CustomCursor } from '@/components/custom-cursor';
 import { Chatbot } from '@/components/chatbot';
-import { LoadingScreen } from '@/components/loading-screen';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -45,6 +44,13 @@ export const metadata: Metadata = {
       'SupportPRO delivers 24/7 technical support, cloud and server management, NOC, DevOps, and white-label MSP services trusted by hosting providers and enterprises worldwide.',
     images: ['/hero.png'],
   },
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
+    apple: '/favicon-32x32.png',
+  },
 };
 
 export default function RootLayout({
@@ -57,29 +63,14 @@ export default function RootLayout({
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="icon" href="/favicon.ico" />
-        {/* Inline theme & session loader script — runs before hydration to prevent flash */}
+        {/* Inline theme script — runs before hydration to prevent flash */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t===null){document.documentElement.setAttribute('data-theme','dark');}var p=new URLSearchParams(window.location.search);var h=p.get('hero')||localStorage.getItem('supportpro_selected_hero');if(h==='6'){document.documentElement.setAttribute('data-hero','6');}if(sessionStorage.getItem('supportpro_session_loaded')&&h!=='6'){document.documentElement.classList.add('sp-loaded');}}catch(e){}})();`,
-          }}
-        />
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `
-              html.sp-loaded #sp-loading-screen { display: none !important; }
-              html:not(.sp-loaded) body > *:not(#sp-loading-screen) {
-                visibility: hidden !important;
-                opacity: 0 !important;
-                pointer-events: none !important;
-              }
-            `,
+            __html: `(function(){try{var p=new URLSearchParams(window.location.search).get('theme');var t=p||localStorage.getItem('theme');if(t==='light'){document.documentElement.removeAttribute('data-theme');document.documentElement.classList.remove('dark');}else if(t==='dark'||t===null){document.documentElement.setAttribute('data-theme','dark');document.documentElement.classList.add('dark');}}catch(e){}})();`,
           }}
         />
       </head>
       <body>
-        <LoadingScreen />
         <Providers>
           <CustomCursor />
           {children}

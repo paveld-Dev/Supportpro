@@ -35,7 +35,7 @@ export function YearsOfExcellenceBadge({ className = '' }: YearsOfExcellenceBadg
       />
 
       {/* Text placed horizontally aligned to the award in font-display */}
-      <span className="font-display text-[17px] sm:text-[19px] lg:text-[20px] text-white/95 tracking-wide leading-none">
+      <span className="font-display text-[17px] sm:text-[19px] lg:text-[20px] text-ink dark:text-white/95 tracking-wide leading-none">
         Years of Experience
       </span>
     </motion.div>

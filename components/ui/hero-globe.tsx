@@ -85,7 +85,8 @@ export interface GlobeNetworkRoute {
   color: string;
 }
 
-// Network routes originating strictly from South India (12.97, 77.59) to global client locations (15 total, long-distance global span)
+// Network routes originating strictly and exclusively from South India (12.97, 77.59) to global client locations
+// Rule: Chicago (41.88, -87.63) is a base marker only — no arcs start, end, or touch Chicago.
 export const GLOBE_NETWORK_ROUTES: GlobeNetworkRoute[] = [
   // 1. South India -> London UK Client Node
   {
@@ -325,6 +326,22 @@ function getArcPoint3D(
   const r = radius + altitude;
   return [unit[0] * r, unit[1] * r, unit[2] * r];
 }
+
+// Precompute static 3D vectors & geodesic parameters once at module level to eliminate per-frame trigonometry overhead
+export const PRECOMPUTED_NETWORK_ROUTES = GLOBE_NETWORK_ROUTES.map((route) => {
+  const v1 = latLngToVector3(route.fromLat, route.fromLng);
+  const v2 = latLngToVector3(route.toLat, route.toLng);
+  const dot = Math.max(-1, Math.min(1, v1[0] * v2[0] + v1[1] * v2[1] + v1[2] * v2[2]));
+  const omega = Math.acos(dot);
+  const peakHeight = Math.max(0.04, Math.min(0.12, omega * 0.08));
+  return {
+    ...route,
+    v1,
+    v2,
+    omega,
+    peakHeight,
+  };
+});
 
 // Deterministic starfield points surrounding the sphere with multi-tier glow
 const STARFIELD_POINTS = [
@@ -581,121 +598,149 @@ export function HeroGlobe({
         }
       });
 
-      // 2. Draw Each Network Route (origin strictly from base to each user pin)
-      GLOBE_NETWORK_ROUTES.forEach((route) => {
-        const v1 = latLngToVector3(route.fromLat, route.fromLng);
-        const v2 = latLngToVector3(route.toLat, route.toLng);
-        const dot = Math.max(-1, Math.min(1, v1[0] * v2[0] + v1[1] * v2[1] + v1[2] * v2[2]));
-        const omega = Math.acos(dot);
-        // Increased arc altitude distance & reach across the globe
-        const peakHeight = Math.max(0.04, Math.min(0.12, omega * 0.08));
+      // 2. Draw Continuous Network Lines & Continuous Flowing Energy Stream
+      PRECOMPUTED_NETWORK_ROUTES.forEach((route) => {
+        const { v1, v2, peakHeight } = route;
 
+        // Sample points along arc for high-fidelity curve
         const SAMPLES = 36;
-        const pts: { x: number; y: number; z: number }[] = [];
+        const allPts: { x: number; y: number; z: number; t: number }[] = [];
         for (let i = 0; i <= SAMPLES; i++) {
           const t = i / SAMPLES;
           const pt3d = getArcPoint3D(v1, v2, t, peakHeight, radius);
-          pts.push(project(pt3d));
+          const p = project(pt3d);
+          allPts.push({ x: p.x, y: p.y, z: p.z, t });
         }
 
-        // Draw Ghost Base Arc Trajectory in brand #FF8101 orange (faint network topology guide)
-        ctx.save();
-        let isDrawing = false;
-        for (let i = 0; i < pts.length - 1; i++) {
-          const pA = pts[i];
-          const pB = pts[i + 1];
-          const avgZ = (pA.z + pB.z) / 2;
+        // Group into contiguous visible segments on front hemisphere (z > -0.04)
+        const visibleSegments: { x: number; y: number; z: number; t: number }[][] = [];
+        let currentSeg: { x: number; y: number; z: number; t: number }[] = [];
 
-          if (avgZ > -0.04) {
-            const lineAlpha = Math.max(0.04, Math.min(0.16, (avgZ + 0.04) / 0.5));
-            if (!isDrawing) {
-              ctx.beginPath();
-              ctx.moveTo(pA.x, pA.y);
-              isDrawing = true;
+        for (let i = 0; i < allPts.length; i++) {
+          const pt = allPts[i];
+          if (pt.z > -0.04) {
+            currentSeg.push(pt);
+          } else {
+            if (currentSeg.length >= 2) {
+              visibleSegments.push(currentSeg);
             }
-            ctx.lineTo(pB.x, pB.y);
-            ctx.strokeStyle = `rgba(255, 129, 1, ${lineAlpha * 0.8})`;
-            ctx.lineWidth = 0.65;
-            ctx.stroke();
-          } else if (isDrawing) {
-            ctx.stroke();
-            isDrawing = false;
+            currentSeg = [];
           }
         }
-        if (isDrawing) {
-          ctx.stroke();
-        }
-        ctx.restore();
-
-        // Draw The Line Itself Traveling Outward from the Origin Base
-        // Phase 1 (0.00 -> 0.65): Line emerges from origin and shoots outward across the globe
-        // Phase 2 (0.65 -> 0.92): Line arrives at destination, tail draws forward from origin
-        // Phase 3 (0.92 -> 1.00): Brief pause before next line emerges
-        const cycle = (timestamp * 0.00020 * route.speed + route.phase) % 1;
-        let tMin = 0;
-        let tMax = 0;
-        let strokeAlpha = 0;
-
-        if (cycle < 0.65) {
-          // Line originates at base beacon (tMin=0) and draws forward to tMax
-          const norm = cycle / 0.65;
-          const eased = 1 - Math.pow(1 - norm, 1.5);
-          tMin = 0;
-          tMax = Math.max(0.02, Math.min(1.0, eased));
-          strokeAlpha = 0.95;
-        } else if (cycle < 0.92) {
-          // Line reaches destination (tMax=1.0), tail catches up from origin
-          const norm = (cycle - 0.65) / 0.27;
-          tMin = Math.min(1.0, norm);
-          tMax = 1.0;
-          strokeAlpha = (1 - norm * 0.65) * 0.95;
-        } else {
-          // Pause between line travels
-          strokeAlpha = 0;
+        if (currentSeg.length >= 2) {
+          visibleSegments.push(currentSeg);
         }
 
-        if (strokeAlpha > 0.02 && tMax > tMin + 0.01) {
-          const TRAVEL_STEPS = 28;
-          const travelPts: { x: number; y: number; z: number; frac: number }[] = [];
-          for (let step = 0; step <= TRAVEL_STEPS; step++) {
-            const frac = step / TRAVEL_STEPS;
-            const t = tMin + (tMax - tMin) * frac;
-            const pt3d = getArcPoint3D(v1, v2, t, peakHeight, radius);
-            travelPts.push({ ...project(pt3d), frac });
-          }
+        if (visibleSegments.length === 0) return;
+
+        // Render each visible segment as a SOLID, UNBROKEN, CONTINUOUS GLOWING LINE
+        visibleSegments.forEach((seg) => {
+          const avgZ = seg.reduce((acc, p) => acc + p.z, 0) / seg.length;
+          const depthAlpha = Math.max(0.20, Math.min(1.0, (avgZ + 0.04) / 0.38));
 
           ctx.save();
-          for (let s = 0; s < travelPts.length - 1; s++) {
-            const p1 = travelPts[s];
-            const p2 = travelPts[s + 1];
-            const avgZ = (p1.z + p2.z) / 2;
+          ctx.lineCap = 'round';
+          ctx.lineJoin = 'round';
 
-            if (avgZ > -0.04) {
-              const depthAlpha = Math.max(0, Math.min(1, (avgZ + 0.04) / 0.45));
-              // Leading section glows slightly brighter while the trailing body remains solid
-              const tipGlow = 0.65 + 0.35 * (p2.frac * p2.frac);
-              const alpha = strokeAlpha * depthAlpha * tipGlow;
-
-              ctx.beginPath();
-              ctx.moveTo(p1.x, p1.y);
-              ctx.lineTo(p2.x, p2.y);
-              ctx.strokeStyle = `rgba(255, 129, 1, ${alpha})`;
-              ctx.lineWidth = 0.85 + 0.45 * p2.frac;
-              ctx.shadowColor = '#FF8101';
-              ctx.shadowBlur = 5 * p2.frac;
-              ctx.stroke();
-            }
+          // Pass 1: Luminous atmospheric bloom halo
+          ctx.beginPath();
+          ctx.moveTo(seg[0].x, seg[0].y);
+          for (let i = 1; i < seg.length; i++) {
+            ctx.lineTo(seg[i].x, seg[i].y);
           }
+          ctx.strokeStyle = `rgba(255, 129, 1, ${0.35 * depthAlpha})`;
+          ctx.lineWidth = 2.6;
+          ctx.stroke();
 
-          // Crisp leading edge at the forward tip of the line as it travels
-          const leadPt = travelPts[travelPts.length - 1];
-          if (leadPt.z > 0.05 && cycle < 0.65) {
-            const leadAlpha = Math.max(0, Math.min(1, (leadPt.z - 0.05) / 0.4)) * strokeAlpha;
+          // Pass 2: High-definition vibrant continuous core
+          ctx.beginPath();
+          ctx.moveTo(seg[0].x, seg[0].y);
+          for (let i = 1; i < seg.length; i++) {
+            ctx.lineTo(seg[i].x, seg[i].y);
+          }
+          ctx.strokeStyle = `rgba(255, 155, 45, ${0.92 * depthAlpha})`;
+          ctx.lineWidth = 1.15;
+          ctx.stroke();
+
+          ctx.restore();
+        });
+
+        // Destination terminal node dot (crisp pin at client destination)
+        const destPt = allPts[allPts.length - 1];
+        if (destPt.z > 0.05) {
+          const destAlpha = Math.max(0, Math.min(1, (destPt.z - 0.05) / 0.35));
+          ctx.save();
+          ctx.beginPath();
+          ctx.arc(destPt.x, destPt.y, 3.2, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 129, 1, ${0.35 * destAlpha})`;
+          ctx.fill();
+
+          ctx.beginPath();
+          ctx.arc(destPt.x, destPt.y, 1.4, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 210, 110, ${0.95 * destAlpha})`;
+          ctx.fill();
+          ctx.restore();
+        }
+
+        // CONTINUOUS FLOW: Smoothly gliding energy packet along the continuous line
+        // Cycles continuously from 0.0 (origin) to 1.0 (destination)
+        const flowT = (timestamp * 0.00018 * route.speed + route.phase) % 1;
+        const pulseWidth = 0.35; // spans 35% of the arc behind the flow head
+
+        const PULSE_STEPS = 16;
+        const pulsePts: { x: number; y: number; z: number }[] = [];
+
+        for (let s = 0; s <= PULSE_STEPS; s++) {
+          const frac = s / PULSE_STEPS;
+          const t = flowT - pulseWidth * (1 - frac);
+          if (t >= 0 && t <= 1) {
+            const pt3d = getArcPoint3D(v1, v2, t, peakHeight, radius);
+            const p = project(pt3d);
+            pulsePts.push(p);
+          }
+        }
+
+        const visiblePulse = pulsePts.filter((p) => p.z > -0.02);
+        if (visiblePulse.length >= 2) {
+          const avgZ = visiblePulse.reduce((acc, p) => acc + p.z, 0) / visiblePulse.length;
+          const depthAlpha = Math.max(0.15, Math.min(1, (avgZ + 0.02) / 0.40));
+
+          ctx.save();
+          ctx.lineCap = 'round';
+          ctx.lineJoin = 'round';
+
+          // Flow pass 1: Luminous energy surge halo
+          ctx.beginPath();
+          ctx.moveTo(visiblePulse[0].x, visiblePulse[0].y);
+          for (let i = 1; i < visiblePulse.length; i++) {
+            ctx.lineTo(visiblePulse[i].x, visiblePulse[i].y);
+          }
+          ctx.strokeStyle = `rgba(255, 140, 25, ${0.50 * depthAlpha})`;
+          ctx.lineWidth = 3.6;
+          ctx.stroke();
+
+          // Flow pass 2: Intense white-hot photon core
+          ctx.beginPath();
+          ctx.moveTo(visiblePulse[0].x, visiblePulse[0].y);
+          for (let i = 1; i < visiblePulse.length; i++) {
+            ctx.lineTo(visiblePulse[i].x, visiblePulse[i].y);
+          }
+          ctx.strokeStyle = `rgba(255, 235, 180, ${0.98 * depthAlpha})`;
+          ctx.lineWidth = 1.6;
+          ctx.stroke();
+
+          // Flow Head: Bright gliding photon particle
+          const headPt = visiblePulse[visiblePulse.length - 1];
+          if (headPt && headPt.z > 0.02) {
+            const headAlpha = Math.max(0, Math.min(1, (headPt.z - 0.02) / 0.38));
             ctx.beginPath();
-            ctx.arc(leadPt.x, leadPt.y, 1.8, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255, 255, 255, ${leadAlpha * 0.95})`;
-            ctx.shadowColor = '#FF8101';
-            ctx.shadowBlur = 6;
+            ctx.arc(headPt.x, headPt.y, 4.2, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 129, 1, ${0.50 * headAlpha})`;
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.arc(headPt.x, headPt.y, 1.6, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 255, 255, ${0.98 * headAlpha})`;
             ctx.fill();
           }
 
