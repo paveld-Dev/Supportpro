@@ -62,16 +62,17 @@ export const navItems = [
         items: [
           { label: 'Cloud Management', desc: 'Full-stack cloud operations', icon: CloudCog, href: '/cloudmanagement' },
           { label: 'AWS Support', desc: 'EC2, RDS, S3 & beyond', icon: Database, href: '/aws-management' },
-          { label: 'Google Cloud', desc: 'GCP infrastructure managed', icon: Cloud, href: 'https://www.supportpro.com/google-cloud.php' },
-          { label: 'Azure Support', desc: 'Microsoft Azure managed', icon: LayoutGrid, href: 'https://www.supportpro.com/azure-support.php' },
-          { label: 'DevOps Support', desc: 'CI/CD & pipeline engineering', icon: GitMerge, href: 'https://www.supportpro.com/devops.php' },
+          { label: 'Google Cloud', desc: 'GCP infrastructure managed', icon: Cloud, href: '/google-cloud-support' },
+          { label: 'Azure Support', desc: 'Microsoft Azure managed', icon: LayoutGrid, href: '/azure-support' },
+          { label: 'DevOps Support', desc: 'CI/CD & pipeline engineering', icon: GitMerge, href: '/devops-support' },
         ],
       },
       {
         heading: 'Server Administration',
         items: [
           { label: 'Node Management', desc: 'Dedicated node monitoring', icon: Cpu, href: '/nodemanagement' },
-          { label: 'Dedicated Server', desc: 'Bare-metal server support', icon: Server, href: 'https://www.supportpro.com/dedicated-server-management.php' },
+          { label: 'Dedicated Server', desc: 'Bare-metal server support', icon: Server, href: '/dedicated-server-support' },
+          { label: 'Free Server Checkup', desc: 'Complimentary server audit', icon: ShieldCheck, href: '/free-server-checkup' },
         ],
       },
     ],
@@ -159,9 +160,8 @@ export function Nav() {
 
   const bg = useTransform(scrollY, [0, 200], ['rgba(18,18,18,0.85)', 'rgba(18,18,18,0.95)']);
 
-  // On the homepage, the Hero is dark, so logo must be white at the top.
-  // When scrolled past the hero on light mode (or on inner light pages), show black logo.
-  const isLogoBlack = mounted && theme === 'light' && (!isHomePage || isScrolledPastHero);
+  // In light mode, show the black SupportPRO emblem logo; in dark mode, show white logo.
+  const isLogoBlack = mounted && theme === 'light';
   const currentLogo = isLogoBlack ? logoBlack : logoWhite;
 
   return (
@@ -215,24 +215,30 @@ export function Nav() {
               <AnimatePresence>
                 {openMenu === item.label && (
                   <motion.div
-                    initial={{ opacity: 0, y: 8, scale: 0.98 }}
+                    initial={{ opacity: 0, y: 10, scale: 0.96 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 6, scale: 0.97 }}
-                    transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
-                    className="absolute left-1/2 -translate-x-1/2 top-[calc(100%+10px)] min-w-[480px] bg-white dark:bg-[#141414] border border-ink/8 dark:border-white/10 rounded-2xl overflow-hidden z-50"
+                    exit={{ opacity: 0, y: 6, scale: 0.96 }}
+                    transition={{ type: 'spring', damping: 26, stiffness: 360 }}
+                    className={`absolute left-1/2 -translate-x-1/2 top-[calc(100%+12px)] ${
+                      item.sections.length > 1 ? 'min-w-[500px]' : 'min-w-[290px]'
+                    } rounded-[26px] bg-white/[0.98] dark:bg-[#14161e]/[0.97] backdrop-blur-2xl border border-black/[0.08] dark:border-white/[0.14] shadow-[0_24px_60px_rgba(0,0,0,0.14),inset_0_1px_1px_rgba(255,255,255,0.9)] dark:shadow-[0_28px_64px_rgba(0,0,0,0.65),inset_0_1px_1px_rgba(255,255,255,0.18)] overflow-hidden z-50`}
                     style={{ color: 'initial' }}
                   >
                     {/* Columns */}
-                    <div className={`grid gap-0 p-1 ${item.sections.length > 1 ? 'grid-cols-2' : 'grid-cols-1'}`}>
+                    <div className={`grid gap-0 p-2 ${item.sections.length > 1 ? 'grid-cols-2' : 'grid-cols-1'}`}>
                       {item.sections.map((section, si) => (
                         <div
                           key={section.heading}
-                          className={`p-5 ${si < item.sections.length - 1 && item.sections.length > 1 ? 'border-r border-ink/6 dark:border-white/8' : ''}`}
+                          className={`p-3 ${
+                            si < item.sections.length - 1 && item.sections.length > 1
+                              ? 'border-r border-black/[0.06] dark:border-white/[0.08]'
+                              : ''
+                          }`}
                         >
-                          <p className="text-[11px] font-semibold text-ink/45 dark:text-white/40 mb-3 tracking-normal">
+                          <p className="px-3 mb-2 text-[10px] font-mono uppercase tracking-wider text-ink/45 dark:text-white/40">
                             {section.heading}
                           </p>
-                          <div className="space-y-0.5">
+                          <div className="space-y-1">
                             {section.items.map((it) => {
                               const isInternal = it.href?.startsWith('/');
                               const LinkComponent = isInternal ? Link : 'a';
@@ -253,23 +259,23 @@ export function Nav() {
                                       }
                                     }
                                   }}
-                                  className="group flex items-start gap-3 px-3 py-2.5 rounded-xl hover:bg-[#FF8101]/6 dark:hover:bg-[#FF8101]/10 transition-all duration-150"
+                                  className="cursor-morph group flex items-start gap-3 px-3 py-2.5 rounded-[18px] border border-transparent hover:border-black/[0.08] dark:hover:border-white/[0.16] hover:bg-black/[0.05] dark:hover:bg-white/[0.10] hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.7),0_4px_12px_rgba(0,0,0,0.05)] dark:hover:shadow-[inset_0_1px_1px_rgba(255,255,255,0.18),0_4px_14px_rgba(0,0,0,0.28)] transition-all duration-150"
                                 >
-                                  <div className="mt-0.5 w-7 h-7 rounded-lg bg-[#FF8101]/10 dark:bg-[#FF8101]/15 flex items-center justify-center shrink-0 group-hover:bg-[#FF8101]/20 transition-colors text-[#FF8101]">
-                                    {it.icon ? <it.icon size={13} strokeWidth={1} /> : <span className="w-1.5 h-1.5 rounded-full bg-[#FF8101]" />}
+                                  <div className="mt-0.5 w-8 h-8 rounded-xl bg-black/[0.04] dark:bg-white/[0.06] border border-black/[0.05] dark:border-white/[0.08] flex items-center justify-center shrink-0 text-[#FF8101] group-hover:bg-[#FF8101] group-hover:text-white group-hover:border-[#FF8101] group-hover:shadow-md group-hover:shadow-[#FF8101]/30 transition-all duration-150">
+                                    {it.icon ? <it.icon size={15} strokeWidth={1.6} /> : <span className="w-1.5 h-1.5 rounded-full bg-[#FF8101] group-hover:bg-white" />}
                                   </div>
                                   <div className="min-w-0">
                                     <div className="flex items-center gap-2">
-                                      <span className="text-[13px] font-semibold text-ink dark:text-white group-hover:text-[#FF8101] transition-colors leading-snug">
+                                      <span className="text-[13px] font-semibold text-ink dark:text-white/95 group-hover:text-[#FF8101] dark:group-hover:text-white transition-colors leading-snug">
                                         {it.label}
                                       </span>
                                       {'badge' in it && it.badge && (
-                                        <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-[#FF8101]/15 text-[#FF8101]">
+                                        <span className="text-[9px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded-full bg-[#FF8101]/15 text-[#FF8101]">
                                           {it.badge}
                                         </span>
                                       )}
                                     </div>
-                                    <p className="text-[11px] text-ink/50 dark:text-white/40 leading-snug mt-0.5">
+                                    <p className="text-[11px] text-ink/55 dark:text-white/45 leading-snug mt-0.5">
                                       {it.desc}
                                     </p>
                                   </div>
@@ -279,36 +285,6 @@ export function Nav() {
                           </div>
                         </div>
                       ))}
-                    </div>
-
-                    {/* Bottom bar */}
-                    <div className="border-t border-ink/6 dark:border-white/8 px-5 py-3 flex items-center justify-between bg-ink/[0.02] dark:bg-white/[0.02]">
-                      <div className="flex items-center gap-4">
-                        <a
-                          href="https://www.supportpro.com/emergency-new.php"
-                          target="_blank"
-                          rel="noreferrer"
-                          className="text-[12px] text-ink/50 dark:text-white/40 hover:text-[#FF8101] transition-colors flex items-center gap-1.5"
-                        >
-                          <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                          Emergency support
-                        </a>
-                        <a
-                          href="https://www.supportpro.com/freecheckup.php"
-                          target="_blank"
-                          rel="noreferrer"
-                          className="text-[12px] text-ink/50 dark:text-white/40 hover:text-[#FF8101] transition-colors"
-                        >
-                          Free checkup
-                        </a>
-                      </div>
-                      <Link
-                        href="/clientlogin"
-                        onClick={() => setOpenMenu(null)}
-                        className="text-[12px] font-semibold text-[#FF8101] hover:brightness-110 transition-all flex items-center gap-1"
-                      >
-                        Login <ArrowRight size={11} />
-                      </Link>
                     </div>
                   </motion.div>
                 )}

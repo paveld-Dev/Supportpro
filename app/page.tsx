@@ -360,7 +360,7 @@ function ServiceRow({
 
 function Services() {
   return (
-    <section id="services" className="bg-cream dark:bg-[var(--sp-surface)] py-10 sm:py-16 lg:py-24">
+    <section id="services" className="relative z-10 bg-transparent dark:bg-[var(--sp-surface)] py-10 sm:py-16 lg:py-24">
       <div className="mx-auto max-w-[1152px] px-5 md:px-6 lg:px-8">
         <div className="grid grid-cols-12 gap-4 sm:gap-6 md:gap-10 mb-8 sm:mb-12 md:mb-16">
           <div className="col-span-12 md:col-span-8">
@@ -475,7 +475,7 @@ function StickyPhoneSection() {
     <section
       ref={sectionRef}
       id="features"
-      className="relative bg-cream dark:bg-[var(--sp-bg)] pb-10 sm:pb-16 lg:pb-24"
+      className="relative z-10 bg-transparent dark:bg-[var(--sp-bg)] pb-10 sm:pb-16 lg:pb-24"
     >
       {/* Scroll runway: one viewport per feature */}
       <div style={{ height: `${stickyBlocks.length * 100}vh` }}>
@@ -622,7 +622,7 @@ function SliderSection() {
   const x = useTransform(smoothProgress, [0, 1], ["calc(0% + 0vw)", "calc(-100% + 100vw)"]);
 
   return (
-    <section ref={targetRef} className="relative h-[300vh] bg-cream dark:bg-[var(--sp-surface)] pb-10 sm:pb-16 lg:pb-24 overflow-x-clip">
+    <section ref={targetRef} className="relative z-10 h-[300vh] bg-transparent dark:bg-[var(--sp-surface)] pb-10 sm:pb-16 lg:pb-24 overflow-x-clip">
       <div className="sticky top-0 h-screen flex flex-col pt-10 sm:pt-16 lg:pt-24 slider-track">
         <div className="mx-auto w-full max-w-[1152px] px-5 md:px-6 lg:px-8 mb-6 sm:mb-10 lg:mb-16">
           <InView>
@@ -711,7 +711,7 @@ function Privacy() {
   const spotlightBackground = useMotionTemplate`radial-gradient(1000px circle at ${springX}px ${springY}px, oklch(0.5 0.15 95 / 0.4), transparent 60%)`;
 
   return (
-    <section ref={ref} className="bg-cream dark:bg-[var(--sp-surface)] py-10 sm:py-16 lg:py-24 overflow-hidden">
+    <section ref={ref} className="relative z-10 bg-transparent dark:bg-[var(--sp-surface)] py-10 sm:py-16 lg:py-24 overflow-hidden">
       <div className="mx-auto max-w-[1152px] px-5 md:px-6 lg:px-8">
         <InView>
           <div
@@ -887,7 +887,7 @@ function Testimonials() {
     <section
       id="testimonials"
       ref={containerRef}
-      className="relative bg-cream dark:bg-[var(--sp-bg)] overflow-x-clip"
+      className="relative z-10 bg-transparent dark:bg-[var(--sp-bg)] overflow-x-clip"
       style={{ height: "140vh" }}
     >
       <div className="sticky top-0 h-screen flex flex-col items-center justify-center overflow-hidden">
@@ -1040,7 +1040,7 @@ function Testimonials() {
 function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section id="faq" className="bg-cream dark:bg-[var(--sp-surface)] py-10 sm:py-16 lg:py-24">
+    <section id="faq" className="relative z-10 bg-transparent dark:bg-[var(--sp-surface)] py-10 sm:py-16 lg:py-24">
       <div className="mx-auto max-w-[1152px] px-5 md:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-8 lg:gap-16 items-start">
           <div className="relative h-full flex flex-col">
@@ -1142,7 +1142,7 @@ function CTA() {
   const y = useTransform(scrollYProgress, [0, 1], [-80, 80]);
   const scale = useTransform(scrollYProgress, [0, 1], [1.15, 1]);
   return (
-    <section ref={ref} className="relative overflow-hidden">
+    <section ref={ref} className="relative z-10 overflow-hidden">
       <div className="relative min-h-[460px] sm:min-h-[560px] md:min-h-[620px] h-[70vh] sm:h-[80vh] md:h-[85vh] overflow-hidden">
         <motion.img
           src={getImageSrc(ctaImg)}
@@ -1221,7 +1221,27 @@ function ThemeToggle() {
 
 export default function Home() {
   return (
-    <main className="bg-cream dark:bg-[var(--sp-bg)] overflow-x-clip transition-colors duration-300">
+    <main className="relative bg-cream dark:bg-[var(--sp-bg)] overflow-x-clip transition-colors duration-300">
+      {/* Ambient light-mode editorial backdrop across all sections */}
+      <div
+        className="fixed inset-0 pointer-events-none z-0 block dark:hidden overflow-hidden"
+        aria-hidden="true"
+      >
+        <div className="absolute inset-0 bg-[#FDFAF5]" />
+        <img
+          src="/hero-light-bg.png"
+          alt=""
+          className="w-full h-full object-cover object-center opacity-75"
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(circle at 18% 28%, rgba(255, 129, 1, 0.05) 0%, transparent 45%), radial-gradient(circle at 82% 72%, rgba(255, 129, 1, 0.06) 0%, transparent 48%)",
+          }}
+        />
+      </div>
+
       <Nav />
       <Hero />
       <StickyPhoneSection />

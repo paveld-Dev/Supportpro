@@ -159,7 +159,7 @@ export function CertificationMarquee({
       {/* Subtle eyebrow caption */}
       {showHeading && (
         <div className="text-center mb-3 sm:mb-4 px-4">
-          <p className="text-[11px] sm:text-xs font-medium tracking-wider text-white/50 uppercase">
+          <p className="text-[11px] sm:text-xs font-medium tracking-wider text-ink/50 dark:text-white/50 uppercase">
             Enterprise Security Standards & Industry Certifications
           </p>
         </div>
@@ -171,19 +171,22 @@ export function CertificationMarquee({
           {marqueeItems.map((item, idx) => (
             <div
               key={`${item.name}-${idx}`}
-              className={`inline-flex shrink-0 items-center transition-all duration-200 border-0 border-transparent ${isSm
+              className={`inline-flex shrink-0 items-center transition-all duration-200 ${
+                isSm
                   ? 'gap-2 sm:gap-2.5 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full'
                   : 'gap-3.5 sm:gap-4 px-5 sm:px-6 py-2.5 sm:py-3.5 rounded-full'
-                } ${item.highlighted
-                  ? 'bg-[#181818] shadow-md shadow-black/50 hover:bg-[#222225]'
-                  : 'bg-[#141518]/95 shadow-md shadow-black/40 hover:bg-[#1a1c22]'
-                }`}
+              } ${
+                item.highlighted
+                  ? 'bg-white dark:bg-[#181818] border border-ink/10 dark:border-transparent shadow-sm dark:shadow-md dark:shadow-black/50 hover:bg-white dark:hover:bg-[#222225]'
+                  : 'bg-white/95 dark:bg-[#141518]/95 border border-ink/8 dark:border-transparent shadow-sm dark:shadow-md dark:shadow-black/40 hover:bg-white dark:hover:bg-[#1a1c22]'
+              }`}
             >
               <div
-                className={`rounded-full bg-white flex items-center justify-center shrink-0 overflow-hidden shadow-sm ${isSm
+                className={`rounded-full bg-cream dark:bg-white flex items-center justify-center shrink-0 overflow-hidden shadow-sm border border-ink/5 dark:border-transparent ${
+                  isSm
                     ? 'w-6 h-6 sm:w-7 sm:h-7 p-0.5 sm:p-1'
                     : 'w-9 h-9 sm:w-11 sm:h-11 p-1 sm:p-1.5'
-                  }`}
+                }`}
               >
                 <img
                   src={getImageSrc(item.icon)}
@@ -196,8 +199,9 @@ export function CertificationMarquee({
                 />
               </div>
               <span
-                className={`font-semibold text-white/95 whitespace-nowrap tracking-tight ${isSm ? 'text-xs sm:text-[13px]' : 'text-sm sm:text-[15px]'
-                  }`}
+                className={`font-semibold text-ink dark:text-white/95 whitespace-nowrap tracking-tight ${
+                  isSm ? 'text-xs sm:text-[13px]' : 'text-sm sm:text-[15px]'
+                }`}
               >
                 {item.name}
               </span>

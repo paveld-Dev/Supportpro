@@ -45,13 +45,13 @@ export function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative isolate min-h-[100svh] w-full flex flex-col justify-between pt-24 sm:pt-28 lg:pt-32 pb-6 sm:pb-8 overflow-x-clip bg-[#0A0D12] dark:bg-[#0B0B0B] text-white"
+      className="relative isolate min-h-[100svh] w-full flex flex-col justify-between pt-24 sm:pt-28 lg:pt-32 pb-6 sm:pb-8 overflow-x-clip bg-[#FDFAF5] dark:bg-[#0B0B0B] text-ink dark:text-white transition-colors duration-300"
     >
       {/* Background ambient lighting */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true" />
 
-      {/* Deep-space stars with subtle parallax depth on scroll */}
-      <motion.div style={{ y: starfieldY }} className="absolute inset-0 pointer-events-none">
+      {/* Deep-space stars with subtle parallax depth on scroll (dark mode only) */}
+      <motion.div style={{ y: starfieldY }} className="absolute inset-0 pointer-events-none hidden dark:block">
         <Starfield />
       </motion.div>
 
@@ -68,7 +68,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-              className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[80px] xl:text-[80px] 2xl:text-[80px] leading-[1.02] tracking-tight drop-shadow-[0_2px_24px_rgba(0,0,0,0.4)] break-words"
+              className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[80px] xl:text-[80px] 2xl:text-[80px] leading-[1.02] tracking-tight drop-shadow-[0_2px_24px_rgba(0,0,0,0.06)] dark:drop-shadow-[0_2px_24px_rgba(0,0,0,0.4)] break-words"
             >
               Infrastructure support that <HoverOrangeSpan>stays on,</HoverOrangeSpan> every hour.
             </motion.h1>
@@ -76,7 +76,7 @@ export function Hero() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-5 sm:mt-6 text-[15px] sm:text-base lg:text-[17px] font-normal text-white/80 leading-relaxed max-w-xl"
+              className="mt-5 sm:mt-6 text-[15px] sm:text-base lg:text-[17px] font-normal text-ink/80 dark:text-white/80 leading-relaxed max-w-xl"
             >
               24/7 managed infrastructure, cloud operations,<br />
               and white-label support, delivered from Chicago<br />
@@ -91,13 +91,13 @@ export function Hero() {
             >
               <a
                 href="#contact-form"
-                className="cursor-morph rounded-full bg-[#FF8101] text-white px-7 py-3.5 text-sm font-semibold hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF8101] focus-visible:ring-offset-2 focus-visible:ring-offset-black transition-all duration-200 shadow-lg shadow-[#FF8101]/25 hover:shadow-[#FF8101]/40"
+                className="cursor-morph rounded-full bg-[#FF8101] text-white px-7 py-3.5 text-sm font-semibold hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF8101] focus-visible:ring-offset-2 focus-visible:ring-offset-cream dark:focus-visible:ring-offset-black transition-all duration-200 shadow-lg shadow-[#FF8101]/25 hover:shadow-[#FF8101]/40"
               >
                 Book a Consultation
               </a>
               <a
                 href="#services"
-                className="cursor-morph rounded-full border border-white/25 backdrop-blur-md bg-white/10 text-white px-7 py-3.5 text-sm font-medium hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black transition-all duration-200"
+                className="cursor-morph rounded-full border border-ink/20 dark:border-white/25 backdrop-blur-md bg-black/5 dark:bg-white/10 text-ink dark:text-white px-7 py-3.5 text-sm font-medium hover:bg-black/10 dark:hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ink dark:focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-cream dark:focus-visible:ring-offset-black transition-all duration-200"
               >
                 Explore Services
               </a>
@@ -124,7 +124,7 @@ export function Hero() {
 
       {/* Seamless gradient fade bridge to the next section */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-16 bg-linear-to-b from-transparent to-[#0A0D12] pointer-events-none z-20"
+        className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-b from-transparent to-[#FDFAF5] dark:to-[#0A0D12] pointer-events-none z-20"
         aria-hidden="true"
       />
     </section>

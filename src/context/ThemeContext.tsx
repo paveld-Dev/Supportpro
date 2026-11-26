@@ -13,20 +13,22 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  // Default to dark on SSR and initial mount for consistency
-  const [theme, setTheme] = useState<Theme>("dark");
+  // Read initial theme eagerly from URL parameter or localStorage
+  const [theme, setTheme] = useState<Theme>(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const urlTheme = new URLSearchParams(window.location.search).get("theme") as Theme | null;
+        if (urlTheme === "light" || urlTheme === "dark") return urlTheme;
+        const stored = localStorage.getItem("theme") as Theme | null;
+        if (stored === "light" || stored === "dark") return stored;
+      } catch (e) {}
+    }
+    return "dark";
+  });
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    try {
-      const stored = localStorage.getItem("theme") as Theme | null;
-      if (stored === "light" || stored === "dark") {
-        setTheme(stored);
-      }
-    } catch (e) {
-      console.error(e);
-    }
   }, []);
 
   useEffect(() => {

@@ -119,7 +119,7 @@ export function Credentials() {
   const gridRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section className="bg-cream dark:bg-[var(--sp-surface)] pt-8 pb-3 sm:pt-12 sm:pb-4 lg:pt-14 lg:pb-6 relative overflow-hidden">
+    <section className="relative z-10 bg-transparent dark:bg-[var(--sp-surface)] pt-8 pb-3 sm:pt-12 sm:pb-4 lg:pt-14 lg:pb-6 overflow-hidden">
       <GlobalBadgeSpotlight gridRef={gridRef} />
       <div className="mx-auto max-w-[1152px] px-5 md:px-6 lg:px-8 relative z-10" ref={gridRef}>
         {/* Location tag */}
@@ -183,7 +183,7 @@ const pillars = [
 
 export function Pillars() {
   return (
-    <section className="bg-cream dark:bg-[var(--sp-bg)] py-10 sm:py-16 lg:py-24 overflow-hidden">
+    <section className="relative z-10 bg-transparent dark:bg-[var(--sp-bg)] py-10 sm:py-16 lg:py-24 overflow-hidden">
       <div className="mx-auto max-w-[1152px] px-5 md:px-6 lg:px-8">
         {/* Top split: heading left + large image right */}
         <div className="grid grid-cols-12 gap-6 md:gap-8 lg:gap-10 items-stretch mb-8 md:mb-16">
@@ -345,7 +345,7 @@ export function Platforms() {
   const gridRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section className="bg-cream dark:bg-[var(--sp-bg)] pb-10 sm:pb-16 lg:pb-24 overflow-hidden relative">
+    <section className="relative z-10 bg-transparent dark:bg-[var(--sp-bg)] pb-10 sm:pb-16 lg:pb-24 overflow-hidden">
       <GlobalBadgeSpotlight gridRef={gridRef} spotlightRadius={400} />
       <div className="mx-auto max-w-[1152px] px-5 md:px-6 lg:px-8 text-center mb-6 sm:mb-10 relative z-10">
         <Reveal>
@@ -407,7 +407,7 @@ const stats: { to: number; decimals?: number; label: string; Icon: any }[] = [
 
 export function Experts() {
   return (
-    <section className="bg-cream dark:bg-[var(--sp-surface)] py-10 sm:py-16 lg:py-24">
+    <section className="relative z-10 bg-transparent dark:bg-[var(--sp-surface)] py-10 sm:py-16 lg:py-24">
       <div className="mx-auto max-w-[1152px] px-5 md:px-6 lg:px-8">
         <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] lg:gap-16">
           {/* Left Side: Why we are the experts */}
@@ -520,7 +520,7 @@ export function ContactForm() {
   const [message, setMessage] = useState("");
 
   return (
-    <section id="contact-form" className="bg-cream dark:bg-[var(--sp-bg)] pb-16 pt-16 md:pb-24 lg:pb-28 overflow-hidden w-full max-w-full">
+    <section id="contact-form" className="relative z-10 bg-transparent dark:bg-[var(--sp-bg)] pb-16 pt-16 md:pb-24 lg:pb-28 overflow-hidden w-full max-w-full">
       <div className="mx-auto w-full max-w-[1152px] px-4 sm:px-6 lg:px-8">
         <div className="rounded-2xl sm:rounded-[28px] md:rounded-[36px] border border-ink/5 dark:border-white/10 bg-white/80 dark:bg-[#151515] p-5 sm:p-7 md:p-8 lg:p-10 backdrop-blur-md overflow-hidden w-full max-w-full">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-start w-full max-w-full">
