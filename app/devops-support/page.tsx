@@ -29,6 +29,7 @@ import {
 } from 'lucide-react';
 import { Nav } from '@/components/nav';
 import { SiteFooter } from '@/components/footer';
+import { InsidePageOrbital, InsideSectionEyebrow, InsideContactPanel } from '@/components/inside-page-shell';
 import ParticleBadge, { GlobalBadgeSpotlight } from '@/components/MagicBadge';
 import cloudMgmtIllustration from '@/assets/illustration/cloudmanagementicon.png';
 import imgCloudServices from '@/assets/illustration/cloudmanagementicon1.png';
@@ -94,24 +95,26 @@ export default function DevOpsSupportPage() {
   ];
 
   return (
-    <main className="bg-cream dark:bg-[var(--sp-bg)] min-h-screen overflow-x-clip transition-colors duration-300">
+    <main className="bg-[var(--bg-base)] text-[var(--text-primary)] min-h-screen overflow-x-clip transition-colors duration-300">
       <Nav />
 
       {/* ─── SECTION 1: DevOps Support (Hero / Intro) ─────────────────────────── */}
-      <section className="relative pt-32 sm:pt-40 lg:pt-48 pb-16 sm:pb-24 lg:pb-28 overflow-hidden border-b border-ink/10 dark:border-white/10">
+      <section className="relative pt-32 sm:pt-40 lg:pt-48 pb-16 sm:pb-24 lg:pb-28 overflow-hidden border-b border-[var(--border-subtle)]">
+        <InsidePageOrbital className="absolute -bottom-10 -left-20 w-[340px] opacity-55 rotate-180" />
+        <InsidePageOrbital className="absolute -top-6 -right-16 w-[380px] opacity-65" />
         <div className="relative mx-auto max-w-[1152px] px-5 md:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-16 items-center">
             {/* Left Content */}
             <div className="lg:col-span-7 space-y-6">
               <Reveal>
-                <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[72px] leading-[1.04] text-ink dark:text-white tracking-tight">
+                <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[72px] leading-[1.04] text-[var(--text-primary)] tracking-tight">
                   DevOps Support
                   <span className="text-[#FF8101]">.</span>
                 </h1>
               </Reveal>
 
               <Reveal delay={0.1}>
-                <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-relaxed text-ink/75 dark:text-white/70 max-w-[640px] font-normal">
+                <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-relaxed text-[var(--text-secondary)] max-w-[640px] font-normal">
                   SupportPRO is a complete solution for all DevOps requirements. We provide 24/7/365 technical and
                   dedicated service to our clients across heterogeneous cloud platforms, offering scalable and flexible
                   pricing with a secured infrastructure.
@@ -129,7 +132,7 @@ export default function DevOpsSupportPage() {
                   </a>
                   <a
                     href="#contact"
-                    className="cursor-morph inline-flex items-center gap-2 rounded-full border border-ink/15 dark:border-white/15 bg-white/50 dark:bg-white/5 px-6 sm:px-7 py-3 text-sm font-medium text-ink dark:text-white hover:border-[#FF8101] hover:text-[#FF8101] dark:hover:border-[#FF8101] dark:hover:text-[#FF8101] transition-colors"
+                    className="cursor-morph inline-flex items-center gap-2 rounded-full border border-ink/15 dark:border-white/15 bg-white/50 dark:bg-white/5 px-6 sm:px-7 py-3 text-sm font-medium text-[var(--text-primary)] hover:border-[#FF8101] hover:text-[#FF8101] dark:hover:border-[#FF8101] dark:hover:text-[#FF8101] transition-colors"
                   >
                     <span>Contact Us</span>
                   </a>
@@ -152,7 +155,7 @@ export default function DevOpsSupportPage() {
       </section>
 
       {/* ─── SECTION 2: DevOps Support Services ───────────────────────────────── */}
-      <section id="services" className="py-16 sm:py-20 lg:py-28 bg-white dark:bg-[var(--sp-surface)] border-b border-ink/10 dark:border-white/10">
+      <section id="services" className="py-16 sm:py-20 lg:py-28 bg-[var(--surface-1)] border-b border-[var(--border-subtle)]">
         <div className="mx-auto max-w-[1152px] px-5 md:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-16 items-center">
             {/* Visual Image Column */}
@@ -169,14 +172,14 @@ export default function DevOpsSupportPage() {
             {/* Content Column */}
             <div className="lg:col-span-7 order-1 lg:order-2 space-y-6">
               <Reveal>
-                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl leading-[1.08] text-ink dark:text-white tracking-tight">
+                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl leading-[1.08] text-[var(--text-primary)] tracking-tight">
                   DevOps Support Services
                   <span className="text-[#FF8101]">.</span>
                 </h2>
               </Reveal>
 
               <Reveal delay={0.1}>
-                <div className="space-y-4 text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed text-muted-foreground dark:text-white/70">
+                <div className="space-y-4 text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed text-[var(--text-secondary)]">
                   <p>
                     DevOps integrates the functions of development and operations in the same cycle with an automated
                     process. Originating from the growing demand for IT organizations to become more flexible and agile
@@ -198,13 +201,13 @@ export default function DevOpsSupportPage() {
       </section>
 
       {/* ─── SECTION 3: Explore DevOps Services with SupportPRO ───────────────── */}
-      <section className="py-16 sm:py-20 lg:py-28 bg-cream dark:bg-[var(--sp-bg)] border-b border-ink/10 dark:border-white/10 relative">
+      <section className="py-16 sm:py-20 lg:py-28 bg-[var(--bg-base)] border-b border-[var(--border-subtle)] relative">
         <GlobalBadgeSpotlight gridRef={devopsGridRef} spotlightRadius={400} />
         <div className="mx-auto max-w-[1152px] px-5 md:px-6 lg:px-8 relative z-10">
           <Reveal>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 sm:mb-14">
               <div>
-                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl leading-[1.08] text-ink dark:text-white max-w-[820px] tracking-tight">
+                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl leading-[1.08] text-[var(--text-primary)] max-w-[820px] tracking-tight">
                   Explore DevOps Services with SupportPRO
                   <span className="text-[#FF8101]">:</span>
                 </h2>
@@ -226,7 +229,7 @@ export default function DevOpsSupportPage() {
                     clickEffect={true}
                     particleCount={4}
                     enableTilt={false}
-                    className="relative w-full h-full min-h-[210px] sm:min-h-[225px] rounded-2xl border border-ink/10 dark:border-white/10 bg-white dark:bg-[#151515] p-6 flex flex-col justify-between hover:border-[#FF8101]/40 transition-all duration-300 shadow-sm hover:shadow-lg group cursor-pointer !items-stretch !justify-between"
+                    className="relative w-full h-full min-h-[210px] sm:min-h-[225px] rounded-2xl border border-[var(--border-subtle)] bg-white dark:bg-[#151515] p-6 flex flex-col justify-between hover:border-[#FF8101]/40 transition-all duration-300 shadow-sm hover:shadow-lg group cursor-pointer !items-stretch !justify-between"
                   >
                     <div className="w-full h-full flex flex-col justify-between">
                       {/* Top Row: Icon at Left End & Number at Right End */}
@@ -241,7 +244,7 @@ export default function DevOpsSupportPage() {
 
                       {/* Bottom: Text */}
                       <div className="w-full mt-auto pt-6">
-                        <h3 className="text-[15px] sm:text-[16px] font-semibold text-ink dark:text-white leading-snug tracking-tight group-hover:text-[#FF8101] transition-colors">
+                        <h3 className="text-[15px] sm:text-[16px] font-semibold text-[var(--text-primary)] leading-snug tracking-tight group-hover:text-[#FF8101] transition-colors">
                           {item.title}
                         </h3>
                       </div>
@@ -255,15 +258,15 @@ export default function DevOpsSupportPage() {
       </section>
 
       {/* ─── SECTION 4: Custom Plan CTA ────────────────────────────────────────── */}
-      <section className="py-16 sm:py-20 lg:py-24 bg-white dark:bg-[var(--sp-surface)] border-b border-ink/10 dark:border-white/10">
+      <section className="py-16 sm:py-20 lg:py-24 bg-[var(--surface-1)] border-b border-[var(--border-subtle)]">
         <div className="mx-auto max-w-[1152px] px-5 md:px-6 lg:px-8">
           <Reveal>
             <div className="rounded-3xl border-2 border-[#FF8101]/40 bg-gradient-to-br from-[#FF8101]/10 via-[#FF8101]/[0.03] to-transparent dark:from-[#FF8101]/15 dark:via-[#141414] dark:to-[#101010] p-6 sm:p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden shadow-lg shadow-[#FF8101]/5">
               <div className="space-y-1.5 z-10 max-w-xl">
-                <h2 className="font-display text-2xl sm:text-3xl md:text-4xl text-ink dark:text-white tracking-tight">
+                <h2 className="font-display text-2xl sm:text-3xl md:text-4xl text-[var(--text-primary)] tracking-tight">
                   Are You Looking For A Custom Plan?
                 </h2>
-                <p className="text-xs sm:text-sm text-muted-foreground dark:text-white/70 leading-relaxed">
+                <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed">
                   Tailored CI/CD pipelines, dedicated DevOps & Kubernetes engineers, Infrastructure as Code, and 24/7 cloud orchestration suited to your release cadence.
                 </p>
               </div>
@@ -280,46 +283,46 @@ export default function DevOpsSupportPage() {
       </section>
 
       {/* ─── SECTION 5: Contact Us ────────────────────────────────────────────── */}
-      <section id="contact" className="py-16 sm:py-20 lg:py-28 bg-cream dark:bg-[var(--sp-bg)] border-b border-ink/10 dark:border-white/10">
+      <section id="contact" className="py-16 sm:py-20 lg:py-28 bg-[var(--bg-base)] border-b border-[var(--border-subtle)]">
         <div className="mx-auto max-w-[1152px] px-5 md:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-16">
             {/* Left Column: Contact Information */}
             <div className="lg:col-span-5">
               <Reveal>
-                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl leading-[1.08] text-ink dark:text-white tracking-tight mb-8">
+                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl leading-[1.08] text-[var(--text-primary)] tracking-tight mb-8">
                   Contact Us
                   <span className="text-[#FF8101]">.</span>
                 </h2>
 
                 <div className="space-y-6 sm:space-y-8">
                   {/* Sales and Support Block */}
-                  <div className="rounded-2xl border border-ink/10 dark:border-white/10 bg-white dark:bg-[#151515] p-6">
-                    <h3 className="text-[16px] font-bold text-ink dark:text-white mb-4 flex items-center gap-2">
+                  <div className="rounded-2xl border border-[var(--border-subtle)] bg-white dark:bg-[#151515] p-6">
+                    <h3 className="text-[16px] font-bold text-[var(--text-primary)] mb-4 flex items-center gap-2">
                       <Phone size={17} className="text-[#FF8101]" />
                       Sales and Support
                     </h3>
                     <div className="space-y-3 text-[14px]">
                       <div>
                         <span className="text-muted-foreground dark:text-white/50 block text-[12px]">Phone:</span>
-                        <a href="tel:18476076123" className="font-medium text-ink dark:text-white hover:text-[#FF8101] transition-colors">
+                        <a href="tel:18476076123" className="font-medium text-[var(--text-primary)] hover:text-[#FF8101] transition-colors">
                           1-(847)-607-6123
                         </a>
                       </div>
                       <div>
                         <span className="text-muted-foreground dark:text-white/50 block text-[12px]">Sales:</span>
-                        <a href="mailto:sales@supportpro.com" className="font-medium text-ink dark:text-white hover:text-[#FF8101] transition-colors">
+                        <a href="mailto:sales@supportpro.com" className="font-medium text-[var(--text-primary)] hover:text-[#FF8101] transition-colors">
                           sales@supportpro.com
                         </a>
                       </div>
                       <div>
                         <span className="text-muted-foreground dark:text-white/50 block text-[12px]">Support:</span>
-                        <a href="mailto:support@supportpro.com" className="font-medium text-ink dark:text-white hover:text-[#FF8101] transition-colors">
+                        <a href="mailto:support@supportpro.com" className="font-medium text-[var(--text-primary)] hover:text-[#FF8101] transition-colors">
                           support@supportpro.com
                         </a>
                       </div>
                       <div>
                         <span className="text-muted-foreground dark:text-white/50 block text-[12px]">MS Team:</span>
-                        <span className="font-medium text-ink dark:text-white">
+                        <span className="font-medium text-[var(--text-primary)]">
                           support@supportpro.com
                         </span>
                       </div>
@@ -327,8 +330,8 @@ export default function DevOpsSupportPage() {
                   </div>
 
                   {/* Postal Address Block */}
-                  <div className="rounded-2xl border border-ink/10 dark:border-white/10 bg-white dark:bg-[#151515] p-6">
-                    <h3 className="text-[16px] font-bold text-ink dark:text-white mb-3 flex items-center gap-2">
+                  <div className="rounded-2xl border border-[var(--border-subtle)] bg-white dark:bg-[#151515] p-6">
+                    <h3 className="text-[16px] font-bold text-[var(--text-primary)] mb-3 flex items-center gap-2">
                       <MapPin size={17} className="text-[#FF8101]" />
                       Postal Address
                     </h3>
@@ -345,9 +348,9 @@ export default function DevOpsSupportPage() {
             {/* Right Column: Contact Quote Form */}
             <div className="lg:col-span-7">
               <Reveal delay={0.1}>
-                <div className="rounded-3xl border border-ink/10 dark:border-white/10 bg-white dark:bg-[#151515] p-6 sm:p-8 md:p-10">
+                <div className="rounded-3xl border border-[var(--border-subtle)] bg-white dark:bg-[#151515] p-6 sm:p-8 md:p-10">
                   <div className="mb-6">
-                    <h3 className="text-xl sm:text-2xl font-bold text-ink dark:text-white">
+                    <h3 className="text-xl sm:text-2xl font-bold text-[var(--text-primary)]">
                       Request For Quote
                     </h3>
                   </div>
@@ -369,7 +372,7 @@ export default function DevOpsSupportPage() {
                           required
                           suppressHydrationWarning
                           placeholder="Full name"
-                          className="w-full rounded-2xl border border-ink/10 dark:border-white/10 bg-[#FAFAFA] dark:bg-black/20 pl-11 pr-4 py-3 text-[13px] text-ink dark:text-white outline-none transition-all placeholder:text-ink/35 dark:placeholder:text-white/30 focus:border-[#FF8101]/50 focus:bg-white dark:focus:bg-black/40"
+                          className="w-full rounded-2xl border border-[var(--border-subtle)] bg-[#FAFAFA] dark:bg-black/20 pl-11 pr-4 py-3 text-[13px] text-[var(--text-primary)] outline-none transition-all placeholder:text-ink/35 dark:placeholder:text-white/30 focus:border-[#FF8101]/50 focus:bg-white dark:focus:bg-black/40"
                         />
                       </div>
                       <div className="relative">
@@ -382,7 +385,7 @@ export default function DevOpsSupportPage() {
                           type="email"
                           suppressHydrationWarning
                           placeholder="Work email"
-                          className="w-full rounded-2xl border border-ink/10 dark:border-white/10 bg-[#FAFAFA] dark:bg-black/20 pl-11 pr-4 py-3 text-[13px] text-ink dark:text-white outline-none transition-all placeholder:text-ink/35 dark:placeholder:text-white/30 focus:border-[#FF8101]/50 focus:bg-white dark:focus:bg-black/40"
+                          className="w-full rounded-2xl border border-[var(--border-subtle)] bg-[#FAFAFA] dark:bg-black/20 pl-11 pr-4 py-3 text-[13px] text-[var(--text-primary)] outline-none transition-all placeholder:text-ink/35 dark:placeholder:text-white/30 focus:border-[#FF8101]/50 focus:bg-white dark:focus:bg-black/40"
                         />
                       </div>
                     </div>
@@ -395,7 +398,7 @@ export default function DevOpsSupportPage() {
                       <input
                         placeholder="Company"
                         suppressHydrationWarning
-                        className="w-full rounded-2xl border border-ink/10 dark:border-white/10 bg-[#FAFAFA] dark:bg-black/20 pl-11 pr-4 py-3 text-[13px] text-ink dark:text-white outline-none transition-all placeholder:text-ink/35 dark:placeholder:text-white/30 focus:border-[#FF8101]/50 focus:bg-white dark:focus:bg-black/40"
+                        className="w-full rounded-2xl border border-[var(--border-subtle)] bg-[#FAFAFA] dark:bg-black/20 pl-11 pr-4 py-3 text-[13px] text-[var(--text-primary)] outline-none transition-all placeholder:text-ink/35 dark:placeholder:text-white/30 focus:border-[#FF8101]/50 focus:bg-white dark:focus:bg-black/40"
                       />
                     </div>
 
@@ -412,7 +415,7 @@ export default function DevOpsSupportPage() {
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
                         placeholder="Message"
-                        className="w-full resize-none rounded-2xl border border-ink/10 dark:border-white/10 bg-[#FAFAFA] dark:bg-black/20 pl-11 pr-4 pt-3 pb-8 text-[13px] text-ink dark:text-white outline-none transition-all placeholder:text-ink/35 dark:placeholder:text-white/30 focus:border-[#FF8101]/50 focus:bg-white dark:focus:bg-black/40"
+                        className="w-full resize-none rounded-2xl border border-[var(--border-subtle)] bg-[#FAFAFA] dark:bg-black/20 pl-11 pr-4 pt-3 pb-8 text-[13px] text-[var(--text-primary)] outline-none transition-all placeholder:text-ink/35 dark:placeholder:text-white/30 focus:border-[#FF8101]/50 focus:bg-white dark:focus:bg-black/40"
                       />
                       <span className="absolute right-4 bottom-3 text-[11px] text-ink/30 dark:text-white/30 font-mono select-none">
                         {message.length} / 500
@@ -441,11 +444,11 @@ export default function DevOpsSupportPage() {
       </section>
 
       {/* ─── SECTION 6: Industry Solutions ────────────────────────────────────── */}
-      <section className="py-16 sm:py-20 lg:py-28 bg-white dark:bg-[var(--sp-surface)] relative">
+      <section className="py-16 sm:py-20 lg:py-28 bg-[var(--surface-1)] relative">
         <GlobalBadgeSpotlight gridRef={industryGridRef} spotlightRadius={400} />
         <div className="mx-auto max-w-[1152px] px-5 md:px-6 lg:px-8 relative z-10">
           <Reveal>
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl leading-[1.08] text-ink dark:text-white tracking-tight">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl leading-[1.08] text-[var(--text-primary)] tracking-tight">
               Industry Solutions
               <span className="text-[#FF8101]">.</span>
             </h2>
@@ -461,13 +464,13 @@ export default function DevOpsSupportPage() {
                     clickEffect={true}
                     particleCount={4}
                     enableTilt={false}
-                    className="h-full rounded-2xl border border-ink/10 dark:border-white/10 bg-cream/40 dark:bg-[#151515] p-5 sm:p-6 flex items-center justify-between gap-4 hover:border-[#FF8101]/40 transition-all cursor-pointer group shadow-sm hover:shadow-md"
+                    className="h-full rounded-2xl border border-[var(--border-subtle)] bg-cream/40 dark:bg-[#151515] p-5 sm:p-6 flex items-center justify-between gap-4 hover:border-[#FF8101]/40 transition-all cursor-pointer group shadow-sm hover:shadow-md"
                   >
                     <div className="flex items-center gap-4 min-w-0 flex-1">
                       <div className="w-11 h-11 rounded-xl bg-[#FF8101]/10 text-[#FF8101] flex items-center justify-center shrink-0 group-hover:bg-[#FF8101] group-hover:text-white transition-colors duration-200">
                         <IndIcon size={20} strokeWidth={1} />
                       </div>
-                      <span className="text-[15px] sm:text-[16px] font-semibold text-ink dark:text-white group-hover:text-[#FF8101] transition-colors leading-snug">
+                      <span className="text-[15px] sm:text-[16px] font-semibold text-[var(--text-primary)] group-hover:text-[#FF8101] transition-colors leading-snug">
                         {ind.name}
                       </span>
                     </div>

@@ -25,6 +25,7 @@ import {
 } from 'lucide-react';
 import { Nav } from '@/components/nav';
 import { SiteFooter } from '@/components/footer';
+import { InsidePageOrbital, InsideSectionEyebrow, InsideContactPanel } from '@/components/inside-page-shell';
 import { PrimaryButton, SecondaryButton } from '@/components/ui/sp-button';
 import ParticleBadge, { GlobalBadgeSpotlight } from '@/components/MagicBadge';
 import imgNodeVirtualization from '@/assets/node-server-virtualization.png';
@@ -126,24 +127,26 @@ export default function DedicatedServerSupportPage() {
   ];
 
   return (
-    <main className="bg-cream dark:bg-[var(--sp-bg)] min-h-screen overflow-x-clip transition-colors duration-300">
+    <main className="bg-[var(--bg-base)] text-[var(--text-primary)] min-h-screen overflow-x-clip transition-colors duration-300">
       <Nav />
 
       {/* ─── SECTION 1: Dedicated Server Support (Hero / Intro) ───────────────── */}
-      <section className="relative pt-32 sm:pt-40 lg:pt-48 pb-16 sm:pb-24 lg:pb-28 overflow-hidden border-b border-ink/10 dark:border-white/10">
+      <section className="relative pt-32 sm:pt-40 lg:pt-48 pb-16 sm:pb-24 lg:pb-28 overflow-hidden border-b border-[var(--border-subtle)]">
+        <InsidePageOrbital className="absolute -bottom-10 -left-20 w-[340px] opacity-55 rotate-180" />
+        <InsidePageOrbital className="absolute -top-6 -right-16 w-[380px] opacity-65" />
         <div className="relative mx-auto max-w-[1152px] px-5 md:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-16 items-center">
             {/* Left Content */}
             <div className="lg:col-span-7 space-y-6">
               <Reveal>
-                <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[72px] leading-[1.04] text-ink dark:text-white tracking-tight">
+                <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[72px] leading-[1.04] text-[var(--text-primary)] tracking-tight">
                   Dedicated Server Support
                   <span className="text-[var(--primary)]">.</span>
                 </h1>
               </Reveal>
 
               <Reveal delay={0.1}>
-                <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-relaxed text-ink/75 dark:text-white/70 max-w-[640px] font-normal">
+                <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-relaxed text-[var(--text-secondary)] max-w-[640px] font-normal">
                   Nobody takes support and customer care more seriously than SupportPRO. We provide support 24 hours a
                   day, seven days a week, 365 days a year. What’s more, heroic support technicians are dedicated to
                   taking ownership of your issue, no matter what is causing it, and getting to the root of the problem
@@ -179,7 +182,7 @@ export default function DedicatedServerSupportPage() {
       </section>
 
       {/* ─── SECTION 2: Dedicated Server Management & Proactive Care ─────────── */}
-      <section id="services" className="py-16 sm:py-20 lg:py-28 bg-white dark:bg-[var(--sp-surface)] border-b border-ink/10 dark:border-white/10">
+      <section id="services" className="py-16 sm:py-20 lg:py-28 bg-[var(--surface-1)] border-b border-[var(--border-subtle)]">
         <div className="mx-auto max-w-[1152px] px-5 md:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-16 items-center">
             {/* Visual Image Column */}
@@ -196,14 +199,14 @@ export default function DedicatedServerSupportPage() {
             {/* Content Column */}
             <div className="lg:col-span-7 order-1 lg:order-2 space-y-6">
               <Reveal>
-                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl leading-[1.08] text-ink dark:text-white tracking-tight">
+                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl leading-[1.08] text-[var(--text-primary)] tracking-tight">
                   Dedicated Server Administration
                   <span className="text-[var(--primary)]">.</span>
                 </h2>
               </Reveal>
 
               <Reveal delay={0.1}>
-                <div className="space-y-4 text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed text-muted-foreground dark:text-white/70">
+                <div className="space-y-4 text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed text-[var(--text-secondary)]">
                   <p>
                     Our Server Management Service helps you take care of your servers with weekly audits and server
                     monitoring with support assistance. We provide 24/7/365 support through Live Chat and Email with
@@ -228,13 +231,13 @@ export default function DedicatedServerSupportPage() {
       </section>
 
       {/* ─── SECTION 3: 4 Core Pillars + 18 Administration Tasks ──────────────── */}
-      <section className="py-16 sm:py-20 lg:py-28 bg-cream dark:bg-[var(--sp-bg)] border-b border-ink/10 dark:border-white/10 relative">
+      <section className="py-16 sm:py-20 lg:py-28 bg-[var(--bg-base)] border-b border-[var(--border-subtle)] relative">
         <GlobalBadgeSpotlight gridRef={featureGridRef} spotlightRadius={400} />
         <div className="mx-auto max-w-[1152px] px-5 md:px-6 lg:px-8 relative z-10">
           <Reveal>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 sm:mb-14">
               <div>
-                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl leading-[1.08] text-ink dark:text-white max-w-[820px] tracking-tight">
+                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl leading-[1.08] text-[var(--text-primary)] max-w-[820px] tracking-tight">
                   Complete Server Reliability &amp; Care
                   <span className="text-[var(--primary)]">:</span>
                 </h2>
@@ -256,7 +259,7 @@ export default function DedicatedServerSupportPage() {
                     clickEffect={true}
                     particleCount={4}
                     enableTilt={false}
-                    className="relative w-full h-full min-h-[210px] sm:min-h-[230px] rounded-[var(--radius-card)] border border-ink/10 dark:border-white/10 bg-white dark:bg-[var(--surface-2)] p-6 flex flex-col justify-between hover:border-[var(--primary)]/40 transition-all duration-300 shadow-sm hover:shadow-lg group cursor-pointer !items-stretch !justify-between"
+                    className="relative w-full h-full min-h-[210px] sm:min-h-[230px] rounded-[var(--radius-card)] border border-[var(--border-subtle)] bg-[var(--surface-2)] p-6 flex flex-col justify-between hover:border-[var(--primary)]/40 transition-all duration-300 shadow-sm hover:shadow-lg group cursor-pointer !items-stretch !justify-between"
                   >
                     <div className="w-full h-full flex flex-col justify-between">
                       <div className="w-full flex items-center justify-between">
@@ -268,7 +271,7 @@ export default function DedicatedServerSupportPage() {
                         </span>
                       </div>
                       <div className="w-full mt-auto pt-6">
-                        <h3 className="text-[15px] sm:text-[16px] font-semibold text-ink dark:text-white leading-snug tracking-tight group-hover:text-[var(--primary)] transition-colors">
+                        <h3 className="text-[15px] sm:text-[16px] font-semibold text-[var(--text-primary)] leading-snug tracking-tight group-hover:text-[var(--primary)] transition-colors">
                           {item.title}
                         </h3>
                       </div>
@@ -281,9 +284,9 @@ export default function DedicatedServerSupportPage() {
 
           {/* 18-item Server Administration Coverage Checklist */}
           <Reveal delay={0.1}>
-            <div className="mt-12 sm:mt-16 rounded-[var(--radius-card-lg)] border border-ink/10 dark:border-white/10 bg-white dark:bg-[var(--surface-2)] p-6 sm:p-8 md:p-10">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 pb-4 border-b border-ink/10 dark:border-white/10">
-                <h3 className="font-display text-2xl sm:text-3xl text-ink dark:text-white tracking-tight">
+            <div className="mt-12 sm:mt-16 rounded-[var(--radius-card-lg)] border border-[var(--border-subtle)] bg-[var(--surface-2)] p-6 sm:p-8 md:p-10">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 pb-4 border-b border-[var(--border-subtle)]">
+                <h3 className="font-display text-2xl sm:text-3xl text-[var(--text-primary)] tracking-tight">
                   What We Take Care Of
                   <span className="text-[var(--primary)]">.</span>
                 </h3>
@@ -301,7 +304,7 @@ export default function DedicatedServerSupportPage() {
                     <span className="w-5 h-5 rounded-full bg-[var(--primary)]/15 text-[var(--primary)] flex items-center justify-center shrink-0">
                       <Check size={12} strokeWidth={3} />
                     </span>
-                    <span className="text-[13px] sm:text-[14px] font-medium text-ink dark:text-white/90">
+                    <span className="text-[13px] sm:text-[14px] font-medium text-[var(--text-primary)]/90">
                       {task}
                     </span>
                   </div>
@@ -313,11 +316,11 @@ export default function DedicatedServerSupportPage() {
       </section>
 
       {/* ─── SECTION 4: Available Plans ───────────────────────────────────────── */}
-      <section id="plans" className="py-16 sm:py-20 lg:py-28 bg-white dark:bg-[var(--sp-surface)] border-b border-ink/10 dark:border-white/10">
+      <section id="plans" className="py-16 sm:py-20 lg:py-28 bg-[var(--surface-1)] border-b border-[var(--border-subtle)]">
         <div className="mx-auto max-w-[1152px] px-5 md:px-6 lg:px-8">
           <Reveal>
             <div className="flex items-center justify-between gap-4 mb-6">
-              <h2 className="font-display text-2xl sm:text-3xl md:text-4xl leading-tight text-ink dark:text-white tracking-tight">
+              <h2 className="font-display text-2xl sm:text-3xl md:text-4xl leading-tight text-[var(--text-primary)] tracking-tight">
                 Available Plans
                 <span className="text-[var(--primary)]">.</span>
               </h2>
@@ -328,9 +331,9 @@ export default function DedicatedServerSupportPage() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <div className="rounded-[var(--radius-card)] border border-ink/10 dark:border-white/10 bg-cream/30 dark:bg-[var(--surface-2)] p-6 sm:p-8 space-y-6">
+            <div className="rounded-[var(--radius-card)] border border-[var(--border-subtle)] bg-[var(--surface-2)] p-6 sm:p-8 space-y-6">
               {/* Plan 1: Server Administration ($100.00) */}
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6 pb-6 border-b border-ink/10 dark:border-white/10">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6 pb-6 border-b border-[var(--border-subtle)]">
                 <div className="flex items-start gap-3.5">
                   <button
                     type="button"
@@ -346,7 +349,7 @@ export default function DedicatedServerSupportPage() {
                   </button>
 
                   <div>
-                    <h3 className="text-base sm:text-lg font-semibold text-ink dark:text-white">
+                    <h3 className="text-base sm:text-lg font-semibold text-[var(--text-primary)]">
                       Server Administration
                     </h3>
                     <p className="text-xs sm:text-sm text-muted-foreground dark:text-white/60 mt-0.5">
@@ -368,7 +371,7 @@ export default function DedicatedServerSupportPage() {
                       >
                         <Minus size={13} strokeWidth={2.5} />
                       </button>
-                      <span className="w-8 text-center text-sm font-semibold text-ink dark:text-white select-none">
+                      <span className="w-8 text-center text-sm font-semibold text-[var(--text-primary)] select-none">
                         {adminCount}
                       </span>
                       <button
@@ -387,7 +390,7 @@ export default function DedicatedServerSupportPage() {
                   </div>
 
                   <div className="text-right min-w-[80px]">
-                    <span className="text-base sm:text-lg font-bold text-ink dark:text-white">
+                    <span className="text-base sm:text-lg font-bold text-[var(--text-primary)]">
                       ${(100 * adminCount).toFixed(2)}
                     </span>
                   </div>
@@ -395,7 +398,7 @@ export default function DedicatedServerSupportPage() {
               </div>
 
               {/* Plan 2: Server Security Administration ($90.00) */}
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6 pb-6 border-b border-ink/10 dark:border-white/10">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6 pb-6 border-b border-[var(--border-subtle)]">
                 <div className="flex items-start gap-3.5">
                   <button
                     type="button"
@@ -411,7 +414,7 @@ export default function DedicatedServerSupportPage() {
                   </button>
 
                   <div>
-                    <h3 className="text-base sm:text-lg font-semibold text-ink dark:text-white">
+                    <h3 className="text-base sm:text-lg font-semibold text-[var(--text-primary)]">
                       Server Security Administration
                     </h3>
                     <p className="text-xs sm:text-sm text-muted-foreground dark:text-white/60 mt-0.5">
@@ -433,7 +436,7 @@ export default function DedicatedServerSupportPage() {
                       >
                         <Minus size={13} strokeWidth={2.5} />
                       </button>
-                      <span className="w-8 text-center text-sm font-semibold text-ink dark:text-white select-none">
+                      <span className="w-8 text-center text-sm font-semibold text-[var(--text-primary)] select-none">
                         {securityCount}
                       </span>
                       <button
@@ -452,7 +455,7 @@ export default function DedicatedServerSupportPage() {
                   </div>
 
                   <div className="text-right min-w-[80px]">
-                    <span className="text-base sm:text-lg font-bold text-ink dark:text-white">
+                    <span className="text-base sm:text-lg font-bold text-[var(--text-primary)]">
                       ${(90 * securityCount).toFixed(2)}
                     </span>
                   </div>
@@ -474,15 +477,15 @@ export default function DedicatedServerSupportPage() {
       </section>
 
       {/* ─── SECTION 5: Custom Plan CTA ────────────────────────────────────────── */}
-      <section className="py-16 sm:py-20 lg:py-24 bg-cream dark:bg-[var(--sp-bg)] border-b border-ink/10 dark:border-white/10">
+      <section className="py-16 sm:py-20 lg:py-24 bg-[var(--bg-base)] border-b border-[var(--border-subtle)]">
         <div className="mx-auto max-w-[1152px] px-5 md:px-6 lg:px-8">
           <Reveal>
             <div className="rounded-[var(--radius-card-lg)] border-2 border-[var(--primary)]/40 bg-gradient-to-br from-[var(--primary)]/10 via-[var(--primary)]/[0.03] to-transparent dark:from-[var(--primary)]/15 dark:via-[var(--surface-2)] dark:to-[var(--surface-1)] p-6 sm:p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden shadow-lg shadow-[var(--primary)]/5">
               <div className="space-y-1.5 z-10 max-w-xl">
-                <h2 className="font-display text-2xl sm:text-3xl md:text-4xl text-ink dark:text-white tracking-tight">
+                <h2 className="font-display text-2xl sm:text-3xl md:text-4xl text-[var(--text-primary)] tracking-tight">
                   Are You Looking For A Custom Plan?
                 </h2>
-                <p className="text-xs sm:text-sm text-muted-foreground dark:text-white/70 leading-relaxed">
+                <p className="text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed">
                   Multi-server fleets, custom monitoring thresholds (from $20/server for 5+ servers), and dedicated L3 engineers tailored to your infrastructure.
                 </p>
               </div>
@@ -499,46 +502,46 @@ export default function DedicatedServerSupportPage() {
       </section>
 
       {/* ─── SECTION 6: Contact Us ────────────────────────────────────────────── */}
-      <section id="contact" className="py-16 sm:py-20 lg:py-28 bg-white dark:bg-[var(--sp-surface)] border-b border-ink/10 dark:border-white/10">
+      <section id="contact" className="py-16 sm:py-20 lg:py-28 bg-[var(--surface-1)] border-b border-[var(--border-subtle)]">
         <div className="mx-auto max-w-[1152px] px-5 md:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-16">
             {/* Left Column: Contact Information */}
             <div className="lg:col-span-5">
               <Reveal>
-                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl leading-[1.08] text-ink dark:text-white tracking-tight mb-8">
+                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl leading-[1.08] text-[var(--text-primary)] tracking-tight mb-8">
                   Contact Us
                   <span className="text-[var(--primary)]">.</span>
                 </h2>
 
                 <div className="space-y-6 sm:space-y-8">
                   {/* Sales and Support Block */}
-                  <div className="rounded-[var(--radius-card)] border border-ink/10 dark:border-white/10 bg-cream/30 dark:bg-[var(--surface-2)] p-6">
-                    <h3 className="text-[16px] font-bold text-ink dark:text-white mb-4 flex items-center gap-2">
+                  <div className="rounded-[var(--radius-card)] border border-[var(--border-subtle)] bg-[var(--surface-2)] p-6">
+                    <h3 className="text-[16px] font-bold text-[var(--text-primary)] mb-4 flex items-center gap-2">
                       <Phone size={17} className="text-[var(--primary)]" />
                       Sales and Support
                     </h3>
                     <div className="space-y-3 text-[14px]">
                       <div>
                         <span className="text-muted-foreground dark:text-white/50 block text-[12px]">Phone:</span>
-                        <a href="tel:18476076123" className="font-medium text-ink dark:text-white hover:text-[var(--primary)] transition-colors">
+                        <a href="tel:18476076123" className="font-medium text-[var(--text-primary)] hover:text-[var(--primary)] transition-colors">
                           1-(847)-607-6123
                         </a>
                       </div>
                       <div>
                         <span className="text-muted-foreground dark:text-white/50 block text-[12px]">Sales:</span>
-                        <a href="mailto:sales@supportpro.com" className="font-medium text-ink dark:text-white hover:text-[var(--primary)] transition-colors">
+                        <a href="mailto:sales@supportpro.com" className="font-medium text-[var(--text-primary)] hover:text-[var(--primary)] transition-colors">
                           sales@supportpro.com
                         </a>
                       </div>
                       <div>
                         <span className="text-muted-foreground dark:text-white/50 block text-[12px]">Support:</span>
-                        <a href="mailto:support@supportpro.com" className="font-medium text-ink dark:text-white hover:text-[var(--primary)] transition-colors">
+                        <a href="mailto:support@supportpro.com" className="font-medium text-[var(--text-primary)] hover:text-[var(--primary)] transition-colors">
                           support@supportpro.com
                         </a>
                       </div>
                       <div>
                         <span className="text-muted-foreground dark:text-white/50 block text-[12px]">MS Team:</span>
-                        <span className="font-medium text-ink dark:text-white">
+                        <span className="font-medium text-[var(--text-primary)]">
                           support@supportpro.com
                         </span>
                       </div>
@@ -546,8 +549,8 @@ export default function DedicatedServerSupportPage() {
                   </div>
 
                   {/* Postal Address Block */}
-                  <div className="rounded-[var(--radius-card)] border border-ink/10 dark:border-white/10 bg-cream/30 dark:bg-[var(--surface-2)] p-6">
-                    <h3 className="text-[16px] font-bold text-ink dark:text-white mb-3 flex items-center gap-2">
+                  <div className="rounded-[var(--radius-card)] border border-[var(--border-subtle)] bg-[var(--surface-2)] p-6">
+                    <h3 className="text-[16px] font-bold text-[var(--text-primary)] mb-3 flex items-center gap-2">
                       <MapPin size={17} className="text-[var(--primary)]" />
                       Postal Address
                     </h3>
@@ -564,9 +567,9 @@ export default function DedicatedServerSupportPage() {
             {/* Right Column: Contact Quote Form */}
             <div className="lg:col-span-7">
               <Reveal delay={0.1}>
-                <div className="rounded-[var(--radius-card-lg)] border border-ink/10 dark:border-white/10 bg-cream/30 dark:bg-[var(--surface-2)] p-6 sm:p-8 md:p-10">
+                <div className="rounded-[var(--radius-card-lg)] border border-[var(--border-subtle)] bg-[var(--surface-2)] p-6 sm:p-8 md:p-10">
                   <div className="mb-6">
-                    <h3 className="text-xl sm:text-2xl font-bold text-ink dark:text-white">
+                    <h3 className="text-xl sm:text-2xl font-bold text-[var(--text-primary)]">
                       Request For Quote
                     </h3>
                   </div>
@@ -588,7 +591,7 @@ export default function DedicatedServerSupportPage() {
                           required
                           suppressHydrationWarning
                           placeholder="Full name"
-                          className="w-full rounded-[var(--radius-card)] border border-ink/10 dark:border-white/10 bg-white dark:bg-black/20 pl-11 pr-4 py-3 text-[13px] text-ink dark:text-white outline-none transition-all placeholder:text-ink/35 dark:placeholder:text-white/30 focus:border-[var(--primary)]/50 dark:focus:bg-black/40"
+                          className="w-full rounded-[var(--radius-card)] border border-[var(--border-subtle)] bg-white dark:bg-black/20 pl-11 pr-4 py-3 text-[13px] text-[var(--text-primary)] outline-none transition-all placeholder:text-ink/35 dark:placeholder:text-white/30 focus:border-[var(--primary)]/50 dark:focus:bg-black/40"
                         />
                       </div>
                       <div className="relative">
@@ -601,7 +604,7 @@ export default function DedicatedServerSupportPage() {
                           type="email"
                           suppressHydrationWarning
                           placeholder="Work email"
-                          className="w-full rounded-[var(--radius-card)] border border-ink/10 dark:border-white/10 bg-white dark:bg-black/20 pl-11 pr-4 py-3 text-[13px] text-ink dark:text-white outline-none transition-all placeholder:text-ink/35 dark:placeholder:text-white/30 focus:border-[var(--primary)]/50 dark:focus:bg-black/40"
+                          className="w-full rounded-[var(--radius-card)] border border-[var(--border-subtle)] bg-white dark:bg-black/20 pl-11 pr-4 py-3 text-[13px] text-[var(--text-primary)] outline-none transition-all placeholder:text-ink/35 dark:placeholder:text-white/30 focus:border-[var(--primary)]/50 dark:focus:bg-black/40"
                         />
                       </div>
                     </div>
@@ -614,7 +617,7 @@ export default function DedicatedServerSupportPage() {
                       <input
                         placeholder="Company"
                         suppressHydrationWarning
-                        className="w-full rounded-[var(--radius-card)] border border-ink/10 dark:border-white/10 bg-white dark:bg-black/20 pl-11 pr-4 py-3 text-[13px] text-ink dark:text-white outline-none transition-all placeholder:text-ink/35 dark:placeholder:text-white/30 focus:border-[var(--primary)]/50 dark:focus:bg-black/40"
+                        className="w-full rounded-[var(--radius-card)] border border-[var(--border-subtle)] bg-white dark:bg-black/20 pl-11 pr-4 py-3 text-[13px] text-[var(--text-primary)] outline-none transition-all placeholder:text-ink/35 dark:placeholder:text-white/30 focus:border-[var(--primary)]/50 dark:focus:bg-black/40"
                       />
                     </div>
 
@@ -631,7 +634,7 @@ export default function DedicatedServerSupportPage() {
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
                         placeholder="Message"
-                        className="w-full resize-none rounded-[var(--radius-card)] border border-ink/10 dark:border-white/10 bg-white dark:bg-black/20 pl-11 pr-4 pt-3 pb-8 text-[13px] text-ink dark:text-white outline-none transition-all placeholder:text-ink/35 dark:placeholder:text-white/30 focus:border-[var(--primary)]/50 dark:focus:bg-black/40"
+                        className="w-full resize-none rounded-[var(--radius-card)] border border-[var(--border-subtle)] bg-white dark:bg-black/20 pl-11 pr-4 pt-3 pb-8 text-[13px] text-[var(--text-primary)] outline-none transition-all placeholder:text-ink/35 dark:placeholder:text-white/30 focus:border-[var(--primary)]/50 dark:focus:bg-black/40"
                       />
                       <span className="absolute right-4 bottom-3 text-[11px] text-ink/30 dark:text-white/30 font-mono select-none">
                         {message.length} / 500
@@ -660,11 +663,11 @@ export default function DedicatedServerSupportPage() {
       </section>
 
       {/* ─── SECTION 7: Industry Solutions ────────────────────────────────────── */}
-      <section className="py-16 sm:py-20 lg:py-28 bg-cream dark:bg-[var(--sp-bg)] relative">
+      <section className="py-16 sm:py-20 lg:py-28 bg-[var(--bg-base)] relative">
         <GlobalBadgeSpotlight gridRef={industryGridRef} spotlightRadius={400} />
         <div className="mx-auto max-w-[1152px] px-5 md:px-6 lg:px-8 relative z-10">
           <Reveal>
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl leading-[1.08] text-ink dark:text-white tracking-tight">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl leading-[1.08] text-[var(--text-primary)] tracking-tight">
               Industry Solutions
               <span className="text-[var(--primary)]">.</span>
             </h2>
@@ -680,13 +683,13 @@ export default function DedicatedServerSupportPage() {
                     clickEffect={true}
                     particleCount={4}
                     enableTilt={false}
-                    className="h-full rounded-[var(--radius-card)] border border-ink/10 dark:border-white/10 bg-white dark:bg-[var(--surface-2)] p-5 sm:p-6 flex items-center justify-between gap-4 hover:border-[var(--primary)]/40 transition-all cursor-pointer group shadow-sm hover:shadow-md"
+                    className="h-full rounded-[var(--radius-card)] border border-[var(--border-subtle)] bg-[var(--surface-2)] p-5 sm:p-6 flex items-center justify-between gap-4 hover:border-[var(--primary)]/40 transition-all cursor-pointer group shadow-sm hover:shadow-md"
                   >
                     <div className="flex items-center gap-4 min-w-0 flex-1">
                       <div className="w-11 h-11 rounded-xl bg-[var(--primary)]/10 text-[var(--primary)] flex items-center justify-center shrink-0 group-hover:bg-[var(--primary)] group-hover:text-white transition-colors duration-200">
                         <IndIcon size={20} strokeWidth={1} />
                       </div>
-                      <span className="text-[15px] sm:text-[16px] font-semibold text-ink dark:text-white group-hover:text-[var(--primary)] transition-colors leading-snug">
+                      <span className="text-[15px] sm:text-[16px] font-semibold text-[var(--text-primary)] group-hover:text-[var(--primary)] transition-colors leading-snug">
                         {ind.name}
                       </span>
                     </div>

@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import { Nav } from '@/components/nav';
 import { SiteFooter } from '@/components/footer';
+import { InsidePageOrbital, InsideSectionEyebrow, InsideContactPanel } from '@/components/inside-page-shell';
 import { PrimaryButton, SecondaryButton } from '@/components/ui/sp-button';
 import supportIllustration from '@/assets/247 expert support, always on..png';
 
@@ -106,7 +107,7 @@ export default function AbuseHandlingPage() {
   };
 
   return (
-    <main className="bg-[var(--bg-base)] text-[var(--text-primary)] min-h-screen overflow-x-clip">
+    <main className="bg-[var(--bg-base)] text-[var(--text-primary)] min-h-screen overflow-x-clip transition-colors duration-300">
       <Nav />
 
       {/* ─── Hero Section ──────────────────────────────────────────────────────── */}

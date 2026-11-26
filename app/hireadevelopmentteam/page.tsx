@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { Nav } from '@/components/nav';
 import { SiteFooter } from '@/components/footer';
+import { InsidePageOrbital, InsideSectionEyebrow, InsideContactPanel } from '@/components/inside-page-shell';
 import ParticleBadge, { GlobalBadgeSpotlight } from '@/components/MagicBadge';
 import imgHireDeveloperTeam from '@/assets/hire-developer-team.png';
 
@@ -123,24 +124,26 @@ export default function HireADevelopmentTeamPage() {
   ];
 
   return (
-    <main className="bg-cream dark:bg-[var(--sp-bg)] min-h-screen overflow-x-clip transition-colors duration-300">
+    <main className="bg-[var(--bg-base)] text-[var(--text-primary)] min-h-screen overflow-x-clip transition-colors duration-300">
       <Nav />
 
       {/* ─── SECTION 1: Hire a Development Team (Hero / Intro) ─────────────────── */}
-      <section className="relative pt-32 sm:pt-40 lg:pt-48 pb-16 sm:pb-24 lg:pb-28 overflow-hidden border-b border-ink/10 dark:border-white/10">
+      <section className="relative pt-32 sm:pt-40 lg:pt-48 pb-16 sm:pb-24 lg:pb-28 overflow-hidden border-b border-[var(--border-subtle)]">
+        <InsidePageOrbital className="absolute -bottom-10 -left-20 w-[340px] opacity-55 rotate-180" />
+        <InsidePageOrbital className="absolute -top-6 -right-16 w-[380px] opacity-65" />
         <div className="relative mx-auto max-w-[1152px] px-5 md:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 lg:gap-16 items-center">
             {/* Left Content */}
             <div className="lg:col-span-7 space-y-6">
               <Reveal>
-                <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[72px] leading-[1.04] text-ink dark:text-white tracking-tight">
+                <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-[72px] leading-[1.04] text-[var(--text-primary)] tracking-tight">
                   Hire a Development Team
                   <span className="text-[#FF8101]">.</span>
                 </h1>
               </Reveal>
 
               <Reveal delay={0.1}>
-                <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-relaxed text-ink/75 dark:text-white/70 max-w-[620px] font-normal">
+                <p className="text-[15px] sm:text-[16px] md:text-[17px] leading-relaxed text-[var(--text-secondary)] max-w-[620px] font-normal">
                   Hire a team of developers to develop software for your company or third party. This model is suited for small and medium scale non-IT companies for developing their in-house technical requirements, or for entrepreneurs and individuals with the passion of developing a software solution.
                 </p>
               </Reveal>
@@ -156,7 +159,7 @@ export default function HireADevelopmentTeamPage() {
                   </a>
                   <a
                     href="#contact"
-                    className="cursor-morph inline-flex items-center gap-2 rounded-full border border-ink/15 dark:border-white/15 bg-white/50 dark:bg-white/5 px-6 sm:px-7 py-3 text-sm font-medium text-ink dark:text-white hover:border-[#FF8101] hover:text-[#FF8101] dark:hover:border-[#FF8101] dark:hover:text-[#FF8101] transition-colors"
+                    className="cursor-morph inline-flex items-center gap-2 rounded-full border border-ink/15 dark:border-white/15 bg-white/50 dark:bg-white/5 px-6 sm:px-7 py-3 text-sm font-medium text-[var(--text-primary)] hover:border-[#FF8101] hover:text-[#FF8101] dark:hover:border-[#FF8101] dark:hover:text-[#FF8101] transition-colors"
                   >
                     <span>Contact Us</span>
                   </a>
@@ -179,12 +182,12 @@ export default function HireADevelopmentTeamPage() {
       </section>
 
       {/* ─── SECTION 2: Software Development Requests ─────────────────────────── */}
-      <section className="py-16 sm:py-20 lg:py-28 bg-white dark:bg-[var(--sp-surface)] border-b border-ink/10 dark:border-white/10 relative">
+      <section className="py-16 sm:py-20 lg:py-28 bg-[var(--surface-1)] border-b border-[var(--border-subtle)] relative">
         <GlobalBadgeSpotlight gridRef={capabilityGridRef} spotlightRadius={400} />
         <div className="mx-auto max-w-[1152px] px-5 md:px-6 lg:px-8 relative z-10">
           <Reveal>
             <div className="max-w-[820px] mb-10 sm:mb-14">
-              <p className="text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed text-muted-foreground dark:text-white/70">
+              <p className="text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed text-[var(--text-secondary)]">
                 A wide range of software, extending from individual website applications, to multi- system server software may require custom configuration. The following are a few of the more common setup and configuration requests we received.
               </p>
             </div>
@@ -192,7 +195,7 @@ export default function HireADevelopmentTeamPage() {
 
           {/* Unified Single Container for the 10 points */}
           <Reveal delay={0.1}>
-            <div className="rounded-2xl sm:rounded-3xl border border-ink/10 dark:border-white/10 bg-cream/30 dark:bg-[#141414] overflow-hidden">
+            <div className="rounded-2xl sm:rounded-3xl border border-[var(--border-subtle)] bg-cream/30 dark:bg-[#141414] overflow-hidden">
               <div className="grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-ink/10 dark:divide-white/10">
                 {/* Left Column (01 - 05) */}
                 <div className="divide-y divide-ink/10 dark:divide-white/10">
@@ -207,7 +210,7 @@ export default function HireADevelopmentTeamPage() {
                         </span>
                       </div>
                       <div className="flex-1 min-w-0 space-y-1">
-                        <h3 className="text-[14px] sm:text-[15px] font-semibold text-ink dark:text-white group-hover:text-[#FF8101] transition-colors leading-snug">
+                        <h3 className="text-[14px] sm:text-[15px] font-semibold text-[var(--text-primary)] group-hover:text-[#FF8101] transition-colors leading-snug">
                           {item.title}
                         </h3>
                         {item.detail && (
@@ -233,7 +236,7 @@ export default function HireADevelopmentTeamPage() {
                         </span>
                       </div>
                       <div className="flex-1 min-w-0 space-y-1">
-                        <h3 className="text-[14px] sm:text-[15px] font-semibold text-ink dark:text-white group-hover:text-[#FF8101] transition-colors leading-snug">
+                        <h3 className="text-[14px] sm:text-[15px] font-semibold text-[var(--text-primary)] group-hover:text-[#FF8101] transition-colors leading-snug">
                           {item.title}
                         </h3>
                         {item.detail && (
@@ -252,11 +255,11 @@ export default function HireADevelopmentTeamPage() {
       </section>
 
       {/* ─── SECTION 3: Available Plans ───────────────────────────────────────── */}
-      <section id="plans" className="py-16 sm:py-20 lg:py-28 bg-cream dark:bg-[var(--sp-bg)] border-b border-ink/10 dark:border-white/10">
+      <section id="plans" className="py-16 sm:py-20 lg:py-28 bg-[var(--bg-base)] border-b border-[var(--border-subtle)]">
         <div className="mx-auto max-w-[1152px] px-5 md:px-6 lg:px-8">
           <Reveal>
             <div className="flex items-center justify-between gap-4 mb-6">
-              <h2 className="font-display text-2xl sm:text-3xl md:text-4xl leading-tight text-ink dark:text-white tracking-tight">
+              <h2 className="font-display text-2xl sm:text-3xl md:text-4xl leading-tight text-[var(--text-primary)] tracking-tight">
                 Available Plans
                 <span className="text-[#FF8101]">.</span>
               </h2>
@@ -267,9 +270,9 @@ export default function HireADevelopmentTeamPage() {
           </Reveal>
 
           <Reveal delay={0.1}>
-            <div className="rounded-2xl border border-ink/10 dark:border-white/10 bg-white dark:bg-[#141414] p-6 sm:p-8 space-y-6">
+            <div className="rounded-2xl border border-[var(--border-subtle)] bg-white dark:bg-[#141414] p-6 sm:p-8 space-y-6">
               {/* Row 1: Hourly Programming Work */}
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6 pb-6 border-b border-ink/10 dark:border-white/10">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6 pb-6 border-b border-[var(--border-subtle)]">
                 <div className="flex items-start gap-3.5">
                   <button
                     type="button"
@@ -284,7 +287,7 @@ export default function HireADevelopmentTeamPage() {
                   </button>
 
                   <div>
-                    <h3 className="text-base sm:text-lg font-semibold text-ink dark:text-white">
+                    <h3 className="text-base sm:text-lg font-semibold text-[var(--text-primary)]">
                       Hourly Programming Work
                     </h3>
                     <p className="text-xs sm:text-sm text-muted-foreground dark:text-white/60 mt-0.5">
@@ -306,7 +309,7 @@ export default function HireADevelopmentTeamPage() {
                       >
                         <Minus size={13} strokeWidth={2.5} />
                       </button>
-                      <span className="w-8 text-center text-sm font-semibold text-ink dark:text-white select-none">
+                      <span className="w-8 text-center text-sm font-semibold text-[var(--text-primary)] select-none">
                         {hoursCount}
                       </span>
                       <button
@@ -326,7 +329,7 @@ export default function HireADevelopmentTeamPage() {
                   </div>
 
                   <div className="text-right min-w-[85px]">
-                    <span className="text-base sm:text-lg font-bold text-ink dark:text-white">
+                    <span className="text-base sm:text-lg font-bold text-[var(--text-primary)]">
                       ${(480 * hoursCount).toFixed(2)}
                     </span>
                   </div>
@@ -334,7 +337,7 @@ export default function HireADevelopmentTeamPage() {
               </div>
 
               {/* Row 2: Dedicated Programmer */}
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6 pb-6 border-b border-ink/10 dark:border-white/10">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6 pb-6 border-b border-[var(--border-subtle)]">
                 <div className="flex items-start gap-3.5">
                   <button
                     type="button"
@@ -349,7 +352,7 @@ export default function HireADevelopmentTeamPage() {
                   </button>
 
                   <div>
-                    <h3 className="text-base sm:text-lg font-semibold text-ink dark:text-white">
+                    <h3 className="text-base sm:text-lg font-semibold text-[var(--text-primary)]">
                       Dedicated Programmer
                     </h3>
                     <p className="text-xs sm:text-sm text-muted-foreground dark:text-white/60 mt-0.5 max-w-xl">
@@ -360,7 +363,7 @@ export default function HireADevelopmentTeamPage() {
 
                 <div className="flex items-center justify-end pl-8 md:pl-0">
                   <div className="text-right min-w-[85px]">
-                    <span className="text-base sm:text-lg font-bold text-ink dark:text-white">
+                    <span className="text-base sm:text-lg font-bold text-[var(--text-primary)]">
                       $2400.00
                     </span>
                   </div>
@@ -368,7 +371,7 @@ export default function HireADevelopmentTeamPage() {
               </div>
 
               {/* Row 3: Senior Dedicated Programmer */}
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6 pb-6 border-b border-ink/10 dark:border-white/10">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6 pb-6 border-b border-[var(--border-subtle)]">
                 <div className="flex items-start gap-3.5">
                   <button
                     type="button"
@@ -383,7 +386,7 @@ export default function HireADevelopmentTeamPage() {
                   </button>
 
                   <div>
-                    <h3 className="text-base sm:text-lg font-semibold text-ink dark:text-white">
+                    <h3 className="text-base sm:text-lg font-semibold text-[var(--text-primary)]">
                       Dedicated Programmer
                     </h3>
                     <p className="text-xs sm:text-sm text-muted-foreground dark:text-white/60 mt-0.5 max-w-xl">
@@ -394,7 +397,7 @@ export default function HireADevelopmentTeamPage() {
 
                 <div className="flex items-center justify-end pl-8 md:pl-0">
                   <div className="text-right min-w-[85px]">
-                    <span className="text-base sm:text-lg font-bold text-ink dark:text-white">
+                    <span className="text-base sm:text-lg font-bold text-[var(--text-primary)]">
                       $3400.00
                     </span>
                   </div>
@@ -405,7 +408,7 @@ export default function HireADevelopmentTeamPage() {
               <div className="mt-6 flex flex-wrap items-center justify-end gap-3 sm:gap-4 pt-2">
                 <a
                   href="#contact"
-                  className="cursor-morph inline-flex items-center justify-center rounded-full border border-ink/20 dark:border-white/20 bg-cream/50 dark:bg-transparent px-6 py-2.5 text-xs sm:text-sm font-medium text-ink dark:text-white hover:border-[#FF8101] hover:text-[#FF8101] dark:hover:border-[#FF8101] dark:hover:text-[#FF8101] transition-colors"
+                  className="cursor-morph inline-flex items-center justify-center rounded-full border border-ink/20 dark:border-white/20 bg-cream/50 dark:bg-transparent px-6 py-2.5 text-xs sm:text-sm font-medium text-[var(--text-primary)] hover:border-[#FF8101] hover:text-[#FF8101] dark:hover:border-[#FF8101] dark:hover:text-[#FF8101] transition-colors"
                 >
                   Continue Shopping
                 </a>
@@ -422,12 +425,12 @@ export default function HireADevelopmentTeamPage() {
       </section>
 
       {/* ─── SECTION 4: Custom Plan CTA ───────────────────────────────────────── */}
-      <section className="py-16 sm:py-20 lg:py-24 bg-white dark:bg-[var(--sp-surface)] border-b border-ink/10 dark:border-white/10">
+      <section className="py-16 sm:py-20 lg:py-24 bg-[var(--surface-1)] border-b border-[var(--border-subtle)]">
         <div className="mx-auto max-w-[1152px] px-5 md:px-6 lg:px-8">
           <Reveal>
-            <div className="rounded-3xl border border-ink/10 dark:border-white/10 bg-cream/50 dark:bg-[#141414] p-8 sm:p-12 md:p-14 flex flex-col md:flex-row md:items-center justify-between gap-8">
+            <div className="rounded-3xl border border-[var(--border-subtle)] bg-cream/50 dark:bg-[#141414] p-8 sm:p-12 md:p-14 flex flex-col md:flex-row md:items-center justify-between gap-8">
               <div className="max-w-[600px]">
-                <h2 className="font-display text-2xl sm:text-3xl md:text-4xl leading-tight text-ink dark:text-white tracking-tight">
+                <h2 className="font-display text-2xl sm:text-3xl md:text-4xl leading-tight text-[var(--text-primary)] tracking-tight">
                   Are You Looking For A Custom Plan?
                 </h2>
               </div>
@@ -447,10 +450,10 @@ export default function HireADevelopmentTeamPage() {
       </section>
 
       {/* ─── SECTION 5: Contact Us ────────────────────────────────────────────── */}
-      <section id="contact" className="py-16 sm:py-20 lg:py-28 bg-cream dark:bg-[var(--sp-bg)] border-b border-ink/10 dark:border-white/10">
+      <section id="contact" className="py-16 sm:py-20 lg:py-28 bg-[var(--bg-base)] border-b border-[var(--border-subtle)]">
         <div className="mx-auto max-w-[1152px] px-5 md:px-6 lg:px-8">
           <Reveal>
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl leading-[1.08] text-ink dark:text-white tracking-tight mb-10 sm:mb-14">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl leading-[1.08] text-[var(--text-primary)] tracking-tight mb-10 sm:mb-14">
               Contact Us
               <span className="text-[#FF8101]">.</span>
             </h2>
@@ -459,33 +462,33 @@ export default function HireADevelopmentTeamPage() {
           <Reveal delay={0.1}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-[920px]">
               {/* Sales and Support Block */}
-              <div className="rounded-2xl border border-ink/10 dark:border-white/10 bg-cream/40 dark:bg-[#151515] p-6 sm:p-8">
-                <h3 className="text-[16px] font-bold text-ink dark:text-white mb-4 flex items-center gap-2">
+              <div className="rounded-2xl border border-[var(--border-subtle)] bg-cream/40 dark:bg-[#151515] p-6 sm:p-8">
+                <h3 className="text-[16px] font-bold text-[var(--text-primary)] mb-4 flex items-center gap-2">
                   <Phone size={17} className="text-[#FF8101]" />
                   Sales and Support
                 </h3>
                 <div className="space-y-3 text-[14px]">
                   <div>
                     <span className="text-muted-foreground dark:text-white/50 block text-[12px]">Phone:</span>
-                    <a href="tel:18476076123" className="font-medium text-ink dark:text-white hover:text-[#FF8101] transition-colors">
+                    <a href="tel:18476076123" className="font-medium text-[var(--text-primary)] hover:text-[#FF8101] transition-colors">
                       1-(847)-607-6123
                     </a>
                   </div>
                   <div>
                     <span className="text-muted-foreground dark:text-white/50 block text-[12px]">Sales:</span>
-                    <a href="mailto:sales@supportpro.com" className="font-medium text-ink dark:text-white hover:text-[#FF8101] transition-colors">
+                    <a href="mailto:sales@supportpro.com" className="font-medium text-[var(--text-primary)] hover:text-[#FF8101] transition-colors">
                       sales@supportpro.com
                     </a>
                   </div>
                   <div>
                     <span className="text-muted-foreground dark:text-white/50 block text-[12px]">Support:</span>
-                    <a href="mailto:support@supportpro.com" className="font-medium text-ink dark:text-white hover:text-[#FF8101] transition-colors">
+                    <a href="mailto:support@supportpro.com" className="font-medium text-[var(--text-primary)] hover:text-[#FF8101] transition-colors">
                       support@supportpro.com
                     </a>
                   </div>
                   <div>
                     <span className="text-muted-foreground dark:text-white/50 block text-[12px]">MS Team:</span>
-                    <span className="font-medium text-ink dark:text-white">
+                    <span className="font-medium text-[var(--text-primary)]">
                       support@supportpro.com
                     </span>
                   </div>
@@ -493,8 +496,8 @@ export default function HireADevelopmentTeamPage() {
               </div>
 
               {/* Postal Address Block */}
-              <div className="rounded-2xl border border-ink/10 dark:border-white/10 bg-cream/40 dark:bg-[#151515] p-6 sm:p-8">
-                <h3 className="text-[16px] font-bold text-ink dark:text-white mb-3 flex items-center gap-2">
+              <div className="rounded-2xl border border-[var(--border-subtle)] bg-cream/40 dark:bg-[#151515] p-6 sm:p-8">
+                <h3 className="text-[16px] font-bold text-[var(--text-primary)] mb-3 flex items-center gap-2">
                   <MapPin size={17} className="text-[#FF8101]" />
                   Postal Address
                 </h3>
@@ -510,11 +513,11 @@ export default function HireADevelopmentTeamPage() {
       </section>
 
       {/* ─── SECTION 6: Industry Solutions ─────────────────────────────────────── */}
-      <section className="py-16 sm:py-20 lg:py-28 bg-white dark:bg-[var(--sp-surface)] relative">
+      <section className="py-16 sm:py-20 lg:py-28 bg-[var(--surface-1)] relative">
         <GlobalBadgeSpotlight gridRef={industryGridRef} spotlightRadius={400} />
         <div className="mx-auto max-w-[1152px] px-5 md:px-6 lg:px-8 relative z-10">
           <Reveal>
-            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl leading-[1.08] text-ink dark:text-white tracking-tight">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl leading-[1.08] text-[var(--text-primary)] tracking-tight">
               Industry Solutions
               <span className="text-[#FF8101]">.</span>
             </h2>
@@ -530,13 +533,13 @@ export default function HireADevelopmentTeamPage() {
                     clickEffect={true}
                     particleCount={4}
                     enableTilt={false}
-                    className="h-full rounded-2xl border border-ink/10 dark:border-white/10 bg-white dark:bg-[#151515] p-5 sm:p-6 flex items-center justify-between gap-4 hover:border-[#FF8101]/40 transition-all cursor-pointer group"
+                    className="h-full rounded-2xl border border-[var(--border-subtle)] bg-white dark:bg-[#151515] p-5 sm:p-6 flex items-center justify-between gap-4 hover:border-[#FF8101]/40 transition-all cursor-pointer group"
                   >
                     <div className="flex items-center gap-4 min-w-0 flex-1">
                       <div className="w-11 h-11 rounded-xl bg-[#FF8101]/10 text-[#FF8101] flex items-center justify-center shrink-0 group-hover:bg-[#FF8101] group-hover:text-white transition-colors duration-200">
                         <IndIcon size={20} strokeWidth={1} />
                       </div>
-                      <span className="text-[15px] sm:text-[16px] font-semibold text-ink dark:text-white group-hover:text-[#FF8101] transition-colors leading-snug">
+                      <span className="text-[15px] sm:text-[16px] font-semibold text-[var(--text-primary)] group-hover:text-[#FF8101] transition-colors leading-snug">
                         {ind.name}
                       </span>
                     </div>
