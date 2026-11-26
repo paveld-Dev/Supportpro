@@ -12,7 +12,7 @@ const getImageSrc = (img: any): string => {
 
 export function SiteFooter() {
   return (
-    <footer className="bg-ink dark:bg-[#080808] text-white/80 px-5 md:px-6 lg:px-8 pt-10 sm:pt-16 lg:pt-24 pb-24 border-t border-white/10 dark:border-white/5">
+    <footer className="relative z-10 bg-[#1A1A18] dark:bg-[#080808] text-white/80 px-5 md:px-6 lg:px-8 pt-10 sm:pt-16 lg:pt-24 pb-24 border-t border-white/10 dark:border-white/5">
       <div className="mx-auto max-w-[1152px] grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 text-xs">
         {/* Brand Column */}
         <div className="col-span-2 md:col-span-1">

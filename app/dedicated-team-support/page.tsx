@@ -2,17 +2,28 @@
 
 import { useState } from 'react';
 import {
+  Activity,
   ArrowRight,
+  Award,
   Building2,
   Check,
+  Clock,
+  Cpu,
+  Globe,
+  Headphones,
+  Layers,
+  Lock,
   Mail,
   MapPin,
+  MessageCircle,
   MessageSquare,
   Minus,
   Phone,
   Plus,
   ShieldCheck,
+  Sparkles,
   User,
+  Users,
 } from 'lucide-react';
 import { Nav } from '@/components/nav';
 import { SiteFooter } from '@/components/footer';
@@ -73,19 +84,19 @@ const STAFF_LEVEL_PLANS: PlanItem[] = [
 const ALL_PLANS = [SHARED_PLAN, ...STAFF_LEVEL_PLANS];
 
 const BENEFITS = [
-  'Ability to build your team',
-  'Your business privacy is maintained under our Service Level Agreement as well as the Non-Disclosure Agreement',
-  'You have a single point of contact for every action taken',
-  'All advanced administration works handled efficiently',
-  'All our techs and engineers are RHCE certified',
-  'White labeled support',
-  'Support is present around the clock',
-  'Unlimited live chat support',
-  'We would add a back-up technician during peak hours if required',
-  'Unlimited helpdesk support',
-  'Optional telephone support',
-  'Option to add pre-sales support',
-  'Train the techs under your business acumen for a customized experience for your customers',
+  { text: 'Ability to build your team', icon: Users },
+  { text: 'Your business privacy is maintained under our Service Level Agreement as well as the Non-Disclosure Agreement', icon: Lock },
+  { text: 'You have a single point of contact for every action taken', icon: User },
+  { text: 'All advanced administration works handled efficiently', icon: Cpu },
+  { text: 'All our techs and engineers are RHCE certified', icon: Award },
+  { text: 'White labeled support', icon: Globe },
+  { text: 'Support is present around the clock', icon: Clock },
+  { text: 'Unlimited live chat support', icon: MessageCircle },
+  { text: 'We would add a back-up technician during peak hours if required', icon: Activity },
+  { text: 'Unlimited helpdesk support', icon: Headphones },
+  { text: 'Optional telephone support', icon: Phone },
+  { text: 'Option to add pre-sales support', icon: ShieldCheck },
+  { text: 'Train the techs under your business acumen for a customized experience for your customers', icon: Layers },
 ];
 
 export default function DedicatedTeamSupportPage() {
@@ -127,7 +138,7 @@ export default function DedicatedTeamSupportPage() {
     return (
       <div
         key={plan.id}
-        className="rounded-[var(--radius-card)] border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-5 sm:p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-4 lg:gap-6"
+        className="rounded-[var(--radius-card)] border border-[var(--border-subtle)] bg-[var(--surface-2)] p-5 sm:p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-4 lg:gap-6"
       >
         <div className="flex items-start gap-3.5 min-w-0 flex-1">
           <button
@@ -268,7 +279,7 @@ export default function DedicatedTeamSupportPage() {
       </section>
 
       {/* ─── Plans Section (Visible on Desktop Without Scrolling) ──────────────── */}
-      <section id="plans" className="py-10 sm:py-16 lg:py-24 border-b border-[var(--border-subtle)]">
+      <section id="plans" className="py-10 sm:py-16 lg:py-24 bg-[var(--bg-surface)] border-b border-[var(--border-subtle)]">
         <div className="mx-auto max-w-[1152px] px-5 md:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-6">
             <div>
@@ -327,28 +338,35 @@ export default function DedicatedTeamSupportPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-            {BENEFITS.map((benefit, index) => (
-              <div
-                key={benefit}
-                className="rounded-[var(--radius-card)] border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6 flex items-start gap-4"
-              >
-                <span className="text-xs font-mono font-bold text-[var(--primary)] bg-[var(--surface-2)] border border-[var(--border-subtle)] px-2.5 py-1 rounded-[var(--radius-pill)] shrink-0">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-                <p className="text-sm sm:text-[15px] text-[var(--text-primary)] leading-relaxed">
-                  {benefit}
-                </p>
-              </div>
-            ))}
+            {BENEFITS.map((benefit) => {
+              const Icon = benefit.icon;
+              return (
+                <div
+                  key={benefit.text}
+                  className="rounded-[var(--radius-card)] border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6 flex items-start gap-4"
+                >
+                  <span className="w-10 h-10 rounded-[var(--radius-card)] bg-[var(--surface-2)] border border-[var(--border-subtle)] text-[var(--primary)] flex items-center justify-center shrink-0">
+                    <Icon size={18} strokeWidth={1.75} />
+                  </span>
+                  <p className="text-sm sm:text-[15px] text-[var(--text-primary)] leading-relaxed pt-1">
+                    {benefit.text}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* ─── Custom Plan Section ───────────────────────────────────────────────── */}
-      <section className="py-16 sm:py-20 lg:py-24 border-b border-[var(--border-subtle)]">
+      <section className="py-16 sm:py-20 lg:py-24 bg-[var(--bg-surface)] border-b border-[var(--border-subtle)]">
         <div className="mx-auto max-w-[1152px] px-5 md:px-6 lg:px-8">
-          <div className="rounded-[var(--radius-card)] border border-[var(--border-subtle)] border-t-2 border-t-[var(--primary)] bg-[var(--bg-surface)] p-6 sm:p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="rounded-[var(--radius-card)] border border-[var(--border-subtle)] border-t-2 border-t-[var(--primary)] bg-[var(--surface-2)] p-6 sm:p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div className="space-y-2 max-w-xl">
+              <div className="inline-flex items-center gap-2 text-xs font-mono text-[var(--primary)]">
+                <Sparkles size={14} />
+                <span>Custom SLA</span>
+              </div>
               <h2 className="font-display text-2xl sm:text-3xl md:text-4xl text-[var(--text-primary)] tracking-tight">
                 Need a custom plan?
               </h2>

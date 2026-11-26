@@ -14,7 +14,7 @@ type PrimaryOrSecondaryProps = ButtonBaseProps &
   AnchorHTMLAttributes<HTMLAnchorElement>;
 
 const sharedClasses =
-  'cursor-morph inline-flex items-center justify-center gap-2 rounded-[var(--radius-pill)] text-sm font-semibold transition-colors focus-visible:outline-[var(--focus-ring-width)] focus-visible:outline-solid focus-visible:outline-[var(--focus-ring-color)] focus-visible:outline-offset-[var(--focus-ring-offset)]';
+  'cursor-morph inline-flex items-center justify-center gap-2 rounded-[var(--radius-pill)] text-sm font-semibold transition-all duration-200 hover:ring-2 hover:ring-[var(--primary)] hover:ring-offset-2 hover:ring-offset-[var(--bg-base)] focus-visible:outline-[var(--focus-ring-width)] focus-visible:outline-solid focus-visible:outline-[var(--focus-ring-color)] focus-visible:outline-offset-[var(--focus-ring-offset)]';
 
 export function PrimaryButton({
   children,

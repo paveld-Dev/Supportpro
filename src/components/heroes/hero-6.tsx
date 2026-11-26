@@ -221,7 +221,7 @@ export function HeroSection6() {
             <div className="flex flex-row items-center gap-2.5 sm:gap-3 pointer-events-auto">
               <a
                 href="#contact-form"
-                className="cursor-morph rounded-lg sm:rounded-xl bg-[#FF8101] dark:bg-white text-white dark:text-black px-3.5 sm:px-5 py-2.5 sm:py-3 text-xs sm:text-sm font-semibold hover:bg-[#e07200] dark:hover:bg-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF8101] dark:focus-visible:ring-white transition-all duration-200 shadow-lg shadow-[#FF8101]/20 dark:shadow-black/40 flex items-center gap-1.5 shrink-0"
+                className="cursor-morph rounded-lg sm:rounded-xl bg-[#FF8101] dark:bg-white text-white dark:text-black px-3.5 sm:px-5 py-2.5 sm:py-3 text-xs sm:text-sm font-semibold hover:bg-[#e07200] dark:hover:bg-[var(--primary)] dark:hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FF8101] dark:focus-visible:ring-[var(--primary)] transition-all duration-200 shadow-lg shadow-[#FF8101]/20 dark:shadow-black/40 flex items-center gap-1.5 shrink-0"
               >
                 Book a Consultation
                 <span className="text-[13px] leading-none">↗</span>

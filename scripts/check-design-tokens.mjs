@@ -9,6 +9,12 @@ const TOKENIZED_FILES = [
   'app/dedicated-tech-support/page.tsx',
   'app/semi-dedicated-support/page.tsx',
   'app/dedicated-team-support/page.tsx',
+  'app/helpdesk-support/page.tsx',
+  'app/live-chat-support/page.tsx',
+  'app/hourly-administration/page.tsx',
+  'app/server-migration/page.tsx',
+  'app/abuse-handling/page.tsx',
+  'app/server-manager-addon/page.tsx',
   'src/components/ui/sp-button.tsx',
 ];
 

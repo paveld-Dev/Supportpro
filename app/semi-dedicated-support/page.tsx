@@ -2,9 +2,15 @@
 
 import { useState } from 'react';
 import {
+  Activity,
   ArrowRight,
   Building2,
   Check,
+  Clock,
+  Cpu,
+  Headphones,
+  Layers,
+  Lock,
   Mail,
   MapPin,
   MessageSquare,
@@ -12,7 +18,9 @@ import {
   Phone,
   Plus,
   ShieldCheck,
+  Sparkles,
   User,
+  Users,
 } from 'lucide-react';
 import { Nav } from '@/components/nav';
 import { SiteFooter } from '@/components/footer';
@@ -46,14 +54,14 @@ const SEMI_DEDICATED_PLANS: PlanItem[] = [
 ];
 
 const BENEFITS = [
-  'Well-trained, dedicated engineers shared only for two companies',
-  'Friendly atmosphere for easy interaction between you and our team',
-  'Cheaper than maintaining an in-house tech support team',
-  'All advanced administration works handled efficiently',
-  'The support team is trained on your line of business, systems, and processes',
-  'Available in 8 hour shifts, five days a week',
-  'Guaranteed assistance for at least 18 hours a week',
-  'Secure information protected, Service Level Agreement/Non-Disclosure Agreement signed',
+  { text: 'Well-trained, dedicated engineers shared only for two companies', icon: Users },
+  { text: 'Friendly atmosphere for easy interaction between you and our team', icon: Headphones },
+  { text: 'Cheaper than maintaining an in-house tech support team', icon: Activity },
+  { text: 'All advanced administration works handled efficiently', icon: Cpu },
+  { text: 'The support team is trained on your line of business, systems, and processes', icon: Layers },
+  { text: 'Available in 8 hour shifts, five days a week', icon: Clock },
+  { text: 'Guaranteed assistance for at least 18 hours a week', icon: ShieldCheck },
+  { text: 'Secure information protected, Service Level Agreement/Non-Disclosure Agreement signed', icon: Lock },
 ];
 
 export default function SemiDedicatedSupportPage() {
@@ -128,7 +136,7 @@ export default function SemiDedicatedSupportPage() {
       </section>
 
       {/* ─── Plans Section (Visible on Desktop Without Scrolling) ──────────────── */}
-      <section id="plans" className="py-10 sm:py-16 lg:py-24 border-b border-[var(--border-subtle)]">
+      <section id="plans" className="py-10 sm:py-16 lg:py-24 bg-[var(--bg-surface)] border-b border-[var(--border-subtle)]">
         <div className="mx-auto max-w-[1152px] px-5 md:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-3 mb-6">
             <div>
@@ -170,7 +178,7 @@ export default function SemiDedicatedSupportPage() {
               return (
                 <div
                   key={plan.id}
-                  className="rounded-[var(--radius-card)] border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-5 sm:p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-4 lg:gap-6"
+                  className="rounded-[var(--radius-card)] border border-[var(--border-subtle)] bg-[var(--surface-2)] p-5 sm:p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-4 lg:gap-6"
                 >
                   <div className="flex items-start gap-3.5 min-w-0 flex-1">
                     <button
@@ -285,28 +293,35 @@ export default function SemiDedicatedSupportPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-            {BENEFITS.map((benefit, index) => (
-              <div
-                key={benefit}
-                className="rounded-[var(--radius-card)] border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6 flex items-start gap-4"
-              >
-                <span className="text-xs font-mono font-bold text-[var(--primary)] bg-[var(--surface-2)] border border-[var(--border-subtle)] px-2.5 py-1 rounded-[var(--radius-pill)] shrink-0">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-                <p className="text-sm sm:text-[15px] text-[var(--text-primary)] leading-relaxed">
-                  {benefit}
-                </p>
-              </div>
-            ))}
+            {BENEFITS.map((benefit) => {
+              const Icon = benefit.icon;
+              return (
+                <div
+                  key={benefit.text}
+                  className="rounded-[var(--radius-card)] border border-[var(--border-subtle)] bg-[var(--bg-surface)] p-6 flex items-start gap-4"
+                >
+                  <span className="w-10 h-10 rounded-[var(--radius-card)] bg-[var(--surface-2)] border border-[var(--border-subtle)] text-[var(--primary)] flex items-center justify-center shrink-0">
+                    <Icon size={18} strokeWidth={1.75} />
+                  </span>
+                  <p className="text-sm sm:text-[15px] text-[var(--text-primary)] leading-relaxed pt-1">
+                    {benefit.text}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* ─── Custom Plan Section ───────────────────────────────────────────────── */}
-      <section className="py-16 sm:py-20 lg:py-24 border-b border-[var(--border-subtle)]">
+      <section className="py-16 sm:py-20 lg:py-24 bg-[var(--bg-surface)] border-b border-[var(--border-subtle)]">
         <div className="mx-auto max-w-[1152px] px-5 md:px-6 lg:px-8">
-          <div className="rounded-[var(--radius-card)] border border-[var(--border-subtle)] border-t-2 border-t-[var(--primary)] bg-[var(--bg-surface)] p-6 sm:p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+          <div className="rounded-[var(--radius-card)] border border-[var(--border-subtle)] border-t-2 border-t-[var(--primary)] bg-[var(--surface-2)] p-6 sm:p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div className="space-y-2 max-w-xl">
+              <div className="inline-flex items-center gap-2 text-xs font-mono text-[var(--primary)]">
+                <Sparkles size={14} />
+                <span>Custom SLA</span>
+              </div>
               <h2 className="font-display text-2xl sm:text-3xl md:text-4xl text-[var(--text-primary)] tracking-tight">
                 Need a custom plan?
               </h2>

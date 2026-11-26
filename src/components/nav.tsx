@@ -91,8 +91,8 @@ export const navItems = [
       {
         heading: 'Client Support',
         items: [
-          { label: 'Helpdesk Support', desc: 'Ticket-based 24/7 coverage', icon: Headphones, href: 'https://www.supportpro.com/helpdesk-support.php' },
-          { label: 'Live Chat Support', desc: 'Real-time chat agents', icon: MessageCircle, href: 'https://www.supportpro.com/live-chat-support.php' },
+          { label: 'Helpdesk Support', desc: 'Ticket-based 24/7 coverage', icon: Headphones, href: '/helpdesk-support' },
+          { label: 'Live Chat Support', desc: 'Real-time chat agents', icon: MessageCircle, href: '/live-chat-support' },
         ],
       },
     ],
@@ -103,15 +103,15 @@ export const navItems = [
       {
         heading: 'Services',
         items: [
-          { label: 'Hourly Administration', desc: 'On-demand server tasks', icon: Clock, href: 'https://www.supportpro.com/hourly-administration.php' },
-          { label: 'Server Migration', desc: 'Zero-downtime migrations', icon: ArrowRightLeft, href: 'https://www.supportpro.com/server-migration.php' },
-          { label: 'Abuse Handling', desc: 'DMCA & spam mitigation', icon: ShieldAlert, href: 'https://www.supportpro.com/abuse-handling.php' },
+          { label: 'Hourly Administration', desc: 'On-demand server tasks', icon: Clock, href: '/hourly-administration' },
+          { label: 'Server Migration', desc: 'Zero-downtime migrations', icon: ArrowRightLeft, href: '/server-migration' },
+          { label: 'Abuse Handling', desc: 'DMCA & spam mitigation', icon: ShieldAlert, href: '/abuse-handling' },
         ],
       },
       {
         heading: 'Products',
         items: [
-          { label: 'Server Manager Addon', desc: 'WHMCS marketplace plugin', badge: 'Popular', icon: Blocks, href: 'https://www.supportpro.com/server-manager-addon.php' },
+          { label: 'Server Manager Addon', desc: 'WHMCS marketplace plugin', badge: 'Popular', icon: Blocks, href: '/server-manager-addon' },
           { label: 'Server Scanner', desc: 'Automated vulnerability scanner', icon: ShieldCheck, href: '/scanner' },
         ],
       },
@@ -125,17 +125,6 @@ export const navItems = [
         items: [
           { label: 'Hire a Developer', desc: 'Vetted full-stack engineers', icon: Code, href: '/hireadeveloper' },
           { label: 'Hire a Dev Team', desc: 'Complete project squads', icon: Briefcase, href: '/hireadevelopmentteam' },
-        ],
-      },
-      {
-        heading: 'Hero Section Variations',
-        items: [
-          { label: 'Hero Section 1', desc: 'Cinematic video ambient & 23+ yrs badge', badge: 'Default', icon: Sparkles, href: '/?hero=1' },
-          { label: 'Hero Section 2', desc: 'Location details & bottom-left exp badge', badge: 'Updated', icon: Award, href: '/?hero=2' },
-          { label: 'Hero Section 3', desc: 'Interactive slider with DevOps, Support & Hosting', badge: 'Slider', icon: Layers, href: '/?hero=3' },
-          { label: 'Hero Section 4', desc: 'Executive split with coverage estimator', badge: 'Interactive', icon: Sliders, href: '/?hero=4' },
-          { label: 'Hero Section 5', desc: 'Interactive 3D WebGL Globe layout', badge: 'Globe', icon: Layout, href: '/?hero=5' },
-          { label: 'Hero Section 6', desc: 'Interactive 3D WebGL Globe layout (Copy)', badge: 'Globe', icon: Layout, href: '/?hero=6' },
         ],
       },
     ],
@@ -203,7 +192,7 @@ export function Nav() {
               className="hidden sm:block relative"
               onMouseEnter={() => setOpenMenu(item.label)}
             >
-              <button className="cursor-morph flex items-center gap-1 px-3.5 py-1.5 rounded-full hover:bg-white/10 transition font-medium">
+              <button className="cursor-morph flex items-center gap-1 px-3.5 py-1.5 rounded-full transition font-medium">
                 {item.label}
                 <ChevronDown
                   size={12}
@@ -229,8 +218,8 @@ export function Nav() {
                         <div
                           key={section.heading}
                           className={`p-3 ${si < item.sections.length - 1 && item.sections.length > 1
-                              ? 'border-r border-black/[0.06] dark:border-white/[0.08]'
-                              : ''
+                            ? 'border-r border-black/[0.06] dark:border-white/[0.08]'
+                            : ''
                             }`}
                         >
                           <p className="px-3 mb-2 text-[10px] font-mono uppercase tracking-wider text-ink/45 dark:text-white/40">
@@ -293,21 +282,10 @@ export function Nav() {
           {/* Divider */}
           <span className="mx-1 h-4 w-px bg-white/20 hidden sm:block" />
 
-          {/* Sign Up — subtle outlined pill */}
-          <Link
-            href="/signup"
-            className="hidden md:block cursor-morph px-4 py-1.5 rounded-full text-white/90 hover:border-[#FF8101] hover:text-[#FF8101] transition-all duration-200 font-medium"
-          >
-            Sign up
-          </Link>
-
-          {/* Divider */}
-          <span className="mx-1 h-4 w-px bg-white/20 hidden md:block" />
-
           {/* Login CTA */}
           <Link
             href="/clientlogin"
-            className="cursor-morph px-4 py-1.5 rounded-full bg-[#FF8101] text-white font-medium hover:brightness-110 transition-all duration-200"
+            className="cursor-morph px-4 py-1.5 rounded-full bg-[#FF8101] text-white font-medium"
           >
             Login
           </Link>
@@ -452,13 +430,6 @@ export function Nav() {
                   className="w-full py-3 rounded-full bg-[#FF8101] text-white text-center font-medium"
                 >
                   Login
-                </Link>
-                <Link
-                  href="/signup"
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="w-full py-3 rounded-full border border-ink/20 dark:border-white/20 text-ink dark:text-white text-center font-medium"
-                >
-                  Sign up
                 </Link>
               </div>
             </div>
