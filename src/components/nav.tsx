@@ -279,6 +279,13 @@ export function Nav() {
             </div>
           ))}
 
+          <Link
+            href="/case-studies"
+            className="hidden sm:flex items-center px-3.5 py-1.5 rounded-full transition font-medium"
+          >
+            Case Studies
+          </Link>
+
           {/* Divider */}
           <span className="mx-1 h-4 w-px bg-white/20 hidden sm:block" />
 
@@ -422,6 +429,14 @@ export function Nav() {
                   </div>
                 </div>
               ))}
+
+              <Link
+                href="/case-studies"
+                onClick={() => setMobileMenuOpen(false)}
+                className="text-lg font-display text-ink dark:text-white tracking-tight"
+              >
+                Case Studies
+              </Link>
 
               <div className="flex flex-col gap-3 mt-4 pt-6 border-t border-ink/10 dark:border-white/10">
                 <Link

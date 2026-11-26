@@ -1,0 +1,54 @@
+/* Case Studies Design Tokens — Aligned with SupportPRO Dark & Light Theme */
+
+.armia-theme {
+  --armia-accent: var(--primary);
+  --armia-accent-hover: var(--primary-hover);
+  --armia-bg: var(--bg-base);
+  --armia-surface: var(--surface-1);
+  --armia-card: var(--surface-2);
+  --armia-footer: var(--surface-1);
+  --armia-text-primary: var(--text-primary);
+  --armia-text-secondary: var(--text-secondary);
+  --armia-border: var(--border-subtle);
+  --armia-font-heading: var(--font-display-family);
+  --armia-font-body: var(--font-sans-family);
+
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-sans-family);
+  overflow-x: hidden;
+}
+
+.armia-theme h1,
+.armia-theme h2,
+.armia-theme h3 {
+  font-family: var(--font-display-family);
+  font-weight: 400;
+}
+
+.armia-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: var(--radius-pill);
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  font-family: var(--font-sans-family);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px 24px;
+  transition: background-color 150ms ease, box-shadow 150ms ease;
+}
+
+.armia-btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.armia-theme a:focus-visible,
+.armia-theme button:focus-visible,
+.armia-theme input:focus-visible,
+.armia-theme textarea:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
