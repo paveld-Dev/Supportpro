@@ -632,94 +632,68 @@ export function HeroGlobe({
           allPts.push({ x: p.x, y: p.y, z: p.z, t });
         }
 
-        // Group into contiguous visible segments on front hemisphere (z > -0.04)
-        const visibleSegments: { x: number; y: number; z: number; t: number }[][] = [];
-        let currentSeg: { x: number; y: number; z: number; t: number }[] = [];
+        // Draw Ghost Base Arc Trajectory in brand #FF8101 orange (faint network topology guide)
+        ctx.save();
+        let isDrawing = false;
+        for (let i = 0; i < pts.length - 1; i++) {
+          const pA = pts[i];
+          const pB = pts[i + 1];
+          const avgZ = (pA.z + pB.z) / 2;
 
-        for (let i = 0; i < allPts.length; i++) {
-          const pt = allPts[i];
-          if (pt.z > -0.04) {
-            currentSeg.push(pt);
-          } else {
-            if (currentSeg.length >= 2) {
-              visibleSegments.push(currentSeg);
+          if (avgZ > -0.04) {
+            const lineAlpha = Math.max(0.04, Math.min(0.16, (avgZ + 0.04) / 0.5));
+            if (!isDrawing) {
+              ctx.beginPath();
+              ctx.moveTo(pA.x, pA.y);
+              isDrawing = true;
             }
-            currentSeg = [];
+            ctx.lineTo(pB.x, pB.y);
+            ctx.strokeStyle = `rgba(255, 129, 1, ${lineAlpha * 0.8})`;
+            ctx.lineWidth = 0.65;
+            ctx.stroke();
+          } else if (isDrawing) {
+            ctx.stroke();
+            isDrawing = false;
           }
         }
-        if (currentSeg.length >= 2) {
-          visibleSegments.push(currentSeg);
-        }
-
-        if (visibleSegments.length === 0) return;
-
-        // Render each visible segment as a SOLID, UNBROKEN, CONTINUOUS GLOWING LINE
-        visibleSegments.forEach((seg) => {
-          const avgZ = seg.reduce((acc, p) => acc + p.z, 0) / seg.length;
-          const depthAlpha = Math.max(0.20, Math.min(1.0, (avgZ + 0.04) / 0.38));
-
-          ctx.save();
-          ctx.lineCap = 'round';
-          ctx.lineJoin = 'round';
-
-          // Pass 1: Luminous atmospheric bloom halo
-          ctx.beginPath();
-          ctx.moveTo(seg[0].x, seg[0].y);
-          for (let i = 1; i < seg.length; i++) {
-            ctx.lineTo(seg[i].x, seg[i].y);
-          }
-          ctx.strokeStyle = isDark
-            ? `rgba(255, 129, 1, ${0.35 * depthAlpha})`
-            : `rgba(255, 129, 1, ${0.28 * depthAlpha})`;
-          ctx.lineWidth = isDark ? 2.6 : 3.0;
+        if (isDrawing) {
           ctx.stroke();
+        }
+        ctx.restore();
 
-          // Pass 2: High-definition vibrant continuous core
-          ctx.beginPath();
-          ctx.moveTo(seg[0].x, seg[0].y);
-          for (let i = 1; i < seg.length; i++) {
-            ctx.lineTo(seg[i].x, seg[i].y);
-          }
-          ctx.strokeStyle = isDark
-            ? `rgba(255, 155, 45, ${0.92 * depthAlpha})`
-            : `rgba(235, 95, 0, ${0.96 * depthAlpha})`;
-          ctx.lineWidth = isDark ? 1.15 : 1.35;
-          ctx.stroke();
+        // Draw The Line Itself Traveling Outward from the Origin Base
+        // Phase 1 (0.00 -> 0.65): Line emerges from origin and shoots outward across the globe
+        // Phase 2 (0.65 -> 0.92): Line arrives at destination, tail draws forward from origin
+        // Phase 3 (0.92 -> 1.00): Brief pause before next line emerges
+        const cycle = (timestamp * 0.00020 * route.speed + route.phase) % 1;
+        let tMin = 0;
+        let tMax = 0;
+        let strokeAlpha = 0;
 
-          ctx.restore();
-        });
-
-        // Destination terminal node dot (crisp pin at client destination)
-        const destPt = allPts[allPts.length - 1];
-        if (destPt.z > 0.05) {
-          const destAlpha = Math.max(0, Math.min(1, (destPt.z - 0.05) / 0.35));
-          ctx.save();
-          ctx.beginPath();
-          ctx.arc(destPt.x, destPt.y, 3.2, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255, 129, 1, ${0.35 * destAlpha})`;
-          ctx.fill();
-
-          ctx.beginPath();
-          ctx.arc(destPt.x, destPt.y, 1.4, 0, Math.PI * 2);
-          ctx.fillStyle = isDark
-            ? `rgba(255, 210, 110, ${0.95 * destAlpha})`
-            : `rgba(235, 95, 0, ${0.96 * destAlpha})`;
-          ctx.fill();
-          ctx.restore();
+        if (cycle < 0.65) {
+          // Line originates at base beacon (tMin=0) and draws forward to tMax
+          const norm = cycle / 0.65;
+          const eased = 1 - Math.pow(1 - norm, 1.5);
+          tMin = 0;
+          tMax = Math.max(0.02, Math.min(1.0, eased));
+          strokeAlpha = 0.95;
+        } else if (cycle < 0.92) {
+          // Line reaches destination (tMax=1.0), tail catches up from origin
+          const norm = (cycle - 0.65) / 0.27;
+          tMin = Math.min(1.0, norm);
+          tMax = 1.0;
+          strokeAlpha = (1 - norm * 0.65) * 0.95;
+        } else {
+          // Pause between line travels
+          strokeAlpha = 0;
         }
 
-        // CONTINUOUS FLOW: Smoothly gliding energy packet along the continuous line
-        // Cycles continuously from 0.0 (origin) to 1.0 (destination)
-        const flowT = (timestamp * 0.00018 * route.speed + route.phase) % 1;
-        const pulseWidth = 0.35; // spans 35% of the arc behind the flow head
-
-        const PULSE_STEPS = 16;
-        const pulsePts: { x: number; y: number; z: number }[] = [];
-
-        for (let s = 0; s <= PULSE_STEPS; s++) {
-          const frac = s / PULSE_STEPS;
-          const t = flowT - pulseWidth * (1 - frac);
-          if (t >= 0 && t <= 1) {
+        if (strokeAlpha > 0.02 && tMax > tMin + 0.01) {
+          const TRAVEL_STEPS = 28;
+          const travelPts: { x: number; y: number; z: number; frac: number }[] = [];
+          for (let step = 0; step <= TRAVEL_STEPS; step++) {
+            const frac = step / TRAVEL_STEPS;
+            const t = tMin + (tMax - tMin) * frac;
             const pt3d = getArcPoint3D(v1, v2, t, peakHeight, radius);
             const p = project(pt3d);
             pulsePts.push(p);
@@ -732,105 +706,39 @@ export function HeroGlobe({
           const depthAlpha = Math.max(0.15, Math.min(1, (avgZ + 0.02) / 0.40));
 
           ctx.save();
-          ctx.lineCap = 'round';
-          ctx.lineJoin = 'round';
+          for (let s = 0; s < travelPts.length - 1; s++) {
+            const p1 = travelPts[s];
+            const p2 = travelPts[s + 1];
+            const avgZ = (p1.z + p2.z) / 2;
 
-          // Flow pass 1: Luminous energy surge halo
-          ctx.beginPath();
-          ctx.moveTo(visiblePulse[0].x, visiblePulse[0].y);
-          for (let i = 1; i < visiblePulse.length; i++) {
-            ctx.lineTo(visiblePulse[i].x, visiblePulse[i].y);
+            if (avgZ > -0.04) {
+              const depthAlpha = Math.max(0, Math.min(1, (avgZ + 0.04) / 0.45));
+              // Leading section glows slightly brighter while the trailing body remains solid
+              const tipGlow = 0.65 + 0.35 * (p2.frac * p2.frac);
+              const alpha = strokeAlpha * depthAlpha * tipGlow;
+
+              ctx.beginPath();
+              ctx.moveTo(p1.x, p1.y);
+              ctx.lineTo(p2.x, p2.y);
+              ctx.strokeStyle = `rgba(255, 129, 1, ${alpha})`;
+              ctx.lineWidth = 0.85 + 0.45 * p2.frac;
+              ctx.shadowColor = '#FF8101';
+              ctx.shadowBlur = 5 * p2.frac;
+              ctx.stroke();
+            }
           }
-          ctx.strokeStyle = isDark
-            ? `rgba(255, 140, 25, ${0.50 * depthAlpha})`
-            : `rgba(255, 120, 15, ${0.45 * depthAlpha})`;
-          ctx.lineWidth = 3.6;
-          ctx.stroke();
 
-          // Flow pass 2: Intense white-hot photon core
-          ctx.beginPath();
-          ctx.moveTo(visiblePulse[0].x, visiblePulse[0].y);
-          for (let i = 1; i < visiblePulse.length; i++) {
-            ctx.lineTo(visiblePulse[i].x, visiblePulse[i].y);
-          }
-          ctx.strokeStyle = isDark
-            ? `rgba(255, 235, 180, ${0.98 * depthAlpha})`
-            : `rgba(255, 255, 255, ${0.98 * depthAlpha})`;
-          ctx.lineWidth = 1.6;
-          ctx.stroke();
-
-          // Flow Head: Bright gliding photon particle
-          const headPt = visiblePulse[visiblePulse.length - 1];
-          if (headPt && headPt.z > 0.02) {
-            const headAlpha = Math.max(0, Math.min(1, (headPt.z - 0.02) / 0.38));
+          // Crisp leading edge at the forward tip of the line as it travels
+          const leadPt = travelPts[travelPts.length - 1];
+          if (leadPt.z > 0.05 && cycle < 0.65) {
+            const leadAlpha = Math.max(0, Math.min(1, (leadPt.z - 0.05) / 0.4)) * strokeAlpha;
             ctx.beginPath();
-            ctx.arc(headPt.x, headPt.y, 4.2, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255, 129, 1, ${0.50 * headAlpha})`;
-            ctx.fill();
-
-            ctx.beginPath();
-            ctx.arc(headPt.x, headPt.y, 1.6, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(255, 255, 255, ${0.98 * headAlpha})`;
+            ctx.arc(leadPt.x, leadPt.y, 1.8, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 255, 255, ${leadAlpha * 0.95})`;
+            ctx.shadowColor = '#FF8101';
+            ctx.shadowBlur = 6;
             ctx.fill();
           }
-
-          ctx.restore();
-        }
-      });
-
-      // 3. Draw Headquarters Labels on top of arcs for clear legibility
-      GLOBE_HIGHLIGHT_DOTS.forEach((dot) => {
-        const v = latLngToVector3(dot.lat, dot.lng);
-        const p3d: [number, number, number] = [v[0] * radius, v[1] * radius, v[2] * radius];
-        const pt = project(p3d);
-
-        if (pt.z > 0.16) {
-          const depthAlpha = Math.max(0, Math.min(1, (pt.z - 0.16) / 0.30));
-          const label = dot.id === 'dot-chicago' ? 'Chicago HQ' : 'South India HQ';
-          const isCompact = width < 380;
-
-          ctx.save();
-          ctx.font = `600 ${isCompact ? 9.5 : 10.5}px Inter, system-ui, -apple-system, sans-serif`;
-          ctx.textBaseline = 'middle';
-
-          const textW = ctx.measureText(label).width;
-          const padX = isCompact ? 7 : 8;
-          const pillH = isCompact ? 18 : 20;
-          const pillW = textW + padX * 2;
-          const offset = 9;
-
-          let pillX = pt.x + offset;
-          if (pillX + pillW > width - 6) {
-            pillX = pt.x - offset - pillW;
-          }
-          const pillY = pt.y - pillH / 2;
-
-          // Connecting hairline between dot and label
-          ctx.beginPath();
-          ctx.moveTo(pt.x, pt.y);
-          ctx.lineTo(pillX > pt.x ? pillX : pillX + pillW, pt.y);
-          ctx.strokeStyle = `rgba(255, 129, 1, ${0.45 * depthAlpha})`;
-          ctx.lineWidth = 1;
-          ctx.stroke();
-
-          // Rounded pill badge
-          ctx.beginPath();
-          ctx.roundRect(pillX, pillY, pillW, pillH, pillH / 2);
-          ctx.fillStyle = isDark
-            ? `rgba(14, 17, 24, ${0.88 * depthAlpha})`
-            : `rgba(255, 255, 255, ${0.94 * depthAlpha})`;
-          ctx.fill();
-          ctx.strokeStyle = isDark
-            ? `rgba(255, 129, 1, ${0.45 * depthAlpha})`
-            : `rgba(255, 129, 1, ${0.42 * depthAlpha})`;
-          ctx.lineWidth = 1;
-          ctx.stroke();
-
-          // Label text
-          ctx.fillStyle = isDark
-            ? `rgba(255, 255, 255, ${0.95 * depthAlpha})`
-            : `rgba(26, 26, 24, ${0.92 * depthAlpha})`;
-          ctx.fillText(label, pillX + padX, pt.y + 0.5);
 
           ctx.restore();
         }
